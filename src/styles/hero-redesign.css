@@ -1,0 +1,247 @@
+/* ==========================================
+   PAGE HERO SECTIONS - FULL WIDTH IMAGE BACKGROUND
+   ========================================== */
+.page-hero-section {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.page-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.50));
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  font-family: var(--font-primary);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.page-hero-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .page-hero-section {
+    min-height: 60vh;
+  }
+  
+  .page-hero-content {
+    padding: 1.5rem;
+  }
+}
+
+/* ==========================================
+   HOME PAGE - HERO VIDEO MINIMAL
+   ========================================== */
+.hero-section-video {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.hero-video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35));
+}
+
+.hero-video-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-video-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700;
+  font-family: var(--font-primary);
+  line-height: 1.1;
+  margin-bottom: 3rem;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-discover-btn {
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+  border-radius: 50px;
+  padding: 16px 40px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-discover-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Packs Section Detailed */
+.packs-grid-detailed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.pack-card-detailed {
+  height: 100%;
+}
+
+.pack-content-detailed {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pack-description-long {
+  font-size: 0.95rem;
+  color: var(--color-gray-500);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.pack-features-mini {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.pack-features-mini li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.pack-features-mini svg {
+  flex-shrink: 0;
+  color: var(--color-gray-900);
+}
+
+.packs-cta-center {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.packs-discover-btn {
+  background: linear-gradient(135deg, var(--color-gray-900), var(--color-gray-700));
+  color: var(--color-white);
+  border-radius: 50px;
+  padding: 16px 40px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  transition: all var(--transition-base);
+  box-shadow: 0 8px 24px rgba(26, 26, 46, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.packs-discover-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.packs-discover-btn:hover::before {
+  left: 100%;
+}
+
+.packs-discover-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 36px rgba(26, 26, 46, 0.3);
+}
+
+/* Section Separator - Smooth */
+.section-separator {
+  height: 40px;
+  background: linear-gradient(to bottom, var(--from-color, #ffffff), var(--to-color, #fdf8f5));
+  pointer-events: none;
+}
+
+/* Overline styles already added in main.css */
+
