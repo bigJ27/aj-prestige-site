@@ -73,9 +73,29 @@ const SEASONAL = {
 
 const PACK_COMMISSIONS = { confort: 0.15, sweet: 0.20, prestige: 0.25 };
 const PACK_INFO = {
-  confort:  { name: 'Pack Confort',    pct: '15%', badge: 'pack-badge-comfort' },
-  sweet:    { name: 'Pack Sweet Home', pct: '20%', badge: 'pack-badge-sweet'   },
+  confort:  { name: 'Pack Confort',    pct: '15%',  badge: 'pack-badge-comfort' },
+  sweet:    { name: 'Pack Sweet Home', pct: '20%',  badge: 'pack-badge-sweet'   },
   prestige: { name: 'Pack Prestige',   pct: '25%+', badge: 'pack-badge-prestige' },
+};
+const PACK_DETAILS = {
+  confort: [
+    'Gestion des réservations & messages voyageurs',
+    'Ménage professionnel + linge fourni',
+    'Check-in & check-out 7j/7',
+    'Assistance voyageurs 24/7',
+  ],
+  sweet: [
+    'Tout Pack Confort inclus',
+    'Photos professionnelles de votre bien',
+    'Optimisation annonce & référencement',
+    'Boîte à clés installée & gestion des avis',
+  ],
+  prestige: [
+    'Tout Pack Sweet Home inclus',
+    'Intendance renforcée (contrôles fréquents)',
+    'Gestion des imprévus & artisans',
+    'Pricing dynamique avancé & options sur-mesure',
+  ],
 };
 
 const fmt = (n) => Math.round(n).toLocaleString('fr-FR') + ' €';
@@ -86,8 +106,9 @@ export default function RevenueSimulator({ embedded = false }) {
   const [type,        setType]        = useState('2p');
   const [nights,      setNights]      = useState(20);
   const [month,       setMonth]       = useState(currentMonth);
-  const [pack,        setPack]        = useState('sweet');
-  const [showDetails, setShowDetails] = useState(false);
+  const [pack,         setPack]         = useState('sweet');
+  const [showDetails,  setShowDetails]  = useState(false);
+  const [showPackInfo, setShowPackInfo] = useState(false);
 
   const zoneData  = BASE_RATES[zone];
   const baseRate  = zoneData[type];
@@ -167,13 +188,27 @@ export default function RevenueSimulator({ embedded = false }) {
                 {Object.entries(PACK_INFO).map(([k, p]) => (
                   <button key={k} type="button"
                     className={`sim-pack-btn sim-pack-${k} ${pack === k ? 'active' : ''}`}
-                    onClick={() => setPack(k)}>
+                    onClick={() => { setPack(k); setShowPackInfo(prev => pack === k ? !prev : true); }}>
                     <span className="sim-pack-price">{p.pct}</span>
                     <span className="sim-pack-name">{p.name}</span>
                     {pack === k && <span className="sim-pack-check">✓</span>}
                   </button>
                 ))}
               </div>
+
+              {showPackInfo && (
+                <div className={`sim-pack-dropdown sim-pack-dropdown-${pack}`}>
+                  <div className="sim-pack-dropdown-header">
+                    <span className="sim-pack-dropdown-name">{PACK_INFO[pack].name} — {PACK_INFO[pack].pct}</span>
+                    <button type="button" className="sim-pack-dropdown-close" onClick={() => setShowPackInfo(false)}>✕</button>
+                  </div>
+                  <ul className="sim-pack-dropdown-list">
+                    {PACK_DETAILS[pack].map((item, i) => (
+                      <li key={i}><span className="sim-pack-dropdown-bullet">✓</span>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <div className="sim-results">
                 <div className="sim-result-grid">

@@ -778,6 +778,76 @@ p {
   color: var(--color-gray-500);
 }
 
+/* ==========================================
+   ACTIVITY SECTION — PACK PREVIEW
+   ========================================== */
+.activity-packs-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.app-pack-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.app-pack-row:hover {
+  transform: translateX(4px);
+}
+
+.app-pack-confort {
+  border-color: rgba(249, 115, 22, 0.2);
+  background: rgba(249, 115, 22, 0.03);
+}
+.app-pack-confort:hover { border-color: rgba(249, 115, 22, 0.4); }
+
+.app-pack-sweet {
+  border-color: rgba(190, 24, 93, 0.2);
+  background: rgba(190, 24, 93, 0.03);
+}
+.app-pack-sweet:hover { border-color: rgba(190, 24, 93, 0.4); }
+
+.app-pack-prestige {
+  border-color: rgba(147, 51, 234, 0.2);
+  background: rgba(147, 51, 234, 0.03);
+}
+.app-pack-prestige:hover { border-color: rgba(147, 51, 234, 0.4); }
+
+.app-pack-pct {
+  font-size: 1.1rem;
+  font-weight: 800;
+  min-width: 3.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+.app-pack-confort .app-pack-pct  { color: #f97316; }
+.app-pack-sweet .app-pack-pct    { color: #be185d; }
+.app-pack-prestige .app-pack-pct { color: #7c3aed; }
+
+.app-pack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.app-pack-info strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+.app-pack-info span {
+  font-size: 0.78rem;
+  color: var(--color-gray-500);
+  line-height: 1.4;
+}
+
 .simulator-embed-label {
   margin-bottom: 1rem;
 }
