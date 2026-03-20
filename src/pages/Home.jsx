@@ -123,22 +123,7 @@ const Home = () => {
               </Link>
             </div>
             <div className="activity-visual reveal-element" ref={addToRefs}>
-              <div className="activity-stats-card">
-                <div className="stat-block">
-                  <div className="stat-value">15-25%</div>
-                  <div className="stat-label">Commission transparente</div>
-                </div>
-                <div className="stat-divider"></div>
-                <div className="stat-block">
-                  <div className="stat-value">24/7</div>
-                  <div className="stat-label">Assistance voyageurs</div>
-                </div>
-                <div className="stat-divider"></div>
-                <div className="stat-block">
-                  <div className="stat-value">0€</div>
-                  <div className="stat-label">Frais de mise en place</div>
-                </div>
-              </div>
+              <RevenueSimulator embedded />
             </div>
           </div>
         </div>
@@ -146,9 +131,6 @@ const Home = () => {
 
       {/* Votre Parcours Section - Serpentine Metro Line */}
       <MetroJourneySection />
-
-      {/* Simulateur de revenus */}
-      <RevenueSimulator />
 
       {/* Separator */}
       <div className="section-separator" style={{'--from-color': '#fdf8f5', '--to-color': '#fef3ea'}}></div>

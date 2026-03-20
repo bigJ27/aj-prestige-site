@@ -81,7 +81,7 @@ const PACK_INFO = {
 const fmt = (n) => Math.round(n).toLocaleString('fr-FR') + ' €';
 const currentMonth = new Date().getMonth() + 1;
 
-export default function RevenueSimulator() {
+export default function RevenueSimulator({ embedded = false }) {
   const [zone,        setZone]        = useState('idf-couronne');
   const [type,        setType]        = useState('2p');
   const [nights,      setNights]      = useState(20);
@@ -114,42 +114,9 @@ export default function RevenueSimulator() {
     }), [baseRate, nights, packComm]);
   const maxBar = Math.max(...bars.map(b => b.net));
 
-  return (
-    <section className="simulator-section section-padding">
-      <div className="container">
-        <div className="simulator-layout">
-
-          <div className="simulator-intro reveal-element">
-            <span className="overline">SIMULATEUR DE REVENUS</span>
-            <h2 className="section-title simulator-title">
-              Combien peut rapporter<br />votre bien ?
-            </h2>
-            <p className="simulator-desc">
-              Notre simulateur intègre les données de marché réelles Paris &amp; Île-de-France
-              2025–2026 avec les coefficients de saisonnalité mensuels pour estimer
-              précisément vos revenus nets.
-            </p>
-            <div className="sim-market-stats">
-              <div className="sim-mstat">
-                <div className="sim-mstat-val">162 €</div>
-                <div className="sim-mstat-lbl">Tarif moyen / nuit Paris</div>
-              </div>
-              <div className="sim-mstat">
-                <div className="sim-mstat-val">80 %</div>
-                <div className="sim-mstat-lbl">Taux d'occupation médian</div>
-              </div>
-              <div className="sim-mstat">
-                <div className="sim-mstat-val">43 k€</div>
-                <div className="sim-mstat-lbl">Revenu annuel moyen hôte</div>
-              </div>
-            </div>
-            <div className="sim-source-note">
-              Sources : AirDNA · Airbtics 2024–2025 · allovoyages.fr 2026 · Welkeys
-            </div>
-          </div>
-
-          <Card className="glass-card simulator-card">
-            <CardContent className="simulator-card-content">
+  const cardContent = (
+    <Card className="glass-card simulator-card">
+      <CardContent className="simulator-card-content">
 
               <div className="sim-field sim-field-full">
                 <label className="sim-label">Secteur géographique</label>
@@ -308,6 +275,45 @@ export default function RevenueSimulator() {
 
             </CardContent>
           </Card>
+  );
+
+  if (embedded) return cardContent;
+
+  return (
+    <section className="simulator-section section-padding">
+      <div className="container">
+        <div className="simulator-layout">
+
+          <div className="simulator-intro reveal-element">
+            <span className="overline">SIMULATEUR DE REVENUS</span>
+            <h2 className="section-title simulator-title">
+              Combien peut rapporter<br />votre bien ?
+            </h2>
+            <p className="simulator-desc">
+              Notre simulateur intègre les données de marché réelles Paris &amp; Île-de-France
+              2025–2026 avec les coefficients de saisonnalité mensuels pour estimer
+              précisément vos revenus nets.
+            </p>
+            <div className="sim-market-stats">
+              <div className="sim-mstat">
+                <div className="sim-mstat-val">162 €</div>
+                <div className="sim-mstat-lbl">Tarif moyen / nuit Paris</div>
+              </div>
+              <div className="sim-mstat">
+                <div className="sim-mstat-val">80 %</div>
+                <div className="sim-mstat-lbl">Taux d'occupation médian</div>
+              </div>
+              <div className="sim-mstat">
+                <div className="sim-mstat-val">43 k€</div>
+                <div className="sim-mstat-lbl">Revenu annuel moyen hôte</div>
+              </div>
+            </div>
+            <div className="sim-source-note">
+              Sources : AirDNA · Airbtics 2024–2025 · allovoyages.fr 2026 · Welkeys
+            </div>
+          </div>
+
+          {cardContent}
         </div>
       </div>
     </section>
