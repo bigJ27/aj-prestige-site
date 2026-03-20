@@ -166,10 +166,11 @@ export default function RevenueSimulator({ embedded = false }) {
               <div className="sim-pack-selector">
                 {Object.entries(PACK_INFO).map(([k, p]) => (
                   <button key={k} type="button"
-                    className={`sim-pack-btn ${pack === k ? 'active' : ''}`}
+                    className={`sim-pack-btn sim-pack-${k} ${pack === k ? 'active' : ''}`}
                     onClick={() => setPack(k)}>
-                    <span className={`pack-badge ${p.badge}`}>{p.pct}</span>
+                    <span className="sim-pack-price">{p.pct}</span>
                     <span className="sim-pack-name">{p.name}</span>
+                    {pack === k && <span className="sim-pack-check">✓</span>}
                   </button>
                 ))}
               </div>

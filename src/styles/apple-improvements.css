@@ -97,6 +97,8 @@
   gap: 1.5rem;
   margin-bottom: 3rem;
   align-items: start;
+  overflow: visible;
+  padding: 1rem 0.5rem;
 }
 
 .pack-card-detailed {
@@ -125,22 +127,59 @@
   border-color: rgba(249, 115, 22, 0.2);
 }
 
+/* Side cards (Confort & Prestige) */
 .pack-card-side {
-  border-top: 3px solid transparent;
+  border: 2px solid transparent;
   background-image: linear-gradient(white, white), linear-gradient(135deg, #f97316, #be185d);
   background-origin: border-box;
   background-clip: padding-box, border-box;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Featured card (Sweet Home) - thème coucher de soleil */
+.pack-card-side:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 24px 56px rgba(249, 115, 22, 0.14), 0 8px 24px rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Pack Prestige — violet border gradient */
+.pack-card-side:last-child {
+  background-image: linear-gradient(white, white), linear-gradient(135deg, #9333ea, #be185d);
+}
+
+/* Featured card (Sweet Home) */
 .pack-card-featured {
-  background: linear-gradient(145deg, #1a1a2e 0%, #2d1b3d 50%, #1a1a2e 100%) !important;
-  border: none !important;
-  box-shadow: 0 12px 40px rgba(190, 24, 93, 0.2), 0 4px 16px rgba(249, 115, 22, 0.15);
+  background: linear-gradient(145deg, #1a1a2e 0%, #2d1b3d 40%, #1a0e2a 100%) !important;
+  border: 2px solid rgba(249, 115, 22, 0.4) !important;
+  box-shadow: 0 16px 48px rgba(190, 24, 93, 0.25), 0 4px 16px rgba(249, 115, 22, 0.15), 0 0 0 1px rgba(249, 115, 22, 0.1) !important;
+  transform: scale(1.02);
+  z-index: 1;
 }
 
 .pack-card-featured:hover {
-  box-shadow: 0 24px 56px rgba(190, 24, 93, 0.3), 0 8px 24px rgba(249, 115, 22, 0.2);
+  transform: scale(1.02) translateY(-8px) !important;
+  box-shadow: 0 32px 64px rgba(190, 24, 93, 0.35), 0 8px 24px rgba(249, 115, 22, 0.25), 0 0 60px rgba(249, 115, 22, 0.1) !important;
+}
+
+/* Animated shimmer on featured card */
+.pack-card-featured::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(249, 115, 22, 0.06) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: featuredShimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes featuredShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .pack-content-detailed {
@@ -222,16 +261,22 @@
 
 .pack-card-featured {
   position: relative;
-  border: 2px solid rgba(16, 185, 129, 0.3);
 }
 
 .pack-card-featured::before {
   content: '';
   position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(79, 136, 255, 0.1));
-  border-radius: 25px;
+  inset: -3px;
+  background: linear-gradient(135deg, #f97316, #be185d, #9333ea);
+  border-radius: 23px;
   z-index: -1;
+  opacity: 0.5;
+  animation: featuredGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes featuredGlow {
+  from { opacity: 0.35; filter: blur(4px); }
+  to   { opacity: 0.6;  filter: blur(8px); }
 }
 
 

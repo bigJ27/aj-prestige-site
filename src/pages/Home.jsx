@@ -123,6 +123,10 @@ const Home = () => {
               </Link>
             </div>
             <div className="activity-visual reveal-element" ref={addToRefs}>
+              <div className="simulator-embed-label">
+                <span className="simulator-embed-overline">Simulateur de revenus</span>
+                <p className="simulator-embed-sub">Estimez vos gains nets en quelques clics</p>
+              </div>
               <RevenueSimulator embedded />
             </div>
           </div>
