@@ -49,11 +49,11 @@ export default function ComplianceSection() {
         <div className="compliance-layout">
 
           <div className="compliance-header reveal-element" ref={addToRefs}>
-            <span className="overline" style={{ color: 'rgba(249,115,22,0.85)' }}>CONFORMITÉ RÉGLEMENTAIRE</span>
-            <h2 className="section-title" style={{ color: 'var(--color-white)' }}>
+            <span className="overline" style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>CONFORMITÉ RÉGLEMENTAIRE</span>
+            <h2 className="section-title" style={{ color: 'var(--color-white)', textShadow: '0 2px 12px rgba(0,0,0,0.35)' }}>
               Nous gérons votre<br />conformité intégrale
             </h2>
-            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.85)', textShadow: '0 1px 6px rgba(0,0,0,0.3)' }}>
               La réglementation Airbnb évolue en permanence à Paris et en Île-de-France.
               AJ Prestige est votre expert administratif et juridique.
             </p>
