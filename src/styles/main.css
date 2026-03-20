@@ -778,6 +778,32 @@ p {
   color: var(--color-gray-500);
 }
 
+.simulator-embed-label {
+  margin-bottom: 1rem;
+}
+
+.simulator-embed-overline {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.22);
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 0.4rem;
+}
+
+.simulator-embed-sub {
+  font-size: 0.85rem;
+  color: var(--color-gray-400);
+  margin: 0;
+  padding-left: 0.25rem;
+}
+
 .activity-btn {
   background: linear-gradient(135deg, #f97316, #be185d);
   color: white;

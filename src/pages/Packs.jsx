@@ -164,8 +164,10 @@ const Packs = () => {
                 className={`tab-btn ${activeTab === pack.id ? 'active' : ''}`}
                 onClick={() => handleTabClick(pack.id)}
               >
-                {pack.label}
-                {pack.recommended && <span className="tab-badge">Recommandé</span>}
+                <span className="tab-btn-text">
+                  {pack.label}
+                  {pack.recommended && <span className="tab-badge">Recommandé</span>}
+                </span>
               </button>
             ))}
           </div>
