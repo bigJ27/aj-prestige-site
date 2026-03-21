@@ -113,6 +113,13 @@ const Home = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
+
+              {/* Avis Google intégrés */}
+              <div className="activity-reviews">
+                <p className="activity-reviews-label">⭐ Ce qu'en pensent nos clients</p>
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div className="elfsight-app-7e4fd3be-e87d-49eb-a166-d5c14e55d69a" data-elfsight-app-lazy></div>
+              </div>
             </div>
             <div className="activity-visual reveal-element" ref={addToRefs}>
               <div className="simulator-embed-label">
@@ -269,14 +276,6 @@ const Home = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Avis Google */}
-      <section className="google-reviews-section section-padding" ref={addToRefs}>
-        <div className="container">
-          <script src="https://elfsightcdn.com/platform.js" async></script>
-          <div className="elfsight-app-7e4fd3be-e87d-49eb-a166-d5c14e55d69a" data-elfsight-app-lazy></div>
         </div>
       </section>
 

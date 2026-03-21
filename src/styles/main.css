@@ -848,6 +848,29 @@ p {
   line-height: 1.4;
 }
 
+/* ==========================================
+   ACTIVITY REVIEWS (Elfsight compact)
+   ========================================== */
+.activity-reviews {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(249, 115, 22, 0.1);
+}
+
+.activity-reviews-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+/* Elfsight: force compact layout in the left column */
+.activity-reviews .eapps-google-reviews-page-review-item,
+.activity-reviews [class*="elfsight"] {
+  max-width: 100% !important;
+}
+
 .simulator-embed-label {
   margin-bottom: 1rem;
 }
