@@ -81,37 +81,29 @@ const Home = () => {
             <div className="activity-content reveal-element" ref={addToRefs}>
               <h2 className="activity-title">Conciergerie locative<br />courte durée</h2>
               <p className="activity-description">
-                AJ Prestige est une conciergerie spécialisée dans la gestion locative 
-                courte durée pour les plateformes Airbnb et Booking. Nous accompagnons 
-                les propriétaires de A à Z : de l'optimisation de leur annonce jusqu'à 
-                la gestion quotidienne des réservations, ménages et voyageurs.
+                AJ Prestige gère votre bien Airbnb & Booking de A à Z —
+                réservations, ménages, voyageurs — pendant que vous encaissez.
               </p>
-              <div className="activity-highlights">
-                <div className="highlight-item">
-                  <div className="highlight-icon">
-                    <TrendingUp className="h-5 w-5" />
-                  </div>
-                  <div className="highlight-text">
-                    <strong>Revenus optimisés</strong>
-                    <span>Pricing dynamique et calendrier intelligent</span>
+              <div className="activity-packs-preview">
+                <div className="app-pack-row app-pack-confort">
+                  <span className="app-pack-pct">15%</span>
+                  <div className="app-pack-info">
+                    <strong>Pack Confort</strong>
+                    <span>Gestion complète, ménage & check-in/out</span>
                   </div>
                 </div>
-                <div className="highlight-item">
-                  <div className="highlight-icon">
-                    <Shield className="h-5 w-5" />
-                  </div>
-                  <div className="highlight-text">
-                    <strong>Gestion complète</strong>
-                    <span>Réservations, ménages, check-in/out 24/7</span>
+                <div className="app-pack-row app-pack-sweet">
+                  <span className="app-pack-pct">20%</span>
+                  <div className="app-pack-info">
+                    <strong>Pack Sweet Home ⭐</strong>
+                    <span>+ Photos pro, optimisation annonce & avis</span>
                   </div>
                 </div>
-                <div className="highlight-item">
-                  <div className="highlight-icon">
-                    <Star className="h-5 w-5" />
-                  </div>
-                  <div className="highlight-text">
-                    <strong>Avis 5 étoiles</strong>
-                    <span>Standards qualité premium pour vos voyageurs</span>
+                <div className="app-pack-row app-pack-prestige">
+                  <span className="app-pack-pct">25%+</span>
+                  <div className="app-pack-info">
+                    <strong>Pack Prestige</strong>
+                    <span>Service premium & intendance sur-mesure</span>
                   </div>
                 </div>
               </div>
