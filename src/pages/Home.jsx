@@ -81,29 +81,45 @@ const Home = () => {
             <div className="activity-content reveal-element" ref={addToRefs}>
               <h2 className="activity-title">Conciergerie locative<br />courte durée</h2>
               <p className="activity-description">
-                AJ Prestige gère votre bien Airbnb & Booking de A à Z —
-                réservations, ménages, voyageurs — pendant que vous encaissez.
+                AJ Prestige est une conciergerie spécialisée dans la gestion locative
+                courte durée sur Airbnb et Booking. Nous prenons en charge
+                l'intégralité de votre bien — annonce, réservations, ménages,
+                voyageurs — pendant que vous encaissez.
               </p>
-              <div className="activity-packs-preview">
-                <div className="app-pack-row app-pack-confort">
-                  <span className="app-pack-pct">15%</span>
-                  <div className="app-pack-info">
-                    <strong>Pack Confort</strong>
-                    <span>Gestion complète, ménage & check-in/out</span>
+              <div className="activity-highlights">
+                <div className="highlight-item">
+                  <div className="highlight-icon"><TrendingUp className="h-5 w-5" /></div>
+                  <div className="highlight-text">
+                    <strong>Revenus optimisés</strong>
+                    <span>Pricing dynamique et calendrier intelligent pour maximiser chaque nuit</span>
                   </div>
                 </div>
-                <div className="app-pack-row app-pack-sweet">
-                  <span className="app-pack-pct">20%</span>
-                  <div className="app-pack-info">
-                    <strong>Pack Sweet Home ⭐</strong>
-                    <span>+ Photos pro, optimisation annonce & avis</span>
+                <div className="highlight-item">
+                  <div className="highlight-icon"><Shield className="h-5 w-5" /></div>
+                  <div className="highlight-text">
+                    <strong>Gestion complète A à Z</strong>
+                    <span>Réservations, ménages professionnels, check-in/out 24h/24 7j/7</span>
                   </div>
                 </div>
-                <div className="app-pack-row app-pack-prestige">
-                  <span className="app-pack-pct">25%+</span>
-                  <div className="app-pack-info">
-                    <strong>Pack Prestige</strong>
-                    <span>Service premium & intendance sur-mesure</span>
+                <div className="highlight-item">
+                  <div className="highlight-icon"><Star className="h-5 w-5" /></div>
+                  <div className="highlight-text">
+                    <strong>Avis 5 étoiles garantis</strong>
+                    <span>Standards qualité premium et expérience voyageur soignée à chaque séjour</span>
+                  </div>
+                </div>
+                <div className="highlight-item">
+                  <div className="highlight-icon"><Target className="h-5 w-5" /></div>
+                  <div className="highlight-text">
+                    <strong>Commission transparente 15–25%</strong>
+                    <span>Tout inclus, sans frais cachés, sans engagement de durée</span>
+                  </div>
+                </div>
+                <div className="highlight-item">
+                  <div className="highlight-icon"><Camera className="h-5 w-5" /></div>
+                  <div className="highlight-text">
+                    <strong>Mise en place offerte</strong>
+                    <span>Photos professionnelles, création et optimisation de l'annonce incluses</span>
                   </div>
                 </div>
               </div>
@@ -113,13 +129,6 @@ const Home = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-
-              {/* Avis Google intégrés */}
-              <div className="activity-reviews">
-                <p className="activity-reviews-label">⭐ Ce qu'en pensent nos clients</p>
-                <script src="https://elfsightcdn.com/platform.js" async></script>
-                <div className="elfsight-app-7e4fd3be-e87d-49eb-a166-d5c14e55d69a" data-elfsight-app-lazy></div>
-              </div>
             </div>
             <div className="activity-visual reveal-element" ref={addToRefs}>
               <div className="simulator-embed-label">
@@ -276,6 +285,14 @@ const Home = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Avis Google */}
+      <section className="google-reviews-section section-padding" ref={addToRefs}>
+        <div className="container">
+          <script src="https://elfsightcdn.com/platform.js" async></script>
+          <div className="elfsight-app-7e4fd3be-e87d-49eb-a166-d5c14e55d69a" data-elfsight-app-lazy></div>
         </div>
       </section>
 
