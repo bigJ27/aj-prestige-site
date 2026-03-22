@@ -20,8 +20,8 @@
 
 /* Journey Section - Apple Style Redesign */
 .journey-section {
-  background: var(--color-white);
-  border-bottom: 1px solid var(--color-gray-200);
+  background: #fdf8f5;
+  border-bottom: none;
   padding: clamp(6rem, 12vw, 10rem) 0;
 }
 
