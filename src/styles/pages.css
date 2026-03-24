@@ -321,6 +321,30 @@
   );
 }
 
+.simple-cta-section {
+  background: #ffffff;
+  border-top: 1px solid var(--color-gray-200);
+  text-align: center;
+}
+
+.simple-cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.simple-cta-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: 0.75rem;
+}
+
+.simple-cta-subtitle {
+  color: var(--color-gray-500);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
 .final-cta-card {
   padding: 3rem;
   background: rgba(255, 255, 255, 0.06) !important;

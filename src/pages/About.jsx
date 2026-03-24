@@ -321,29 +321,20 @@ const About = () => {
       </section>
 
       {/* CTA Final */}
-      <section className="final-cta-section section-padding">
+      <section className="simple-cta-section section-padding">
         <div className="container">
-          <Card className="final-cta-card glass-card reveal-element" ref={addToRefs}>
-            <CardContent className="final-cta-content">
-              <h2 className="final-cta-title">Convaincu ? Parlons de votre projet</h2>
-              <p className="final-cta-subtitle">
-                Audit gratuit et estimation personnalisée de vos revenus potentiels
-              </p>
-              <div className="cta-buttons">
-                <Link to="/contact">
-                  <Button size="lg" className="cta-primary">
-                    Demander un audit
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link to="/packs">
-                  <Button size="lg" variant="outline">
-                    Voir les packs
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="simple-cta-content reveal-element" ref={addToRefs}>
+            <h2 className="simple-cta-title">Convaincu ? Parlons de votre projet</h2>
+            <p className="simple-cta-subtitle">
+              Audit gratuit et estimation personnalisée de vos revenus potentiels
+            </p>
+            <Link to="/contact">
+              <Button size="lg" className="cta-primary">
+                Demander un audit
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
