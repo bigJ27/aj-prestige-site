@@ -15,6 +15,16 @@ const Reviews = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.async = true;
+    document.head.appendChild(script);
+    return () => {
+      if (document.head.contains(script)) document.head.removeChild(script);
+    };
+  }, []);
+
   const addToRefs = (el) => {
     if (el && !sectionsRef.current.includes(el)) sectionsRef.current.push(el);
   };
@@ -49,9 +59,8 @@ const Reviews = () => {
       </section>
 
       {/* Elfsight Widget */}
-      <section className="reviews-widget-section section-padding">
+      <section className="reviews-widget-section">
         <div className="container">
-          <script src="https://elfsightcdn.com/platform.js" async></script>
           <div
             className="elfsight-app-7e4fd3be-e87d-49eb-a166-d5c14e55d69a"
             data-elfsight-app-lazy
