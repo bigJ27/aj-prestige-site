@@ -323,7 +323,7 @@ const About = () => {
       {/* CTA Final */}
       <section className="simple-cta-section section-padding">
         <div className="container">
-          <div className="simple-cta-content reveal-element" ref={addToRefs}>
+          <div className="simple-cta-card reveal-element" ref={addToRefs}>
             <h2 className="simple-cta-title">Convaincu ? Parlons de votre projet</h2>
             <p className="simple-cta-subtitle">
               Audit gratuit et estimation personnalisée de vos revenus potentiels
