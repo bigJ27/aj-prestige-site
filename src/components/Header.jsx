@@ -49,11 +49,17 @@ const Header = () => {
               >
                 Packs
               </Link>
-              <Link 
-                to="/pourquoi-nous" 
+              <Link
+                to="/pourquoi-nous"
                 className={`nav-link ${isActive('/pourquoi-nous') ? 'active' : ''}`}
               >
                 Pourquoi nous ?
+              </Link>
+              <Link
+                to="/avis"
+                className={`nav-link ${isActive('/avis') ? 'active' : ''}`}
+              >
+                Avis
               </Link>
             </nav>
 
@@ -97,14 +103,20 @@ const Header = () => {
           >
             Packs
           </Link>
-          <Link 
-            to="/pourquoi-nous" 
+          <Link
+            to="/pourquoi-nous"
             className={`mobile-nav-link ${isActive('/pourquoi-nous') ? 'active' : ''}`}
           >
             Pourquoi nous ?
           </Link>
-          <Link 
-            to="/contact" 
+          <Link
+            to="/avis"
+            className={`mobile-nav-link ${isActive('/avis') ? 'active' : ''}`}
+          >
+            Avis
+          </Link>
+          <Link
+            to="/contact"
             className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`}
           >
             Contact

@@ -15,6 +15,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Legal from "@/pages/Legal";
 import Privacy from "@/pages/Privacy";
+import Reviews from "@/pages/Reviews";
 import { Toaster } from "@/components/ui/sonner";
 
 function ScrollToTop() {
@@ -39,6 +40,7 @@ function App() {
             <Route path="/packs" element={<Packs />} />
             <Route path="/pourquoi-nous" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/avis" element={<Reviews />} />
             <Route path="/mentions-legales" element={<Legal />} />
             <Route path="/politique-confidentialite" element={<Privacy />} />
           </Routes>

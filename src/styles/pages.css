@@ -312,17 +312,23 @@
 }
 
 .final-cta-section {
-  background: linear-gradient(180deg, #fdf8f5 0%, #fef3ea 100%);
+  background: linear-gradient(
+    180deg,
+    #0f0f1a 0%,
+    #1a1a2e 40%,
+    #0f0f1a 65%,
+    #1a0e2a 100%
+  );
 }
 
 .final-cta-card {
   padding: 3rem;
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.04), rgba(190, 24, 93, 0.04)) !important;
-  border: 1px solid rgba(249, 115, 22, 0.12) !important;
-  border-top: 3px solid transparent !important;
-  background-image: linear-gradient(135deg, rgba(249, 115, 22, 0.04), rgba(190, 24, 93, 0.04)), linear-gradient(90deg, #f97316, #be185d) !important;
-  background-origin: padding-box, border-box !important;
-  background-clip: padding-box, border-box !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(249, 115, 22, 0.35) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 0 60px rgba(249, 115, 22, 0.1), 0 8px 40px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
 }
 
 .final-cta-content {
@@ -334,15 +340,16 @@
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 800;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--color-gray-900), var(--color-gray-700));
+  background: linear-gradient(135deg, #ffffff, rgba(255,255,255,0.85));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: none;
 }
 
 .final-cta-subtitle {
   font-size: 1rem;
-  color: var(--color-gray-500);
+  color: rgba(255, 255, 255, 0.65) !important;
   margin-bottom: 2rem;
   max-width: 600px;
   margin-left: auto;
@@ -1701,6 +1708,106 @@
 }
 
 
+
+/* ==========================================
+   REVIEWS PAGE
+   ========================================== */
+
+.reviews-hero {
+  background: linear-gradient(180deg, #fdf8f5 0%, #fef3ea 60%, #fdf8f5 100%);
+  text-align: center;
+}
+
+.reviews-hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.reviews-hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 1rem 0 1.25rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #f97316 60%, #be185d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reviews-hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-gray-500);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.reviews-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: white;
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  border-radius: 100px;
+  padding: 0.6rem 1.5rem;
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.08);
+}
+
+.reviews-stars-row {
+  display: flex;
+  gap: 2px;
+}
+
+.reviews-score {
+  font-size: 1.1rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f97316, #be185d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reviews-platform {
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+}
+
+.reviews-widget-section {
+  background: #fdf8f5;
+  padding: 2rem 0;
+}
+
+.reviews-cta-section {
+  background: linear-gradient(180deg, #fdf8f5 0%, #fef3ea 50%, #fdf8f5 100%);
+  text-align: center;
+}
+
+.reviews-cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.reviews-cta-icon {
+  width: 40px;
+  height: 40px;
+  color: #f97316;
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+}
+
+.reviews-cta-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.reviews-cta-subtitle {
+  color: var(--color-gray-500);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
 
 /* ==========================================
    LEGAL PAGES STYLES
