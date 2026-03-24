@@ -312,18 +312,18 @@ const Packs = () => {
         </div>
       </section>
 
-      <section className="final-cta-section section-padding">
+      <section className="simple-cta-section section-padding">
         <div className="container">
-          <Card className="final-cta-card glass-card reveal-element" ref={addToRefs}>
-            <CardContent className="final-cta-content">
-              <h2 className="final-cta-title">Besoin d'un conseil ?</h2>
-              <p className="final-cta-subtitle">Demandez votre audit gratuit, nous vous recommanderons le pack idéal</p>
-              <div className="cta-buttons">
-                <Link to="/contact"><Button size="lg" className="cta-primary">Demander un audit<ArrowRight className="ml-2 h-5 w-5" /></Button></Link>
-                <Link to="/pourquoi-nous"><Button size="lg" variant="outline">Pourquoi nous ?</Button></Link>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="simple-cta-content reveal-element" ref={addToRefs}>
+            <h2 className="simple-cta-title">Besoin d'un conseil ?</h2>
+            <p className="simple-cta-subtitle">Demandez votre audit gratuit, nous vous recommanderons le pack idéal</p>
+            <Link to="/contact">
+              <Button size="lg" className="cta-primary">
+                Demander un audit
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
