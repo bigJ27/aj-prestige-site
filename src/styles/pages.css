@@ -322,19 +322,23 @@
 }
 
 .simple-cta-section {
-  background: #ffffff;
-  border-top: 1px solid var(--color-gray-200);
+  background: linear-gradient(180deg, #fdf8f5 0%, #fef3ea 50%, #fdf8f5 100%);
   text-align: center;
 }
 
-.simple-cta-content {
-  max-width: 600px;
+.simple-cta-card {
+  max-width: 700px;
   margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 24px;
+  padding: 3.5rem 3rem;
+  box-shadow: 0 8px 40px rgba(249, 115, 22, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .simple-cta-title {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-gray-900);
   margin-bottom: 0.75rem;
 }
@@ -343,6 +347,7 @@
   color: var(--color-gray-500);
   font-size: 1rem;
   margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 .final-cta-card {

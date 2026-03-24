@@ -314,7 +314,7 @@ const Packs = () => {
 
       <section className="simple-cta-section section-padding">
         <div className="container">
-          <div className="simple-cta-content reveal-element" ref={addToRefs}>
+          <div className="simple-cta-card reveal-element" ref={addToRefs}>
             <h2 className="simple-cta-title">Besoin d'un conseil ?</h2>
             <p className="simple-cta-subtitle">Demandez votre audit gratuit, nous vous recommanderons le pack idéal</p>
             <Link to="/contact">
