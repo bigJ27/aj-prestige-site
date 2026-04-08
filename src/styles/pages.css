@@ -329,24 +329,27 @@
 .simple-cta-card {
   max-width: 700px;
   margin: 0 auto;
-  background: #ffffff;
-  border: 1px solid rgba(249, 115, 22, 0.25);
-  border-radius: 24px;
-  padding: 3.5rem 3rem;
-  box-shadow: 0 8px 40px rgba(249, 115, 22, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(135deg, rgba(249,115,22,0.06), rgba(190,24,93,0.06));
+  border: 1.5px solid rgba(249, 115, 22, 0.2);
+  border-radius: 32px;
+  padding: clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
 }
 
 .simple-cta-title {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 800;
   color: var(--color-gray-900);
   margin-bottom: 0.75rem;
 }
 
 .simple-cta-subtitle {
+  font-size: 1.05rem;
   color: var(--color-gray-500);
-  font-size: 1rem;
   margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 1.6;
 }
 
@@ -848,6 +851,64 @@
 
 .comparison-table .cross-icon {
   color: #9ca3af;
+}
+
+.comparatif-cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-top: 1px solid rgba(249, 115, 22, 0.08);
+}
+
+.comparatif-cta-col {
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+}
+
+.comparatif-cta-col--featured {
+  background: rgba(249, 115, 22, 0.03);
+}
+
+.comparatif-cta-btn {
+  border-radius: 100px !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  padding: 0.5rem 1.25rem !important;
+  border: 2px solid transparent !important;
+}
+
+.comparatif-cta-btn--confort {
+  background: transparent !important;
+  color: #f97316 !important;
+  border-color: #f97316 !important;
+}
+
+.comparatif-cta-btn--confort:hover {
+  background: rgba(249, 115, 22, 0.08) !important;
+}
+
+.comparatif-cta-btn--sweet {
+  background: linear-gradient(135deg, #f97316, #be185d) !important;
+  color: white !important;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3) !important;
+}
+
+.comparatif-cta-btn--prestige {
+  background: transparent !important;
+  color: #9333ea !important;
+  border-color: #9333ea !important;
+}
+
+.comparatif-cta-btn--prestige:hover {
+  background: rgba(147, 51, 234, 0.08) !important;
+}
+
+@media (max-width: 768px) {
+  .comparatif-cta-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
 }
 
 .faq-section {
@@ -1990,25 +2051,9 @@
 }
 
 /* Remplissage orange qui progresse de gauche à droite */
-.tab-btn.active::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #f97316, #be185d);
-  border-radius: 100px;
-  transform-origin: left center;
-  transform: scaleX(0);
-  animation: tabFillProgress 6s linear forwards;
-  z-index: 0;
-}
 
 .tab-btn.active::after {
   display: none;
-}
-
-@keyframes tabFillProgress {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
 }
 
 .tab-btn:hover {
@@ -2018,12 +2063,11 @@
 }
 
 .tab-btn.active {
-  background: rgba(249, 115, 22, 0.06);
+  background: linear-gradient(135deg, #f97316, #be185d);
   color: white;
-  border-color: #f97316;
-  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35);
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
   transform: translateY(-2px);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 
 /* Text layer sits above the fill pseudo-element */
@@ -2224,61 +2268,44 @@
   height: 14px;
 }
 
-/* Progress - centré et aligné */
-.tab-progress-section {
+/* Stats section (remplace les barres de progression) */
+.tab-stats-section {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
   padding: 2rem 3rem;
   background: rgba(249, 115, 22, 0.02);
+  border-bottom: 1px solid rgba(249, 115, 22, 0.06);
 }
 
-.tab-progress-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-gray-400);
-  margin-bottom: 1.5rem;
+.tab-stat-item {
   text-align: center;
 }
 
-.tab-progress-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.tab-progress-item {
-  text-align: center;
-}
-
-.tab-progress-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
-  color: var(--color-gray-600);
-  margin-bottom: 0.5rem;
-}
-
-.tab-progress-value {
+.tab-stat-number {
+  font-size: 2.5rem;
   font-weight: 800;
-  font-size: 1.1rem;
-  color: #f97316;
+  background: linear-gradient(135deg, #f97316, #be185d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.4rem;
 }
 
-.tab-progress-bar {
-  height: 6px;
-  background: rgba(249, 115, 22, 0.1);
-  border-radius: 100px;
-  overflow: hidden;
+.tab-stat-label {
+  font-size: 0.82rem;
+  color: var(--color-gray-500);
+  font-weight: 500;
 }
 
-.tab-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #f97316, #be185d);
-  border-radius: 100px;
-  transition: width 1s ease;
+@media (max-width: 768px) {
+  .tab-stats-section {
+    gap: 1.5rem;
+    padding: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .tab-stat-number { font-size: 2rem; }
 }
 
 /* Highlight et options Prestige */
@@ -2358,11 +2385,16 @@
   font-size: 1.2rem;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .tab-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .tab-header { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem 1.5rem; }
-  .tab-features-section, .tab-progress-section { padding: 1.5rem; }
+  .tab-features-section { padding: 1.5rem; }
   .tab-features-grid { grid-template-columns: 1fr 1fr; }
-  .tab-progress-grid { grid-template-columns: 1fr; }
   .tab-highlight, .tab-options { margin: 1rem 1.5rem; }
   .tab-accordion { padding: 0 1.5rem 1.5rem; }
 }

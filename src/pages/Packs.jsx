@@ -207,21 +207,13 @@ const Packs = () => {
             </div>
 
             {activePack.progress && (
-              <div className="tab-progress-section">
-                <h4 className="tab-progress-title">Performance</h4>
-                <div className="tab-progress-grid">
-                  {activePack.progress.map((p, i) => (
-                    <div key={i} className="tab-progress-item">
-                      <div className="tab-progress-label">
-                        <span>{p.label}</span>
-                        <span className="tab-progress-value">{p.value}%</span>
-                      </div>
-                      <div className="tab-progress-bar">
-                        <div className="tab-progress-fill" style={{ width: `${p.value}%` }}></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="tab-stats-section">
+                {activePack.progress.map((p, i) => (
+                  <div key={i} className="tab-stat-item">
+                    <div className="tab-stat-number">{p.value}%</div>
+                    <div className="tab-stat-label">{p.label}</div>
+                  </div>
+                ))}
               </div>
             )}
 
@@ -291,6 +283,29 @@ const Packs = () => {
                 <tr><td>Pricing dynamique avancé</td><td><X className="h-5 w-5 cross-icon" /></td><td><X className="h-5 w-5 cross-icon" /></td><td><Check className="h-5 w-5 check-icon" /></td></tr>
               </tbody>
             </table>
+            <div className="comparatif-cta-row">
+              <div className="comparatif-cta-col">
+                <Link to="/contact">
+                  <Button size="sm" className="comparatif-cta-btn comparatif-cta-btn--confort">
+                    Choisir Confort
+                  </Button>
+                </Link>
+              </div>
+              <div className="comparatif-cta-col comparatif-cta-col--featured">
+                <Link to="/contact">
+                  <Button size="sm" className="comparatif-cta-btn comparatif-cta-btn--sweet">
+                    Choisir Sweet Home
+                  </Button>
+                </Link>
+              </div>
+              <div className="comparatif-cta-col">
+                <Link to="/contact">
+                  <Button size="sm" className="comparatif-cta-btn comparatif-cta-btn--prestige">
+                    Choisir Prestige
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -302,11 +317,73 @@ const Packs = () => {
           </div>
           <div className="faq-content reveal-element" ref={addToRefs}>
             <Accordion type="single" collapsible className="faq-accordion">
-              <AccordionItem value="q1"><AccordionTrigger>Comment fonctionne la commission ?</AccordionTrigger><AccordionContent>La commission est prélevée uniquement sur les réservations confirmées. Si vous générez 1000€ de revenus, avec le pack Confort (15%), nous prélevons 150€ et vous recevez 850€. Simple et transparent.</AccordionContent></AccordionItem>
-              <AccordionItem value="q2"><AccordionTrigger>Puis-je changer de pack ?</AccordionTrigger><AccordionContent>Oui, vous pouvez évoluer d'un pack à l'autre à tout moment selon vos besoins.</AccordionContent></AccordionItem>
-              <AccordionItem value="q3"><AccordionTrigger>Y a-t-il un engagement minimum ?</AccordionTrigger><AccordionContent>Non, nous ne demandons aucun engagement de durée. Vous pouvez arrêter notre prestation avec un préavis de 30 jours.</AccordionContent></AccordionItem>
-              <AccordionItem value="q4"><AccordionTrigger>Que comprend l'audit gratuit ?</AccordionTrigger><AccordionContent>L'audit inclut une visite de votre bien, une analyse du potentiel locatif, une estimation des revenus possibles et nos recommandations personnalisées.</AccordionContent></AccordionItem>
-              <AccordionItem value="q5"><AccordionTrigger>Gérez-vous Airbnb et Booking ?</AccordionTrigger><AccordionContent>Oui, nous gérons tous les canaux de réservation : Airbnb, Booking.com, et autres plateformes. Calendrier synchronisé pour éviter les doublons.</AccordionContent></AccordionItem>
+              <AccordionItem value="q1">
+                <AccordionTrigger>Comment fonctionne la commission ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>La commission est prélevée uniquement sur les réservations confirmées.
+                  Sur 1 000€ de revenus bruts, le Pack Confort (15%) représente 150€ —
+                  vous recevez 850€. Aucun frais fixe, aucun frais caché.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q2">
+                <AccordionTrigger>Que se passe-t-il si un voyageur casse quelque chose ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>Nous documentons l'état du logement avant et après chaque séjour
+                  (photos horodatées). En cas de dégradation, nous gérons le signalement
+                  auprès de la plateforme (Airbnb AirCover ou Booking) et vous accompagnons
+                  dans la procédure de remboursement.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q3">
+                <AccordionTrigger>Y a-t-il un engagement minimum de durée ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>Non. Pas d'engagement de durée, pas de frais de résiliation.
+                  Un préavis de 30 jours suffit pour mettre fin au mandat, à tout moment.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q4">
+                <AccordionTrigger>Quels sont les délais de paiement ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>Les revenus de vos réservations vous sont reversés chaque mois,
+                  après déduction de notre commission. Vous recevez un récapitulatif
+                  détaillé de toutes les réservations du mois.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q5">
+                <AccordionTrigger>Comment gérez-vous les avis négatifs ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>Nous répondons à chaque avis au nom du propriétaire, de façon
+                  professionnelle et constructive. En cas d'avis injustifié, nous
+                  accompagnons la contestation auprès de la plateforme. Notre objectif :
+                  maintenir une note moyenne supérieure à 4,8/5.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q6">
+                <AccordionTrigger>Êtes-vous déclarés et assurés ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>Oui. AJ Prestige est une société légalement constituée, titulaire
+                  d'une assurance Responsabilité Civile Professionnelle. Nous vous
+                  accompagnons également dans vos démarches de déclaration en mairie
+                  (numéro d'enregistrement obligatoire à Paris et en IDF).</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q7">
+                <AccordionTrigger>Puis-je bloquer des dates pour usage personnel ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>Absolument. Vous restez propriétaire et maître de votre calendrier.
+                  Il vous suffit de nous prévenir à l'avance et nous bloquons les dates
+                  souhaitées sur toutes les plateformes.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q8">
+                <AccordionTrigger>Que comprend l'audit gratuit ?</AccordionTrigger>
+                <AccordionContent>
+                  <p>L'audit inclut une visite de votre bien, une analyse du potentiel
+                  locatif basée sur les données du marché local (AirDNA, Airbtics),
+                  une estimation des revenus nets mensuels et nos recommandations
+                  personnalisées pour maximiser votre rendement.</p>
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
           </div>
         </div>
