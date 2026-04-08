@@ -82,7 +82,7 @@
 
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -128,7 +128,7 @@
 
 .packs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -200,7 +200,7 @@
 
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -266,7 +266,7 @@
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -636,7 +636,7 @@
 .pack-features-list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
   gap: 0.6rem;
   margin-bottom: 1.5rem;
 }
@@ -1006,7 +1006,7 @@
 
 .method-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -1146,7 +1146,7 @@
 
 .transparency-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -1301,7 +1301,7 @@
 
 .revenue-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 1.5rem;
 }
 
@@ -2159,6 +2159,9 @@
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
   z-index: 1;
+  max-width: calc(100% - 2rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* En-tête du pack */
@@ -2169,6 +2172,14 @@
   padding: 2.5rem 3rem;
   border-bottom: 1px solid rgba(249, 115, 22, 0.08);
   background: linear-gradient(135deg, rgba(249, 115, 22, 0.02), rgba(190, 24, 93, 0.02));
+}
+
+@media (max-width: 900px) {
+  .tab-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
 }
 
 .tab-pack-title {
@@ -2239,7 +2250,7 @@
 
 .tab-features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
   gap: 0.75rem;
 }
 
