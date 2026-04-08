@@ -119,12 +119,39 @@
 
 .hero-video-title {
   font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 700;
-  font-family: var(--font-primary);
+  font-weight: 800;
+  font-family: var(--font-display);
   line-height: 1.1;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   color: var(--color-white);
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-video-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  font-family: var(--font-primary);
+}
+
+.hero-badges {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
 }
 
 .hero-discover-btn {
