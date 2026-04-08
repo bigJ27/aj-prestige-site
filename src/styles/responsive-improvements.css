@@ -130,7 +130,7 @@
   content: '';
   position: absolute;
   inset: -3px;
-  background: linear-gradient(135deg, #10b981, #0066cc);
+  background: linear-gradient(135deg, #be185d, #f97316);
   border-radius: 22px;
   z-index: -1;
   opacity: 0.15;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Star, MessageSquare, TrendingUp, Shield, Target, Camera } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star, TrendingUp, Shield, Target, Camera } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import MetroJourneySection from '../components/MetroJourneySection';
@@ -61,6 +61,14 @@ const Home = () => {
               Votre bien,<br />
               Notre prestige
             </h1>
+            <p className="hero-video-subtitle">
+              Conciergerie Airbnb premium à Paris & Île-de-France — gestion complète de A à Z
+            </p>
+            <div className="hero-badges">
+              <span className="hero-badge">Paris & Île-de-France</span>
+              <span className="hero-badge">Commission 15–25%</span>
+              <span className="hero-badge">Avis 5 étoiles</span>
+            </div>
             <Link to="/packs">
               <Button size="lg" className="hero-discover-btn">
                 Découvrir nos offres
@@ -155,7 +163,7 @@ const Home = () => {
             <p className="section-subtitle">Du service essentiel à la gestion premium complète</p>
           </div>
           <div className="packs-grid-detailed">
-            <Card className="pack-card-detailed glass-card pack-card-side reveal-element" ref={addToRefs}>
+            <Card className="pack-card-detailed glass-card pack-card-side reveal-element" ref={addToRefs} style={{ borderTop: '3px solid #f97316' }}>
               <CardContent className="pack-content-detailed">
                 <div className="pack-badge pack-badge-comfort">Essentiel</div>
                 <h3 className="pack-name">Pack Confort</h3>
@@ -175,7 +183,7 @@ const Home = () => {
               </CardContent>
             </Card>
             
-            <Card className="pack-card-detailed glass-card pack-card-featured reveal-element" ref={addToRefs}>
+            <Card className="pack-card-detailed glass-card pack-card-featured reveal-element" ref={addToRefs} style={{ borderTop: '3px solid #be185d', boxShadow: '0 0 0 2px #be185d22' }}>
               <CardContent className="pack-content-detailed">
                 <div className="pack-badge pack-badge-sweet" style={{ fontSize: '0.85rem', padding: '0.5rem 1.25rem' }}>⭐ Recommandé</div>
                 <h3 className="pack-name" style={{ fontSize: '2rem' }}>Pack Sweet Home</h3>
@@ -198,7 +206,7 @@ const Home = () => {
               </CardContent>
             </Card>
             
-            <Card className="pack-card-detailed glass-card pack-card-side reveal-element" ref={addToRefs}>
+            <Card className="pack-card-detailed glass-card pack-card-side reveal-element" ref={addToRefs} style={{ borderTop: '3px solid #9333ea' }}>
               <CardContent className="pack-content-detailed">
                 <div className="pack-badge pack-badge-prestige">Premium</div>
                 <h3 className="pack-name">Pack Prestige</h3>
@@ -231,59 +239,30 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Résultats & Bénéfices */}
-      <section className="benefits-section section-padding" ref={addToRefs}>
+      {/* Chiffres clés */}
+      <section className="stats-section section-padding" ref={addToRefs}>
         <div className="container">
           <div className="section-header reveal-element" ref={addToRefs}>
-            <span className="overline-light" style={{display: 'block', marginBottom: '0.75rem'}}>POURQUOI NOUS CHOISIR</span>
-            <h2 className="section-title">Les bénéfices AJ Prestige</h2>
-            <p className="section-subtitle">Tout ce que vous gagnez en nous confiant votre bien</p>
+            <span className="overline-light" style={{display:'block',marginBottom:'0.75rem'}}>AJ PRESTIGE EN CHIFFRES</span>
+            <h2 className="section-title">Des résultats concrets</h2>
           </div>
-          <div className="benefits-grid">
-            <Card className="benefit-card glass-card reveal-element" ref={addToRefs}>
-              <CardContent className="benefit-content">
-                <div className="benefit-icon">
-                  <TrendingUp className="h-8 w-8" />
-                </div>
-                <h3 className="benefit-title">Plus de réservations</h3>
-                <p className="benefit-description">
-                  Annonce optimisée et pricing dynamique pour maximiser votre taux d'occupation.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="benefit-card glass-card reveal-element" ref={addToRefs}>
-              <CardContent className="benefit-content">
-                <div className="benefit-icon">
-                  <Star className="h-8 w-8" />
-                </div>
-                <h3 className="benefit-title">Meilleurs avis</h3>
-                <p className="benefit-description">
-                  Standards qualité élevés et expérience voyageurs soignée pour des notes excellentes.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="benefit-card glass-card reveal-element" ref={addToRefs}>
-              <CardContent className="benefit-content">
-                <div className="benefit-icon">
-                  <Shield className="h-8 w-8" />
-                </div>
-                <h3 className="benefit-title">Moins de stress</h3>
-                <p className="benefit-description">
-                  Délégation complète : nous gérons tout de A à Z pendant que vous profitez.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="benefit-card glass-card reveal-element" ref={addToRefs}>
-              <CardContent className="benefit-content">
-                <div className="benefit-icon">
-                  <MessageSquare className="h-8 w-8" />
-                </div>
-                <h3 className="benefit-title">Revenus optimisés</h3>
-                <p className="benefit-description">
-                  Stratégie de prix avancée et gestion du calendrier pour maximiser vos gains.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="stats-grid">
+            <div className="stat-card glass-card reveal-element" ref={addToRefs}>
+              <div className="stat-number">+35%</div>
+              <div className="stat-label">de revenus vs gestion solo</div>
+            </div>
+            <div className="stat-card glass-card reveal-element" ref={addToRefs}>
+              <div className="stat-number">4,9/5</div>
+              <div className="stat-label">note moyenne des biens gérés</div>
+            </div>
+            <div className="stat-card glass-card reveal-element" ref={addToRefs}>
+              <div className="stat-number">72h</div>
+              <div className="stat-label">pour mettre votre bien en ligne</div>
+            </div>
+            <div className="stat-card glass-card reveal-element" ref={addToRefs}>
+              <div className="stat-number">0€</div>
+              <div className="stat-label">de frais cachés, jamais</div>
+            </div>
           </div>
         </div>
       </section>
