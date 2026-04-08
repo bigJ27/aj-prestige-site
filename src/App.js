@@ -17,6 +17,7 @@ import Legal from "@/pages/Legal";
 import Privacy from "@/pages/Privacy";
 import Reviews from "@/pages/Reviews";
 import { Toaster } from "@/components/ui/sonner";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,6 +48,7 @@ function App() {
         </main>
         <Footer />
         <Toaster />
+        <WhatsAppButton />
       </BrowserRouter>
     </div>
   );
