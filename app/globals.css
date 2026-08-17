@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sand font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-coral/40 text-night;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-semibold text-night;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .overline-label {
+    @apply block text-xs font-medium uppercase tracking-[0.22em] text-sunset;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-terracotta text-white hover:bg-sunset focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta;
+  }
+
+  .btn-outline {
+    @apply btn border border-night/25 text-night hover:border-sunset hover:text-sunset;
+  }
+
+  .btn-on-dark {
+    @apply btn bg-sand text-terracotta hover:bg-white;
+  }
+
+  .card-sand {
+    @apply rounded-xl border border-coral/25 bg-sand-deep p-8 transition-all duration-300 hover:-translate-y-1 hover:border-coral hover:shadow-[0_18px_40px_-18px_rgba(184,74,43,0.25)];
+  }
+
+  .hairline-gradient {
+    @apply h-px w-full bg-gradient-to-r from-coral via-sunset to-terracotta;
+  }
+
+  .prose-legal h2 {
+    @apply mb-3 mt-10 text-2xl;
+  }
+
+  .prose-legal p,
+  .prose-legal li {
+    @apply leading-relaxed text-ink;
+  }
+
+  .prose-legal ul {
+    @apply mt-2 list-disc space-y-1 pl-6;
+  }
+
+  .prose-legal a {
+    @apply text-terracotta underline decoration-coral/60 underline-offset-2 hover:text-sunset;
+  }
+}
