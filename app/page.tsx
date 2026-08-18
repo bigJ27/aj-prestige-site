@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  CalendarCheck,
-  KeyRound,
-  LineChart,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, LineChart, Sparkles } from "lucide-react";
 import CtaBand from "@/components/CtaBand";
+import Reveal from "@/components/Reveal";
 import { villes } from "@/lib/villes";
 import {
   EMAIL,
@@ -60,24 +55,6 @@ const jsonLd = {
   sameAs: [INSTAGRAM_URL, GOOGLE_BUSINESS_URL],
 };
 
-const services = [
-  {
-    icon: KeyRound,
-    title: "Gestion des annonces & réservations",
-    text: "Création ou reprise de votre annonce, photos professionnelles, optimisation du référencement sur Airbnb et Booking, gestion des réservations et des messages voyageurs, 7j/7.",
-  },
-  {
-    icon: Sparkles,
-    title: "Accueil, ménage & linge hôtelier",
-    text: "Check-in et check-out soignés, ménage professionnel entre chaque séjour avec contrôle photo, linge de qualité hôtelière et réassort des essentiels. Objectif : des avis 5 étoiles.",
-  },
-  {
-    icon: LineChart,
-    title: "Tarification dynamique & revenus",
-    text: "Prix ajustés en continu selon la saison, les événements locaux et la concurrence. Reversement mensuel de vos revenus avec un récapitulatif clair, sans frais cachés.",
-  },
-];
-
 const etapes = [
   {
     numero: "01",
@@ -99,13 +76,6 @@ const etapes = [
   },
 ];
 
-const chiffres = [
-  { valeur: "+35 %", label: "de revenus vs gestion en solo" },
-  { valeur: "4,9/5", label: "note moyenne des biens gérés" },
-  { valeur: "72 h", label: "pour mettre votre bien en ligne" },
-  { valeur: "0 €", label: "de frais cachés, jamais" },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -114,206 +84,374 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero — seul endroit (avec le footer) où le dégradé sunset est autorisé */}
-      <section className="relative flex min-h-[92svh] items-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-coral/35 via-sunset/15 to-sand"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute left-1/2 top-[-18rem] h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(232,115,74,0.28)_0%,rgba(242,166,90,0.12)_55%,transparent_72%)]"
-          aria-hidden="true"
-        />
-        <div className="container relative py-24">
-          <div className="max-w-3xl animate-fade-up">
-            <p className="overline-label">
-              Conciergerie Airbnb premium · Val-d&apos;Oise &
-              Île-de-France
-            </p>
-            <h1 className="mt-5 text-5xl leading-[1.05] sm:text-6xl md:text-7xl">
-              Votre bien,
-              <br />
-              <em className="text-terracotta">notre prestige.</em>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink">
-              Déléguez l&apos;intégralité de votre location courte durée —
-              annonce, voyageurs, ménage, linge, tarification — pendant que
-              vous encaissez. Gestion complète de A à Z, depuis
-              Soisy-sous-Montmorency.
-            </p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <Link href="/contact" className="btn-primary">
-                Demander un audit gratuit
+      {/* ============ HERO ÉDITORIAL ============
+          Image d'ambiance pleine largeur, titre serif surdimensionné qui
+          chevauche la photo. Seul endroit (avec le footer) où le dégradé
+          sunset est autorisé : ici en voile sur l'image. */}
+      <section className="relative">
+        <div className="relative h-[52svh] w-full overflow-hidden md:h-[62svh]">
+          <Image
+            src="/images/hero-sunset.jpg"
+            alt="Ciel de coucher de soleil aux teintes corail et bleu nuit — image d'ambiance"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          {/* Voile sunset, du sable vers le ciel */}
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-sand via-coral/15 to-night/25"
+            aria-hidden="true"
+          />
+          <p className="caption absolute bottom-4 left-5 z-10 hidden text-night/60 sm:block">
+            Lumière du soir sur la vallée — image d&apos;ambiance
+          </p>
+        </div>
+
+        <div className="container relative z-10 -mt-[16svh] pb-16 md:-mt-[24svh] md:pb-24">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+            {/* Colonne gauche : tagline façon magazine */}
+            <div className="order-2 animate-fade-up lg:order-1 lg:col-span-4 lg:pt-40 [animation-delay:200ms]">
+              <p className="overline-label">
+                Conciergerie Airbnb premium
+              </p>
+              <div className="mt-3 h-px w-10 bg-sunset" aria-hidden="true" />
+              <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink">
+                Val-d&apos;Oise & Île-de-France — une équipe locale, basée à
+                Soisy-sous-Montmorency, qui gère votre bien comme un hôtel
+                gère ses chambres.
+              </p>
+            </div>
+
+            {/* Colonne droite : titre géant qui chevauche l'image */}
+            <div className="order-1 animate-fade-up lg:order-2 lg:col-span-8">
+              <h1 className="text-[17vw] leading-[0.95] sm:text-7xl md:text-8xl lg:text-[6.5rem]">
+                Votre bien,
+                <br />
+                <em className="text-terracotta">notre prestige.</em>
+              </h1>
+              <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink">
+                Déléguez l&apos;intégralité de votre location courte durée —
+                annonce, voyageurs, ménage, linge, tarification — pendant que
+                vous encaissez. Gestion complète de A à Z, depuis
+                Soisy-sous-Montmorency.
+              </p>
+              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+                <Link href="/contact" className="btn-primary">
+                  Demander un audit gratuit
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link href="/services" className="btn-outline">
+                  Découvrir nos services
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Filet de pied de hero : trois repères en petites capitales */}
+          <ul className="mt-16 grid grid-cols-1 gap-y-3 border-t border-night/15 pt-6 text-xs font-medium uppercase tracking-[0.18em] text-night/70 sm:grid-cols-3">
+            <li>Commission transparente 15–25 %</li>
+            <li className="sm:text-center">Sans engagement de durée</li>
+            <li className="sm:text-right">Avis voyageurs 5 étoiles</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* ============ PROMESSE — éditorial asymétrique ============ */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="container">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <Reveal className="lg:col-span-5">
+              <p className="overline-label">La promesse AJ Prestige</p>
+              <h2 className="mt-4 text-4xl leading-tight md:text-5xl">
+                Une conciergerie locative
+                <br />
+                <em className="text-sunset">qui pense comme un hôtel.</em>
+              </h2>
+            </Reveal>
+            <Reveal
+              delay={120}
+              className="lg:col-span-6 lg:col-start-7 lg:border-l lg:border-coral/30 lg:pl-10"
+            >
+              <p className="leading-relaxed">
+                AJ Prestige est une conciergerie spécialisée dans la gestion
+                locative courte durée sur Airbnb et Booking. Nous prenons en
+                charge l&apos;intégralité de votre bien — annonce,
+                réservations, ménages, voyageurs — avec des standards de
+                qualité hôteliers et une transparence totale sur vos revenus.
+              </p>
+              <p className="mt-4 leading-relaxed">
+                Mise en place offerte : photos professionnelles, création et
+                optimisation de l&apos;annonce incluses. Vous restez maître de
+                votre calendrier et pouvez bloquer des dates pour votre usage
+                personnel à tout moment.
+              </p>
+              <Link
+                href="/services"
+                className="mt-7 inline-flex items-center gap-2 font-medium text-terracotta transition-colors hover:text-sunset"
+              >
+                Tout ce que nous gérons pour vous
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/services" className="btn-outline">
-                Découvrir nos services
-              </Link>
-            </div>
-            <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-night/80">
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-sunset" aria-hidden="true" />
-                Commission transparente 15–25 %
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-sunset" aria-hidden="true" />
-                Sans engagement de durée
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-sunset" aria-hidden="true" />
-                Avis voyageurs 5 étoiles
-              </li>
-            </ul>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Promesse */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="container grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <p className="overline-label">La promesse AJ Prestige</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">
-              Une conciergerie locative
-              <br />
-              <em className="text-sunset">qui pense comme un hôtel.</em>
-            </h2>
-            <p className="mt-6 leading-relaxed">
-              AJ Prestige est une conciergerie spécialisée dans la gestion
-              locative courte durée sur Airbnb et Booking. Nous prenons en
-              charge l&apos;intégralité de votre bien — annonce, réservations,
-              ménages, voyageurs — avec des standards de qualité hôteliers et
-              une transparence totale sur vos revenus.
-            </p>
-            <p className="mt-4 leading-relaxed">
-              Mise en place offerte : photos professionnelles, création et
-              optimisation de l&apos;annonce incluses. Vous restez maître de
-              votre calendrier et pouvez bloquer des dates pour votre usage
-              personnel à tout moment.
-            </p>
-            <Link
-              href="/services"
-              className="mt-7 inline-flex items-center gap-2 font-medium text-terracotta transition-colors hover:text-sunset"
-            >
-              Tout ce que nous gérons pour vous
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-            <Image
-              src="https://images.unsplash.com/photo-1649180447214-8deda9813f7f?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200"
-              alt="Vue sur la ville au coucher de soleil depuis un appartement géré par AJ Prestige"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 3 services clés */}
+      {/* ============ BENTO SERVICES + CHIFFRES ============
+          Grille asymétrique : une carte principale imagée, deux cartes
+          services différenciées, chiffres en Cormorant grand format. */}
       <section className="py-20 md:py-28">
         <div className="container">
-          <div className="max-w-2xl">
-            <p className="overline-label">Nos services clés</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">
-              Trois piliers, zéro charge mentale
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {services.map((service) => (
-              <article key={service.title} className="card-sand">
-                <service.icon className="h-8 w-8 text-sunset" aria-hidden="true" />
-                <h3 className="mt-5 text-2xl">{service.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed">{service.text}</p>
-              </article>
-            ))}
-          </div>
-          <div className="mt-10">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 font-medium text-terracotta transition-colors hover:text-sunset"
-            >
-              Voir le détail de la gestion complète
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Process 3 étapes */}
-      <section className="bg-sand-deep py-20 md:py-28">
-        <div className="container">
-          <div className="max-w-2xl">
-            <p className="overline-label">Comment ça marche</p>
-            <h2 className="mt-4 text-3xl md:text-4xl">
-              De l&apos;audit à vos premiers revenus,
-              <br />
-              en trois étapes
-            </h2>
-          </div>
-          <ol className="mt-14 grid gap-10 md:grid-cols-3">
-            {etapes.map((etape) => (
-              <li key={etape.numero} className="relative">
-                <span
-                  className="font-serif text-6xl font-bold text-coral/70"
-                  aria-hidden="true"
-                >
-                  {etape.numero}
-                </span>
-                <h3 className="mt-3 text-2xl">{etape.titre}</h3>
-                <p className="mt-3 text-sm leading-relaxed">{etape.texte}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Chiffres */}
-      <section className="border-y border-coral/20 bg-white">
-        <div className="container grid grid-cols-2 gap-y-10 py-14 md:grid-cols-4">
-          {chiffres.map((chiffre) => (
-            <div key={chiffre.label} className="text-center">
-              <p className="font-serif text-4xl font-bold text-terracotta">
-                {chiffre.valeur}
-              </p>
-              <p className="mt-1 text-sm text-muted">{chiffre.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Zone d'intervention */}
-      <section className="py-20 md:py-28">
-        <div className="container">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <p className="overline-label">Zone d&apos;intervention</p>
+              <p className="overline-label">Nos services clés</p>
               <h2 className="mt-4 text-3xl md:text-4xl">
-                Une conciergerie ancrée dans la vallée de Montmorency
+                Trois piliers, zéro charge mentale
               </h2>
             </div>
-            <p className="flex items-center gap-2 text-sm text-muted">
-              <CalendarCheck className="h-4 w-4 text-sunset" aria-hidden="true" />
-              Intervention rapide, équipe locale
-            </p>
+            <Link
+              href="/services"
+              className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-terracotta transition-colors hover:text-sunset"
+            >
+              Le détail de la gestion complète
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+
+          <div className="mt-12 grid auto-rows-[minmax(230px,auto)] grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {/* Carte principale — service 1, image vive + panneau bleu nuit */}
+            <Reveal className="md:col-span-2 lg:row-span-2">
+              <Link
+                href="/services"
+                className="group flex h-full min-h-[460px] flex-col overflow-hidden rounded-2xl bg-night"
+              >
+                <div className="relative min-h-[200px] flex-1 overflow-hidden">
+                  <Image
+                    src="/images/ambiance-02.jpg"
+                    alt="Lumière chaude de fin de journée — image d'ambiance"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 66vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-8 md:p-10">
+                  <p className="text-xs font-medium uppercase tracking-[0.24em] text-coral">
+                    Le cœur du métier
+                  </p>
+                  <h3 className="mt-3 text-3xl text-white md:text-4xl">
+                    Gestion des annonces & réservations
+                  </h3>
+                  <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
+                    Création ou reprise de votre annonce, photos
+                    professionnelles, optimisation du référencement sur Airbnb
+                    et Booking, gestion des réservations et des messages
+                    voyageurs, 7j/7.
+                  </p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-coral transition-transform duration-300 group-hover:translate-x-1">
+                    En savoir plus
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+
+            {/* Service 2 — carte blanche */}
+            <Reveal delay={100}>
+              <article className="flex h-full flex-col justify-between rounded-2xl border border-coral/25 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-coral">
+                <Sparkles className="h-8 w-8 text-sunset" aria-hidden="true" />
+                <div>
+                  <h3 className="text-2xl">Accueil, ménage & linge hôtelier</h3>
+                  <p className="mt-3 text-sm leading-relaxed">
+                    Check-in et check-out soignés, ménage professionnel entre
+                    chaque séjour avec contrôle photo, linge de qualité
+                    hôtelière et réassort des essentiels. Objectif : des avis
+                    5 étoiles.
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+
+            {/* Service 3 — carte sable */}
+            <Reveal delay={180}>
+              <article className="flex h-full flex-col justify-between rounded-2xl bg-sand-deep p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(184,74,43,0.25)]">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-terracotta/40">
+                  <LineChart className="h-5 w-5 text-terracotta" aria-hidden="true" />
+                </span>
+                <div>
+                  <h3 className="text-2xl">Tarification dynamique & revenus</h3>
+                  <p className="mt-3 text-sm leading-relaxed">
+                    Prix ajustés en continu selon la saison, les événements
+                    locaux et la concurrence. Reversement mensuel de vos
+                    revenus avec un récapitulatif clair, sans frais cachés.
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+
+            {/* Chiffre 1 — terracotta */}
+            <Reveal delay={80}>
+              <div className="flex h-full flex-col justify-end rounded-2xl bg-terracotta p-8">
+                <p className="font-serif text-6xl font-bold italic text-white md:text-7xl">
+                  +35&thinsp;%
+                </p>
+                <p className="mt-2 text-xs font-medium uppercase tracking-[0.18em] text-white/75">
+                  de revenus vs gestion en solo
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Chiffre 2 — bleu nuit */}
+            <Reveal delay={160}>
+              <div className="flex h-full flex-col justify-end rounded-2xl bg-night p-8">
+                <p className="font-serif text-6xl font-bold italic text-coral md:text-7xl">
+                  4,9/5
+                </p>
+                <p className="mt-2 text-xs font-medium uppercase tracking-[0.18em] text-sand/60">
+                  note moyenne des biens gérés
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Chiffres 3 & 4 — empilés, filet sunset */}
+            <Reveal delay={240}>
+              <div className="flex h-full flex-col justify-center rounded-2xl border border-coral/25 bg-white p-8">
+                <div>
+                  <p className="font-serif text-4xl font-bold text-terracotta">
+                    72&thinsp;h
+                  </p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-muted">
+                    pour mettre votre bien en ligne
+                  </p>
+                </div>
+                <div className="hairline-gradient my-5" aria-hidden="true" />
+                <div>
+                  <p className="font-serif text-4xl font-bold text-terracotta">
+                    0&thinsp;€
+                  </p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-muted">
+                    de frais cachés, jamais
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
-          <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {villes.map((ville) => (
-              <li key={ville.slug}>
-                <Link
-                  href={`/${ville.slug}`}
-                  className="group flex items-center justify-between rounded-lg border border-coral/25 bg-sand-deep px-5 py-4 transition-colors hover:border-coral"
-                >
-                  <span className="font-medium text-night">{ville.nom}</span>
-                  <ArrowRight
-                    className="h-4 w-4 text-coral transition-transform group-hover:translate-x-1"
+        </div>
+      </section>
+
+      {/* ============ PROCESS — vertical, numéros en filigrane ============ */}
+      <section className="bg-sand-deep py-20 md:py-28">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
+              <p className="overline-label">Comment ça marche</p>
+              <h2 className="mt-4 text-3xl leading-tight md:text-4xl">
+                De l&apos;audit à vos premiers revenus
+              </h2>
+              <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink">
+                Trois étapes, un seul interlocuteur. Votre bien peut être en
+                ligne 72 heures après l&apos;audit.
+              </p>
+            </Reveal>
+
+            <ol className="relative lg:col-span-7 lg:col-start-6">
+              {/* Rail vertical reliant les étapes */}
+              <div
+                className="absolute bottom-6 left-[7px] top-3 w-px bg-coral/40"
+                aria-hidden="true"
+              />
+              {etapes.map((etape, index) => (
+                <li key={etape.numero} className="relative pb-14 pl-14 last:pb-0">
+                  <span
+                    className="absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 border-terracotta bg-sand-deep"
                     aria-hidden="true"
                   />
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  <Reveal delay={index * 120}>
+                    <span
+                      className="pointer-events-none absolute -top-9 left-6 font-serif text-[7rem] font-bold italic leading-none text-coral/20"
+                      aria-hidden="true"
+                    >
+                      {etape.numero}
+                    </span>
+                    <h3 className="relative text-2xl md:text-3xl">
+                      {etape.titre}
+                    </h3>
+                    <p className="relative mt-3 max-w-md text-sm leading-relaxed">
+                      {etape.texte}
+                    </p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ ZONE D'INTERVENTION — index éditorial + image ============ */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12">
+            {/* Le sticky vit hors du wrapper Reveal : un transform sur un
+                ancêtre casserait position:sticky */}
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-28">
+                <Reveal>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+                    <Image
+                      src="/images/ambiance-01.jpg"
+                      alt="Collines au crépuscule sous un ciel corail — image d'ambiance"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="caption mt-3">
+                    La vallée de Montmorency au crépuscule — image d&apos;ambiance
+                  </p>
+                </Reveal>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <Reveal>
+                <p className="overline-label">Zone d&apos;intervention</p>
+                <h2 className="mt-4 text-3xl md:text-4xl">
+                  Une conciergerie ancrée dans
+                  <br />
+                  la vallée de Montmorency
+                </h2>
+                <p className="mt-5 max-w-lg text-sm leading-relaxed text-ink">
+                  Huit communes, une équipe locale capable d&apos;intervenir en
+                  quelques minutes. Chaque ville a son marché, ses voyageurs et
+                  sa page dédiée.
+                </p>
+              </Reveal>
+
+              <ol className="mt-10">
+                {villes.map((ville, index) => (
+                  <li key={ville.slug}>
+                    <Reveal delay={Math.min(index * 60, 240)}>
+                      <Link
+                        href={`/${ville.slug}`}
+                        className="group flex items-baseline gap-5 border-b border-night/10 py-4 transition-colors hover:border-coral md:py-5"
+                      >
+                        <span className="w-8 shrink-0 font-serif text-sm italic text-coral">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="font-serif text-2xl font-semibold text-night transition-colors group-hover:text-terracotta md:text-3xl">
+                          {ville.nom}
+                        </span>
+                        <ArrowRight
+                          className="ml-auto h-5 w-5 shrink-0 self-center text-coral opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </Reveal>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
         </div>
       </section>
 
