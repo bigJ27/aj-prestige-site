@@ -127,7 +127,7 @@ const faq = [
 export default function TarifsPage() {
   return (
     <>
-      <section className="border-b border-coral/20 bg-sand-deep py-16 md:py-24">
+      <section className="border-b border-coral/20 bg-sand-deep pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="container max-w-3xl text-center">
           <p className="overline-label">Tarifs</p>
           <h1 className="mt-4 text-4xl md:text-5xl">
@@ -150,7 +150,7 @@ export default function TarifsPage() {
               key={pack.nom}
               className={`flex flex-col rounded-xl border bg-white p-8 ${
                 pack.recommande
-                  ? "border-terracotta shadow-[0_24px_50px_-24px_rgba(184,74,43,0.35)]"
+                  ? "border-terracotta shadow-[0_24px_50px_-24px_rgba(224,122,95,0.4)]"
                   : "border-coral/25"
               }`}
             >

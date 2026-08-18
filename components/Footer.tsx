@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { villes } from "@/lib/villes";
 import {
@@ -21,9 +22,18 @@ export default function Footer() {
         {/* En-tête éditorial du footer */}
         <div className="flex flex-col gap-8 border-b border-sand/15 pb-12 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="font-serif text-4xl font-bold md:text-5xl">
-              AJ <em className="text-coral">Prestige</em>
-            </p>
+            <div className="flex items-center gap-4">
+              <Image
+                src="/logo192.png"
+                alt=""
+                width={56}
+                height={56}
+                className="h-12 w-12 opacity-90 invert md:h-14 md:w-14"
+              />
+              <p className="font-serif text-4xl font-bold md:text-5xl">
+                AJ <em className="text-coral">Prestige</em>
+              </p>
+            </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-sand/70">
               Conciergerie Airbnb premium. Gestion complète de votre location
               courte durée en Val-d&apos;Oise et Île-de-France, depuis

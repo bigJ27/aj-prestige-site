@@ -88,7 +88,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="border-b border-coral/20 bg-sand-deep">
-        <div className="container grid items-center gap-10 py-16 md:py-24 lg:grid-cols-[1.2fr_1fr]">
+        <div className="container grid items-center gap-10 pb-16 pt-32 md:pb-24 md:pt-40 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <p className="overline-label">Nos services</p>
             <h1 className="mt-4 text-4xl md:text-5xl">
@@ -110,7 +110,7 @@ export default function ServicesPage() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src="/images/ambiance-03.jpg"
-                alt="Ciel du soir entre bleu nuit et corail — image d'ambiance"
+                alt="Soir sur l'océan, reflets corail — image d'ambiance"
                 fill
                 sizes="(max-width: 1024px) 0px, 40vw"
                 className="object-cover"

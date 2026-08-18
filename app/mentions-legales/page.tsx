@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function MentionsLegalesPage() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="pb-16 pt-32 md:pb-24 md:pt-40">
       <div className="container max-w-3xl">
         <Link
           href="/"

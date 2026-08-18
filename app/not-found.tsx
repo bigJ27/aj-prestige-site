@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[60svh] items-center py-20">
+    <section className="flex min-h-[70svh] items-center pb-20 pt-36">
       <div className="container max-w-xl text-center">
         <p className="overline-label">Erreur 404</p>
         <h1 className="mt-4 text-4xl md:text-5xl">

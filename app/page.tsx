@@ -92,7 +92,7 @@ export default function HomePage() {
         <div className="relative h-[52svh] w-full overflow-hidden md:h-[62svh]">
           <Image
             src="/images/hero-sunset.jpg"
-            alt="Ciel de coucher de soleil aux teintes corail et bleu nuit — image d'ambiance"
+            alt="Coucher de soleil sur la mer, ciel corail et eau turquoise — image d'ambiance"
             fill
             priority
             sizes="100vw"
@@ -103,8 +103,8 @@ export default function HomePage() {
             className="absolute inset-0 bg-gradient-to-t from-sand via-coral/15 to-night/25"
             aria-hidden="true"
           />
-          <p className="caption absolute bottom-4 left-5 z-10 hidden text-night/60 sm:block">
-            Lumière du soir sur la vallée — image d&apos;ambiance
+          <p className="caption absolute right-6 top-24 z-10 hidden text-white/80 [text-shadow:0_1px_8px_rgba(27,73,101,0.45)] sm:block">
+            Lumière du soir sur la côte — image d&apos;ambiance
           </p>
         </div>
 
@@ -224,7 +224,7 @@ export default function HomePage() {
             <Reveal className="md:col-span-2 lg:row-span-2">
               <Link
                 href="/services"
-                className="group flex h-full min-h-[460px] flex-col overflow-hidden rounded-2xl bg-night"
+                className="group flex h-full min-h-[460px] flex-col overflow-hidden rounded-2xl border border-coral/30 bg-night"
               >
                 <div className="relative min-h-[200px] flex-1 overflow-hidden">
                   <Image
@@ -274,7 +274,7 @@ export default function HomePage() {
 
             {/* Service 3 — carte sable */}
             <Reveal delay={180}>
-              <article className="flex h-full flex-col justify-between rounded-2xl bg-sand-deep p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(184,74,43,0.25)]">
+              <article className="flex h-full flex-col justify-between rounded-2xl bg-sand-deep p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(224,122,95,0.3)]">
                 <span className="flex h-12 w-12 items-center justify-center rounded-full border border-terracotta/40">
                   <LineChart className="h-5 w-5 text-terracotta" aria-hidden="true" />
                 </span>
@@ -291,7 +291,7 @@ export default function HomePage() {
 
             {/* Chiffre 1 — terracotta */}
             <Reveal delay={80}>
-              <div className="flex h-full flex-col justify-end rounded-2xl bg-terracotta p-8">
+              <div className="flex h-full flex-col justify-end rounded-2xl bg-sunset p-8">
                 <p className="font-serif text-6xl font-bold italic text-white md:text-7xl">
                   +35&thinsp;%
                 </p>
@@ -399,14 +399,14 @@ export default function HomePage() {
                   <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                     <Image
                       src="/images/ambiance-01.jpg"
-                      alt="Collines au crépuscule sous un ciel corail — image d'ambiance"
+                      alt="Horizon marin au crépuscule — image d'ambiance"
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover"
                     />
                   </div>
                   <p className="caption mt-3">
-                    La vallée de Montmorency au crépuscule — image d&apos;ambiance
+                    Fin de journée au bord de l&apos;eau — image d&apos;ambiance
                   </p>
                 </Reveal>
               </div>

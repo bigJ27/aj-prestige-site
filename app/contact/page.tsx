@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="border-b border-coral/20 bg-sand-deep py-16 md:py-24">
+      <section className="border-b border-coral/20 bg-sand-deep pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="container max-w-3xl text-center">
           <p className="overline-label">Contact</p>
           <h1 className="mt-4 text-4xl md:text-5xl">

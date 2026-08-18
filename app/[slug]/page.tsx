@@ -45,7 +45,7 @@ export default async function VillePage({ params }: Props) {
 
   return (
     <>
-      <section className="border-b border-coral/20 bg-sand-deep py-16 md:py-24">
+      <section className="border-b border-coral/20 bg-sand-deep pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="container grid items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="overline-label">
@@ -68,14 +68,14 @@ export default async function VillePage({ params }: Props) {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src={heroImage}
-                alt="Ciel de coucher de soleil sur la vallée — image d'ambiance"
+                alt="Lumière de fin de journée — image d'ambiance"
                 fill
                 sizes="(max-width: 1024px) 0px, 33vw"
                 className="object-cover"
               />
             </div>
             <p className="caption mt-3">
-              Lumière du soir en vallée de Montmorency — image d&apos;ambiance
+              Lumière du soir — image d&apos;ambiance
             </p>
           </div>
         </div>
