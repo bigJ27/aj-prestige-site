@@ -84,76 +84,55 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* ============ HERO ÉDITORIAL ============
-          Image d'ambiance pleine largeur, titre serif surdimensionné qui
-          chevauche la photo. Seul endroit (avec le footer) où le dégradé
-          sunset est autorisé : ici en voile sur l'image. */}
-      <section className="relative">
-        <div className="relative h-[52svh] w-full overflow-hidden md:h-[62svh]">
-          <Image
-            src="/images/hero-sunset.jpg"
-            alt="Coucher de soleil sur la mer, ciel corail et eau turquoise — image d'ambiance"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          {/* Voile sunset, du sable vers le ciel */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-sand via-coral/15 to-night/25"
-            aria-hidden="true"
-          />
-          <p className="caption absolute right-6 top-24 z-10 hidden text-white/80 [text-shadow:0_1px_8px_rgba(27,73,101,0.45)] sm:block">
-            Lumière du soir sur la côte — image d&apos;ambiance
+      {/* ============ HERO — photo plein écran, slogan centré ============ */}
+      <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
+        <Image
+          src="/images/hero-sunset.jpg"
+          alt="Salon ouvert sur la mer au coucher du soleil — image d'ambiance"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        {/* Voile pour la lisibilité du slogan */}
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-night/65 via-night/25 to-night/20"
+          aria-hidden="true"
+        />
+
+        <div className="container relative z-10 animate-fade-up py-32 text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-white/85">
+            Conciergerie Airbnb premium · Val-d&apos;Oise & Île-de-France
           </p>
+          <h1 className="mx-auto mt-6 max-w-4xl text-6xl leading-[1.02] text-white [text-shadow:0_2px_24px_rgba(27,73,101,0.45)] sm:text-7xl md:text-8xl">
+            Votre bien,
+            <br />
+            <em className="text-coral">notre prestige.</em>
+          </h1>
+          <a href="#offre" className="btn-primary mt-12 !px-10 !py-4 text-base">
+            Découvrir
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
 
-        <div className="container relative z-10 -mt-[16svh] pb-16 md:-mt-[24svh] md:pb-24">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
-            {/* Colonne gauche : tagline façon magazine */}
-            <div className="order-2 animate-fade-up lg:order-1 lg:col-span-4 lg:pt-40 [animation-delay:200ms]">
-              <p className="overline-label">
-                Conciergerie Airbnb premium
-              </p>
-              <div className="mt-3 h-px w-10 bg-sunset" aria-hidden="true" />
-              <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink">
-                Val-d&apos;Oise & Île-de-France — une équipe locale, basée à
-                Soisy-sous-Montmorency, qui gère votre bien comme un hôtel
-                gère ses chambres.
-              </p>
-            </div>
+        <p className="caption absolute bottom-4 right-5 z-10 hidden text-white/70 sm:block">
+          Image d&apos;ambiance
+        </p>
+      </section>
 
-            {/* Colonne droite : titre géant qui chevauche l'image */}
-            <div className="order-1 animate-fade-up lg:order-2 lg:col-span-8">
-              <h1 className="text-[17vw] leading-[0.95] sm:text-7xl md:text-8xl lg:text-[6.5rem]">
-                Votre bien,
-                <br />
-                <em className="text-terracotta">notre prestige.</em>
-              </h1>
-              <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink">
-                Déléguez l&apos;intégralité de votre location courte durée —
-                annonce, voyageurs, ménage, linge, tarification — pendant que
-                vous encaissez. Gestion complète de A à Z, depuis
-                Soisy-sous-Montmorency.
-              </p>
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                <Link href="/contact" className="btn-primary">
-                  Demander un audit gratuit
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link href="/services" className="btn-outline">
-                  Découvrir nos services
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Filet de pied de hero : trois repères en petites capitales */}
-          <ul className="mt-16 grid grid-cols-1 gap-y-3 border-t border-night/15 pt-6 text-xs font-medium uppercase tracking-[0.18em] text-night/70 sm:grid-cols-3">
-            <li>Commission transparente 15–25 %</li>
-            <li className="sm:text-center">Sans engagement de durée</li>
-            <li className="sm:text-right">Avis voyageurs 5 étoiles</li>
-          </ul>
+      {/* ============ BANDEROLE — offre d'essai ============ */}
+      <section id="offre" className="bg-terracotta">
+        <div className="container flex flex-col items-center gap-2 py-8 text-center md:flex-row md:justify-center md:gap-6 md:py-6">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-white">
+            Offre d&apos;essai : premier mois à commission réduite
+          </p>
+          <span
+            className="hidden h-5 w-px bg-white/40 md:block"
+            aria-hidden="true"
+          />
+          <p className="font-serif text-lg italic text-white/95">
+            Tous les avantages d&apos;un logement, sans que vous le gériez.
+          </p>
         </div>
       </section>
 
