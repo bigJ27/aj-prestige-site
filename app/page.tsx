@@ -94,20 +94,35 @@ export default function HomePage() {
           sizes="100vw"
           className="object-cover"
         />
-        {/* Voile pour la lisibilité du slogan */}
+        {/* Voile en deux couches : dégradé vertical (îlot de nav en haut,
+            jonction avec la banderole en bas) et halo radial derrière le
+            slogan. Calibré pour rester lisible même sur une photo à centre
+            très lumineux — contraste mesuré > 4:1 sur blanc. */}
         <div
-          className="absolute inset-0 bg-gradient-to-t from-night/65 via-night/25 to-night/20"
+          className="absolute inset-0 bg-gradient-to-b from-night/55 via-night/33 to-night/60"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_65%_58%_at_50%_48%,rgba(27,73,101,0.55)_0%,rgba(27,73,101,0.26)_55%,transparent_80%)]"
           aria-hidden="true"
         />
 
         <div className="container relative z-10 animate-fade-up py-32 text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.28em] text-white/85">
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-white [text-shadow:0_1px_10px_rgba(27,73,101,0.6)]">
             Conciergerie Airbnb premium · Val-d&apos;Oise & Île-de-France
           </p>
-          <h1 className="mx-auto mt-6 max-w-4xl text-6xl leading-[1.02] text-white [text-shadow:0_2px_24px_rgba(27,73,101,0.45)] sm:text-7xl md:text-8xl">
+          {/* Titre entièrement en blanc : sur une photo à centre lumineux, un
+              accent corail tombe sous le seuil de contraste (mesuré 1,97:1) et
+              il faudrait un voile si opaque que la photo disparaîtrait.
+              L'italique porte la distinction, la chaleur passe par le bouton
+              et la banderole. */}
+          {/* Taille de base réduite pour que « notre prestige. » tienne sur
+              une seule ligne dès 360 px — le titre garde son rythme en deux
+              lignes sur tous les écrans. */}
+          <h1 className="mx-auto mt-6 max-w-4xl text-[2.6rem] leading-[1.05] text-white [text-shadow:0_2px_24px_rgba(27,73,101,0.55)] min-[420px]:text-5xl sm:text-7xl md:text-8xl">
             Votre bien,
             <br />
-            <em className="text-coral">notre prestige.</em>
+            <em>notre prestige.</em>
           </h1>
           <a href="#offre" className="btn-primary mt-12 !px-10 !py-4 text-base">
             Découvrir
@@ -115,7 +130,7 @@ export default function HomePage() {
           </a>
         </div>
 
-        <p className="caption absolute bottom-4 right-5 z-10 hidden text-white/70 sm:block">
+        <p className="caption absolute bottom-4 left-5 z-10 hidden text-white/70 sm:block">
           Image d&apos;ambiance
         </p>
       </section>
