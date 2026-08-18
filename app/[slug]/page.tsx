@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowRight, MapPin } from "lucide-react";
 import CtaBand from "@/components/CtaBand";
@@ -39,25 +40,44 @@ export default async function VillePage({ params }: Props) {
     .map((slugVoisin) => getVille(slugVoisin))
     .filter((voisin) => voisin !== undefined);
 
+  // Visuel d'ambiance : rotation entre les trois images selon la ville
+  const heroImage = `/images/ambiance-0${(villes.indexOf(ville) % 3) + 1}.jpg`;
+
   return (
     <>
       <section className="border-b border-coral/20 bg-sand-deep py-16 md:py-24">
-        <div className="container max-w-3xl">
-          <p className="overline-label">
-            <MapPin className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />
-            Val-d&apos;Oise · Vallée de Montmorency
-          </p>
-          <h1 className="mt-4 text-4xl md:text-5xl">
-            Conciergerie Airbnb à{" "}
-            <em className="text-terracotta">{ville.nom}</em>
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-ink">
-            {ville.accroche}
-          </p>
-          <Link href="/contact" className="btn-primary mt-8">
-            Audit gratuit de mon bien à {ville.nom}
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+        <div className="container grid items-center gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="overline-label">
+              <MapPin className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />
+              Val-d&apos;Oise · Vallée de Montmorency
+            </p>
+            <h1 className="mt-4 text-4xl md:text-5xl">
+              Conciergerie Airbnb à{" "}
+              <em className="text-terracotta">{ville.nom}</em>
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-ink">
+              {ville.accroche}
+            </p>
+            <Link href="/contact" className="btn-primary mt-8">
+              Audit gratuit de mon bien à {ville.nom}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="hidden lg:col-span-4 lg:col-start-9 lg:block">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              <Image
+                src={heroImage}
+                alt="Ciel de coucher de soleil sur la vallée — image d'ambiance"
+                fill
+                sizes="(max-width: 1024px) 0px, 33vw"
+                className="object-cover"
+              />
+            </div>
+            <p className="caption mt-3">
+              Lumière du soir en vallée de Montmorency — image d&apos;ambiance
+            </p>
+          </div>
         </div>
       </section>
 

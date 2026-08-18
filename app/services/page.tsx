@@ -106,14 +106,19 @@ export default function ServicesPage() {
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="relative hidden aspect-[4/5] overflow-hidden rounded-xl lg:block">
-            <Image
-              src="https://images.unsplash.com/photo-1689849714441-6372a33af0d4?crop=entropy&cs=srgb&fm=jpg&q=80&w=1000"
-              alt="Chambre lumineuse avec vue au coucher de soleil, préparée aux standards hôteliers"
-              fill
-              sizes="(max-width: 1024px) 0px, 40vw"
-              className="object-cover"
-            />
+          <div className="hidden lg:block">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              <Image
+                src="/images/ambiance-03.jpg"
+                alt="Ciel du soir entre bleu nuit et corail — image d'ambiance"
+                fill
+                sizes="(max-width: 1024px) 0px, 40vw"
+                className="object-cover"
+              />
+            </div>
+            <p className="caption mt-3">
+              Tombée du jour — image d&apos;ambiance
+            </p>
           </div>
         </div>
       </section>

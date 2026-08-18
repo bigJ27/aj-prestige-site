@@ -14,42 +14,37 @@ import {
 export default function Footer() {
   return (
     <footer className="bg-night text-sand">
+      {/* Filet dégradé sunset — autorisé dans le footer */}
       <div className="hairline-gradient" aria-hidden="true" />
-      <div className="container py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+
+      <div className="container pb-12 pt-16 md:pt-20">
+        {/* En-tête éditorial du footer */}
+        <div className="flex flex-col gap-8 border-b border-sand/15 pb-12 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="font-serif text-2xl font-bold">
-              AJ <span className="italic text-coral">Prestige</span>
+            <p className="font-serif text-4xl font-bold md:text-5xl">
+              AJ <em className="text-coral">Prestige</em>
             </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-sand/70">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-sand/70">
               Conciergerie Airbnb premium. Gestion complète de votre location
               courte durée en Val-d&apos;Oise et Île-de-France, depuis
               Soisy-sous-Montmorency.
             </p>
-            <div className="mt-5 flex items-center gap-4">
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sand/70 transition-colors hover:text-coral"
-                aria-label={`Instagram ${INSTAGRAM_HANDLE}`}
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href={GOOGLE_BUSINESS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-sand/70 underline decoration-coral/50 underline-offset-4 transition-colors hover:text-coral"
-              >
-                Nos avis Google
-              </a>
-            </div>
           </div>
+          <Link
+            href="/contact"
+            className="btn-on-dark self-start lg:self-auto"
+          >
+            Demander un audit gratuit
+          </Link>
+        </div>
 
-          <div>
-            <h2 className="font-serif text-lg text-coral">Navigation</h2>
-            <ul className="mt-4 space-y-2 text-sm">
+        {/* Colonnes */}
+        <div className="grid gap-12 pt-12 md:grid-cols-2 lg:grid-cols-12">
+          <nav className="lg:col-span-3" aria-label="Navigation du site">
+            <h2 className="text-xs font-medium uppercase tracking-[0.24em] text-coral">
+              Navigation
+            </h2>
+            <ul className="mt-5 space-y-2.5 text-sm">
               {[
                 { href: "/", label: "Accueil" },
                 { href: "/services", label: "Nos services" },
@@ -71,29 +66,34 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h2 className="font-serif text-lg text-coral">
+          <nav className="lg:col-span-5" aria-label="Conciergerie Airbnb par ville">
+            <h2 className="text-xs font-medium uppercase tracking-[0.24em] text-coral">
               Conciergerie Airbnb par ville
             </h2>
-            <ul className="mt-4 space-y-2 text-sm">
-              {villes.map((ville) => (
+            <ul className="mt-5 grid grid-cols-1 gap-x-8 gap-y-2.5 text-sm sm:grid-cols-2">
+              {villes.map((ville, index) => (
                 <li key={ville.slug}>
                   <Link
                     href={`/${ville.slug}`}
-                    className="text-sand/70 transition-colors hover:text-coral"
+                    className="group inline-flex items-baseline gap-2.5 text-sand/70 transition-colors hover:text-coral"
                   >
+                    <span className="font-serif text-xs italic text-sand/40 transition-colors group-hover:text-coral/70">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     {ville.nom}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h2 className="font-serif text-lg text-coral">Contact</h2>
-            <ul className="mt-4 space-y-3 text-sm">
+          <div className="lg:col-span-3 lg:col-start-10">
+            <h2 className="text-xs font-medium uppercase tracking-[0.24em] text-coral">
+              Contact
+            </h2>
+            <ul className="mt-5 space-y-3 text-sm">
               <li>
                 <a
                   href={`tel:${PHONE_TEL}`}
@@ -115,6 +115,28 @@ export default function Footer() {
               <li className="inline-flex items-center gap-2 text-sand/70">
                 <MapPin className="h-4 w-4 shrink-0" />
                 Soisy-sous-Montmorency, Val-d&apos;Oise
+              </li>
+              <li className="pt-2">
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sand/70 transition-colors hover:text-coral"
+                  aria-label={`Instagram ${INSTAGRAM_HANDLE}`}
+                >
+                  <Instagram className="h-4 w-4 shrink-0" />
+                  {INSTAGRAM_HANDLE}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={GOOGLE_BUSINESS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sand/70 underline decoration-coral/50 underline-offset-4 transition-colors hover:text-coral"
+                >
+                  Nos avis Google
+                </a>
               </li>
             </ul>
           </div>
