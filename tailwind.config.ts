@@ -15,21 +15,22 @@ const config: Config = {
       },
     },
     extend: {
+      // Palette "bord de mer au couchant"
       colors: {
         sand: {
-          DEFAULT: "#FDF6EE",
-          deep: "#FAF0E4",
+          DEFAULT: "#FAFAFA", // blanc cassé — fond principal
+          deep: "#F4EAD4", // sable / beige chaud — sections et cartes
         },
-        sunset: "#E8734A",
-        coral: "#F2A65A",
-        terracotta: "#B84A2B",
-        night: "#1E3A5F",
-        ink: "#3D4A5C",
-        muted: "#8A94A3",
+        night: "#1B4965", // bleu océan — titres, nav, texte fort
+        ink: "#1B4965", // texte courant (bleu océan, hiérarchie par la graisse)
+        muted: "#6C584C", // bois flotté — texte secondaire, bordures fines
+        terracotta: "#E07A5F", // orange crépuscule — CTA, accents
+        sunset: "#C4593F", // orange crépuscule foncé — hovers de CTA
+        coral: "#EFB7A2", // teinte claire de l'orange — filets, détails
       },
       fontFamily: {
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
-        sans: ["var(--font-jost)", "system-ui", "sans-serif"],
+        serif: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-body)", "Georgia", "serif"],
       },
       keyframes: {
         "fade-up": {

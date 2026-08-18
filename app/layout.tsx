@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Lora, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,18 +7,19 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  variable: "--font-display",
   display: "swap",
 });
 
-const jost = Jost({
+const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500"],
-  variable: "--font-jost",
+  style: ["normal", "italic"],
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FDF6EE",
+  themeColor: "#FAFAFA",
 };
 
 export default function RootLayout({
@@ -71,7 +72,7 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="fr" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="fr" className={`${playfair.variable} ${lora.variable}`}>
       <body>
         <Header />
         <main>{children}</main>

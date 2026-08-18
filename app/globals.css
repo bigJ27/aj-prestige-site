@@ -38,7 +38,7 @@
 
 @layer components {
   .overline-label {
-    @apply block text-xs font-medium uppercase tracking-[0.24em] text-sunset;
+    @apply block text-xs font-medium uppercase tracking-[0.24em] text-terracotta;
   }
 
   .btn {
@@ -58,7 +58,11 @@
   }
 
   .hairline-gradient {
-    @apply h-px w-full bg-gradient-to-r from-coral via-sunset to-terracotta;
+    @apply h-px w-full bg-gradient-to-r from-coral via-terracotta to-sunset;
+  }
+
+  .card-sand {
+    @apply rounded-xl border border-coral/25 bg-sand-deep p-8 transition-all duration-300 hover:-translate-y-1 hover:border-coral hover:shadow-[0_18px_40px_-18px_rgba(224,122,95,0.3)];
   }
 
   /* Révélation au scroll (classe posée par le composant Reveal) */
