@@ -11,6 +11,18 @@
     @apply bg-sand font-sans text-ink antialiased;
   }
 
+  /* Grain photographique subtil sur tout le site — sort les fonds sable de l'aplat */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
   ::selection {
     @apply bg-coral/40 text-night;
   }
@@ -26,7 +38,7 @@
 
 @layer components {
   .overline-label {
-    @apply block text-xs font-medium uppercase tracking-[0.22em] text-sunset;
+    @apply block text-xs font-medium uppercase tracking-[0.24em] text-sunset;
   }
 
   .btn {
@@ -45,12 +57,35 @@
     @apply btn bg-sand text-terracotta hover:bg-white;
   }
 
-  .card-sand {
-    @apply rounded-xl border border-coral/25 bg-sand-deep p-8 transition-all duration-300 hover:-translate-y-1 hover:border-coral hover:shadow-[0_18px_40px_-18px_rgba(184,74,43,0.25)];
-  }
-
   .hairline-gradient {
     @apply h-px w-full bg-gradient-to-r from-coral via-sunset to-terracotta;
+  }
+
+  /* Révélation au scroll (classe posée par le composant Reveal) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Légende d'image façon magazine */
+  .caption {
+    @apply text-[0.65rem] font-medium uppercase tracking-[0.18em] text-muted;
   }
 
   .prose-legal h2 {
