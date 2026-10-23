@@ -1,19 +1,13 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Design système AJ Prestige — langage Apple (sobriété, verre, grandes typos)
+ * avec la palette coucher de soleil de la marque. Les couleurs vivent aussi
+ * en variables CSS dans app/globals.css (source unique pour les composants).
+ */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1.25rem",
-        sm: "1.5rem",
-        lg: "2rem",
-      },
-      screens: {
-        "2xl": "1200px",
-      },
-    },
     extend: {
       colors: {
         sand: {
@@ -23,22 +17,21 @@ const config: Config = {
         sunset: "#E8734A",
         coral: "#F2A65A",
         terracotta: "#B84A2B",
+        rose: "#D45463",
         night: "#1E3A5F",
-        ink: "#3D4A5C",
-        muted: "#8A94A3",
+        abyss: "#0B1626",
+        label: "#1D1D1F",
+        "label-2": "#6E6E73",
       },
       fontFamily: {
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
-        sans: ["var(--font-jost)", "system-ui", "sans-serif"],
-      },
-      keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-      },
-      animation: {
-        "fade-up": "fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both",
+        sans: [
+          "var(--font-inter)",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif",
+        ],
       },
     },
   },

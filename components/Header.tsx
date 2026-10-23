@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, ChevronRight, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons";
+import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
 
 const links = [
   { href: "/", label: "Accueil" },
@@ -13,89 +16,145 @@ const links = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Ferme le menu à chaque changement de page
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
+  // Menu ouvert : on bloque le défilement, Échap pour fermer
+  useEffect(() => {
+    if (!open) return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = "hidden";
+    firstLinkRef.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        burgerRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      root.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
-        scrolled
-          ? "border-night/10 bg-sand/90 shadow-[0_4px_24px_-12px_rgba(30,58,95,0.15)] backdrop-blur-md"
-          : "border-transparent bg-sand/70 backdrop-blur-sm"
-      }`}
+      className={`nav ${open ? "menu-open" : ""}`}
+      data-scrolled={scrolled || open}
     >
-      <div className="container flex h-16 items-center justify-between md:h-20">
-        <Link href="/" className="font-serif text-2xl font-bold tracking-wide">
-          <span className="text-night">AJ</span>{" "}
-          <span className="italic text-sunset">Prestige</span>
+      <div className="nav-edge" aria-hidden="true" />
+
+      <nav className="nav-island glass" aria-label="Navigation principale">
+        <Link href="/" className="nav-logo" aria-label="AJ Prestige — accueil">
+          <Image src="/logo192.png" alt="" width={30} height={30} priority />
+          <span className="wordmark">AJ Prestige</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Navigation principale">
-          {links.slice(0, 3).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium tracking-wide transition-colors ${
-                pathname === link.href
-                  ? "text-terracotta"
-                  : "text-night hover:text-sunset"
-              }`}
-            >
-              {link.label}
-            </Link>
+        <ul className="nav-links">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="nav-link"
+                aria-current={isActive(link.href) ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            </li>
           ))}
-          <Link href="/contact" className="btn-primary !px-6 !py-2.5">
+        </ul>
+
+        <div className="nav-actions">
+          <Link href="/contact" className="btn btn-primary btn-sm nav-cta">
             Audit gratuit
           </Link>
-        </nav>
+          <button
+            ref={burgerRef}
+            type="button"
+            className="nav-burger"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span aria-hidden="true" />
+          </button>
+        </div>
+      </nav>
 
-        <button
-          type="button"
-          className="text-night md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-
-      {open && (
-        <nav
-          className="border-t border-night/10 bg-sand px-5 pb-8 pt-4 md:hidden"
-          aria-label="Navigation mobile"
-        >
-          <ul className="space-y-1">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`block rounded-lg px-3 py-3 font-serif text-2xl ${
-                    pathname === link.href ? "text-terracotta" : "text-night"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link href="/contact" className="btn-primary mt-4 w-full">
+      <div
+        className="menu-scrim"
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+      />
+      <div
+        id="menu-mobile"
+        className="menu-sheet glass glass-solid"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        inert={!open}
+      >
+        <ul>
+          {links.map((link, index) => (
+            <li key={link.href}>
+              <Link
+                ref={index === 0 ? firstLinkRef : undefined}
+                href={link.href}
+                className="menu-link"
+                aria-current={isActive(link.href) ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+                <ChevronRight className="h-5 w-5" aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="menu-quick">
+          <a
+            href={`tel:${PHONE_TEL}`}
+            aria-label={`Appeler le ${PHONE_DISPLAY}`}
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            Appeler
+          </a>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon className="h-4 w-4" />
+            WhatsApp
+          </a>
+        </div>
+        <div className="px-1.5">
+          <Link
+            href="/contact"
+            className="btn btn-primary btn-block"
+            onClick={() => setOpen(false)}
+          >
             Demander un audit gratuit
+            <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
           </Link>
-        </nav>
-      )}
+        </div>
+      </div>
     </header>
   );
 }

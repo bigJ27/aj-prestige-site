@@ -13,20 +13,15 @@ export const metadata: Metadata = {
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container max-w-3xl">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-terracotta transition-colors hover:text-sunset"
-        >
-          <ArrowLeft className="h-4 w-4" />
+    <section className="pb-[clamp(72px,9vw,120px)] pt-[calc(var(--nav-h)+64px)]">
+      <div className="shell-text">
+        <Link href="/" className="link-more">
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Retour à l&apos;accueil
         </Link>
 
-        <h1 className="mt-8 text-4xl md:text-5xl">
-          Politique de confidentialité
-        </h1>
-        <p className="mt-3 text-sm text-muted">Dernière mise à jour : août 2026</p>
+        <h1 className="display mt-8">Politique de confidentialité</h1>
+        <p className="caption mt-3">Dernière mise à jour : août 2026</p>
 
         <div className="prose-legal mt-6">
           <h2>1. Introduction</h2>
@@ -39,7 +34,10 @@ export default function PolitiqueConfidentialitePage() {
           </p>
 
           <h2>2. Données collectées</h2>
-          <p>Nous collectons les données suivantes via notre formulaire de contact :</p>
+          <p>
+            Nous collectons les données suivantes via notre formulaire de
+            contact :
+          </p>
           <ul>
             <li>Nom et prénom</li>
             <li>Adresse email</li>
@@ -52,7 +50,9 @@ export default function PolitiqueConfidentialitePage() {
           <p>Vos données sont collectées pour :</p>
           <ul>
             <li>Répondre à vos demandes de contact et d&apos;audit gratuit</li>
-            <li>Vous fournir des informations sur nos services de conciergerie</li>
+            <li>
+              Vous fournir des informations sur nos services de conciergerie
+            </li>
             <li>Établir un devis personnalisé</li>
             <li>Améliorer nos services</li>
           </ul>
@@ -127,8 +127,8 @@ export default function PolitiqueConfidentialitePage() {
 
           <h2>10. Modifications</h2>
           <p>
-            Cette politique de confidentialité peut être mise à jour. La date
-            de dernière mise à jour est indiquée en haut de cette page.
+            Cette politique de confidentialité peut être mise à jour. La date de
+            dernière mise à jour est indiquée en haut de cette page.
           </p>
 
           <h2>11. Contact et réclamation</h2>

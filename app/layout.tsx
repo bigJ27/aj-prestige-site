@@ -1,24 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import MobileActions from "@/components/MobileActions";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-const jost = Jost({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-jost",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -46,7 +37,9 @@ export const metadata: Metadata = {
     title: "AJ Prestige | Conciergerie Airbnb premium",
     description:
       "Déléguez la gestion complète de votre location courte durée en Val-d'Oise et Île-de-France. Commission transparente, audit gratuit.",
-    images: [{ url: "/logo512.png", width: 512, height: 512, alt: "AJ Prestige" }],
+    images: [
+      { url: "/logo512.png", width: 512, height: 512, alt: "AJ Prestige" },
+    ],
   },
   twitter: {
     card: "summary",
@@ -63,6 +56,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#FDF6EE",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -71,12 +65,20 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="fr" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="fr" className={inter.variable}>
+      <head>
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+      </head>
       <body>
+        <a href="#contenu" className="skip-link">
+          Aller au contenu
+        </a>
         <Header />
-        <main>{children}</main>
+        <main id="contenu">{children}</main>
         <Footer />
-        <WhatsAppButton />
+        <MobileActions />
         {gaId ? (
           <>
             <Script
