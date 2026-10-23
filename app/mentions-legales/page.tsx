@@ -13,18 +13,15 @@ export const metadata: Metadata = {
 
 export default function MentionsLegalesPage() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container max-w-3xl">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-terracotta transition-colors hover:text-sunset"
-        >
-          <ArrowLeft className="h-4 w-4" />
+    <section className="pb-[clamp(72px,9vw,120px)] pt-[calc(var(--nav-h)+64px)]">
+      <div className="shell-text">
+        <Link href="/" className="link-more">
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Retour à l&apos;accueil
         </Link>
 
-        <h1 className="mt-8 text-4xl md:text-5xl">Mentions légales</h1>
-        <p className="mt-3 text-sm text-muted">Dernière mise à jour : août 2026</p>
+        <h1 className="display mt-8">Mentions légales</h1>
+        <p className="caption mt-3">Dernière mise à jour : août 2026</p>
 
         <div className="prose-legal mt-6">
           <h2>1. Éditeur du site</h2>
@@ -88,8 +85,8 @@ export default function MentionsLegalesPage() {
 
           <h2>6. Droit applicable</h2>
           <p>
-            Les présentes mentions légales sont régies par le droit français.
-            En cas de litige, les tribunaux français seront seuls compétents.
+            Les présentes mentions légales sont régies par le droit français. En
+            cas de litige, les tribunaux français seront seuls compétents.
           </p>
 
           <h2>7. Contact</h2>
