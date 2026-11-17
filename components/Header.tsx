@@ -1,160 +1,188 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ChevronRight, Phone } from "lucide-react";
-import { WhatsAppIcon } from "@/components/icons";
+import {
+  IconArrow,
+  IconClose,
+  IconMenu,
+  IconPhone,
+  IconWhatsApp,
+} from "@/components/icons";
 import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
 
-const links = [
-  { href: "/", label: "Accueil" },
+const liens = [
   { href: "/services", label: "Services" },
   { href: "/tarifs", label: "Tarifs" },
+  { href: "/#zone", label: "Zone d’intervention" },
   { href: "/contact", label: "Contact" },
 ];
 
+/**
+ * En-tête du site. C'est l'un des rares composants « client » (qui embarque
+ * du JavaScript) : il doit savoir quelle page est affichée et ouvrir le menu
+ * sur mobile. Fond plein, aucun effet de flou : il ne coûte rien au défilement.
+ */
 export default function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const burgerRef = useRef<HTMLButtonElement>(null);
-  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const [ouvert, setOuvert] = useState(false);
+  const boutonRef = useRef<HTMLButtonElement>(null);
+  const fermerRef = useRef<HTMLButtonElement>(null);
 
+  // Le menu se referme à chaque changement de page
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Ferme le menu à chaque changement de page
-  useEffect(() => {
-    setOpen(false);
+    setOuvert(false);
   }, [pathname]);
 
-  // Menu ouvert : on bloque le défilement, Échap pour fermer
+  // Menu ouvert : la page derrière ne défile plus, Échap referme
   useEffect(() => {
-    if (!open) return;
-    const root = document.documentElement;
-    const previous = root.style.overflow;
-    root.style.overflow = "hidden";
-    firstLinkRef.current?.focus();
-    const onKey = (event: KeyboardEvent) => {
+    if (!ouvert) return;
+    const racine = document.documentElement;
+    const precedent = racine.style.overflow;
+    racine.style.overflow = "hidden";
+    fermerRef.current?.focus();
+    const surTouche = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setOpen(false);
-        burgerRef.current?.focus();
+        setOuvert(false);
+        boutonRef.current?.focus();
       }
     };
-    window.addEventListener("keydown", onKey);
+    window.addEventListener("keydown", surTouche);
     return () => {
-      root.style.overflow = previous;
-      window.removeEventListener("keydown", onKey);
+      racine.style.overflow = precedent;
+      window.removeEventListener("keydown", surTouche);
     };
-  }, [open]);
+  }, [ouvert]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const estActif = (href: string) => {
+    if (href === "/#zone") return pathname.startsWith("/conciergerie-airbnb-");
+    return pathname.startsWith(href);
+  };
+
+  const fermer = () => {
+    setOuvert(false);
+    boutonRef.current?.focus();
+  };
 
   return (
-    <header
-      className={`nav ${open ? "menu-open" : ""}`}
-      data-scrolled={scrolled || open}
-    >
-      <div className="nav-edge" aria-hidden="true" />
-
-      <nav className="nav-island glass" aria-label="Navigation principale">
-        <Link href="/" className="nav-logo" aria-label="AJ Prestige — accueil">
-          <Image src="/logo192.png" alt="" width={30} height={30} priority />
-          <span className="wordmark">AJ Prestige</span>
-        </Link>
-
-        <ul className="nav-links">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="nav-link"
-                aria-current={isActive(link.href) ? "page" : undefined}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="nav-actions">
-          <Link href="/contact" className="btn btn-primary btn-sm nav-cta">
-            Audit gratuit
+    <>
+      <header className="site-header">
+        <div className="wrap site-header-inner">
+          <Link href="/" className="brand" aria-label="AJ Prestige — accueil">
+            <img src="/logo.webp" alt="" width={30} height={40} />
+            <span className="brand-name">AJ Prestige</span>
           </Link>
-          <button
-            ref={burgerRef}
-            type="button"
-            className="nav-burger"
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            aria-expanded={open}
-            aria-controls="menu-mobile"
-            onClick={() => setOpen((value) => !value)}
-          >
-            <span aria-hidden="true" />
-          </button>
-        </div>
-      </nav>
 
-      <div
-        className="menu-scrim"
-        aria-hidden="true"
-        onClick={() => setOpen(false)}
-      />
+          <nav className="nav" aria-label="Navigation principale">
+            {liens.map((lien) => (
+              <Link
+                key={lien.href}
+                href={lien.href}
+                className="nav-link"
+                aria-current={estActif(lien.href) ? "page" : undefined}
+              >
+                {lien.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="header-actions">
+            <a href={`tel:${PHONE_TEL}`} className="header-phone num">
+              <IconPhone size={18} />
+              {PHONE_DISPLAY}
+            </a>
+            <Link href="/contact" className="btn btn-primary btn-sm header-cta">
+              Audit gratuit
+            </Link>
+            <button
+              ref={boutonRef}
+              type="button"
+              className="menu-toggle"
+              aria-expanded={ouvert}
+              aria-controls="menu-mobile"
+              onClick={() => setOuvert(true)}
+            >
+              Menu
+              <IconMenu size={18} />
+            </button>
+          </div>
+        </div>
+      </header>
+
       <div
         id="menu-mobile"
-        className="menu-sheet glass glass-solid"
+        className="menu-panel"
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        inert={!open}
+        data-open={ouvert}
+        inert={!ouvert}
       >
-        <ul>
-          {links.map((link, index) => (
-            <li key={link.href}>
-              <Link
-                ref={index === 0 ? firstLinkRef : undefined}
-                href={link.href}
-                className="menu-link"
-                aria-current={isActive(link.href) ? "page" : undefined}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-                <ChevronRight className="h-5 w-5" aria-hidden="true" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="menu-quick">
-          <a
-            href={`tel:${PHONE_TEL}`}
-            aria-label={`Appeler le ${PHONE_DISPLAY}`}
+        <div className="wrap menu-top">
+          <Link
+            href="/"
+            className="brand"
+            aria-label="AJ Prestige — accueil"
+            onClick={() => setOuvert(false)}
           >
-            <Phone className="h-4 w-4" aria-hidden="true" />
+            <img src="/logo.webp" alt="" width={30} height={40} />
+            <span className="brand-name">AJ Prestige</span>
+          </Link>
+          <button
+            ref={fermerRef}
+            type="button"
+            className="menu-toggle"
+            onClick={fermer}
+          >
+            Fermer
+            <IconClose size={18} />
+          </button>
+        </div>
+
+        <nav className="wrap menu-links" aria-label="Menu principal">
+          {[{ href: "/", label: "Accueil" }, ...liens].map((lien) => (
+            <Link
+              key={lien.href}
+              href={lien.href}
+              className="menu-link"
+              aria-current={
+                (lien.href === "/" ? pathname === "/" : estActif(lien.href))
+                  ? "page"
+                  : undefined
+              }
+              onClick={() => setOuvert(false)}
+            >
+              {lien.label}
+              <IconArrow size={22} />
+            </Link>
+          ))}
+        </nav>
+
+        <div className="wrap menu-contact">
+          <a href={`tel:${PHONE_TEL}`} className="btn btn-secondary">
+            <IconPhone size={18} />
             Appeler
           </a>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-            <WhatsAppIcon className="h-4 w-4" />
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-secondary"
+          >
+            <IconWhatsApp size={18} />
             WhatsApp
           </a>
-        </div>
-        <div className="px-1.5">
           <Link
             href="/contact"
-            className="btn btn-primary btn-block"
-            onClick={() => setOpen(false)}
+            className="btn btn-primary"
+            onClick={() => setOuvert(false)}
           >
             Demander un audit gratuit
-            <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
+            <IconArrow size={18} />
           </Link>
         </div>
       </div>
-    </header>
+    </>
   );
 }

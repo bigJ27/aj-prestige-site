@@ -24,7 +24,7 @@ export const villes: Ville[] = [
     ],
     atouts: [
       {
-        titre: "Ligne H — gare du Nord ≈ 20 min",
+        titre: "Ligne H : gare du Nord en 20 min environ",
         texte:
           "La gare de Champ-de-Courses-d'Enghien met Paris à portée directe des voyageurs.",
       },
@@ -70,7 +70,7 @@ export const villes: Ville[] = [
           "Une clientèle loisirs et bien-être prête à payer pour des prestations haut de gamme.",
       },
       {
-        titre: "Gare du Nord ≈ 15 min",
+        titre: "Gare du Nord en 15 min environ",
         texte:
           "La ligne H attire aussi les touristes qui visitent Paris en logeant au bord du lac.",
       },
@@ -276,7 +276,7 @@ export const villes: Ville[] = [
     ],
     atouts: [
       {
-        titre: "Ligne J — Saint-Lazare ≈ 20 min",
+        titre: "Ligne J : Saint-Lazare en 20 min environ",
         texte:
           "L'accès direct à l'ouest parisien, complémentaire de l'axe gare du Nord.",
       },

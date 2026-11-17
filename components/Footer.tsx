@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { villes } from "@/lib/villes";
 import {
@@ -12,26 +11,27 @@ import {
   WHATSAPP_URL,
 } from "@/lib/site";
 
+/**
+ * Pied de page. Ses liens ont prefetch={false} : sans cela, Next.js
+ * téléchargerait en arrière-plan les 14 pages liées dès que le pied de page
+ * apparaît à l'écran — inutile, et coûteux en données mobiles.
+ */
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="shell">
+    <footer className="site-footer">
+      <div className="wrap">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2.5"
-              aria-label="AJ Prestige — accueil"
-            >
-              <Image src="/logo192.png" alt="" width={34} height={34} />
-              <span className="wordmark !text-[20px]">AJ Prestige</span>
+            <Link href="/" className="brand" aria-label="AJ Prestige — accueil">
+              <img src="/logo.webp" alt="" width={30} height={40} />
+              <span className="brand-name text-ink">AJ Prestige</span>
             </Link>
-            <p className="mt-4 max-w-xs">
-              Conciergerie Airbnb premium. Gestion complète de votre location
-              courte durée en Val-d’Oise et Île-de-France, depuis
+            <p className="mt-4">
+              Conciergerie de location courte durée. Gestion complète de votre
+              bien en Val-d’Oise et en Île-de-France, depuis
               Soisy-sous-Montmorency.
             </p>
-            <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+            <p className="footer-links mt-3">
               <a
                 href={GOOGLE_BUSINESS_URL}
                 target="_blank"
@@ -46,39 +46,41 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2>Navigation</h2>
+            <h2 className="footer-title">Le site</h2>
             <ul>
               <li>
-                <Link href="/">Accueil</Link>
+                <Link prefetch={false} href="/">Accueil</Link>
               </li>
               <li>
-                <Link href="/services">Nos services</Link>
+                <Link prefetch={false} href="/services">Nos services</Link>
               </li>
               <li>
-                <Link href="/tarifs">Tarifs & packs</Link>
+                <Link prefetch={false} href="/tarifs">Tarifs et packs</Link>
               </li>
               <li>
-                <Link href="/contact">Audit gratuit</Link>
+                <Link prefetch={false} href="/contact">Audit gratuit</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h2>Conciergerie par ville</h2>
+            <h2 className="footer-title">Conciergerie par ville</h2>
             <ul>
               {villes.map((ville) => (
                 <li key={ville.slug}>
-                  <Link href={`/${ville.slug}`}>{ville.nom}</Link>
+                  <Link prefetch={false} href={`/${ville.slug}`}>{ville.nom}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h2>Contact</h2>
+            <h2 className="footer-title">Contact</h2>
             <ul>
               <li>
-                <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>
+                <a href={`tel:${PHONE_TEL}`} className="num">
+                  {PHONE_DISPLAY}
+                </a>
               </li>
               <li>
                 <a
@@ -94,19 +96,19 @@ export default function Footer() {
                   {EMAIL}
                 </a>
               </li>
-              <li>Soisy-sous-Montmorency, Val-d’Oise</li>
+              <li className="pt-1.5">Soisy-sous-Montmorency, Val-d’Oise</li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p>
-            © {new Date().getFullYear()} AJ Prestige — Micro-entreprise,{" "}
-            <span className="whitespace-nowrap">SIREN {SIREN}</span>.
+            © {new Date().getFullYear()} AJ Prestige — micro-entreprise,{" "}
+            <span className="whitespace-nowrap">SIREN {SIREN}</span>
           </p>
-          <p className="flex flex-wrap gap-x-5 gap-y-1">
-            <Link href="/mentions-legales">Mentions légales</Link>
-            <Link href="/politique-confidentialite">Confidentialité</Link>
+          <p className="footer-links">
+            <Link prefetch={false} href="/mentions-legales">Mentions légales</Link>
+            <Link prefetch={false} href="/politique-confidentialite">Confidentialité</Link>
           </p>
         </div>
       </div>

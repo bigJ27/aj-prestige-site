@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { IconArrow } from "@/components/icons";
 import { EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,15 +13,15 @@ export const metadata: Metadata = {
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <section className="pb-[clamp(72px,9vw,120px)] pt-[calc(var(--nav-h)+64px)]">
-      <div className="shell-text">
-        <Link href="/" className="link-more">
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+    <section className="pb-[clamp(72px,9vw,120px)] pt-[clamp(32px,5vw,64px)]">
+      <div className="wrap-text">
+        <Link href="/" className="link-arrow">
+          <IconArrow size={18} className="rotate-180" />
           Retour à l&apos;accueil
         </Link>
 
-        <h1 className="display mt-8">Politique de confidentialité</h1>
-        <p className="caption mt-3">Dernière mise à jour : août 2026</p>
+        <h1 className="h-page mt-6">Politique de confidentialité</h1>
+        <p className="caption mt-4">Dernière mise à jour : novembre 2026</p>
 
         <div className="prose-legal mt-6">
           <h2>1. Introduction</h2>
@@ -76,6 +76,13 @@ export default function PolitiqueConfidentialitePage() {
             Vos données sont uniquement accessibles par l&apos;équipe AJ
             Prestige. Elles ne sont en aucun cas vendues, louées ou partagées
             avec des tiers à des fins commerciales.
+          </p>
+          <p>
+            L&apos;acheminement du formulaire de contact est assuré par le
+            service Formspree (Formspree Inc., États-Unis), qui agit comme
+            sous-traitant technique : il transmet votre message à AJ Prestige
+            et ne l&apos;utilise à aucune autre fin. Le site est hébergé par
+            Vercel Inc.
           </p>
 
           <h2>7. Vos droits</h2>

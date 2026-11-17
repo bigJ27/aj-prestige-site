@@ -1,27 +1,27 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrow } from "@/components/icons";
 
 export default function NotFound() {
   return (
-    <section className="page-hero flex min-h-[80svh] items-center">
-      <div className="aurora" aria-hidden="true" />
-      <div className="shell-narrow">
-        <span className="eyebrow">Erreur 404</span>
-        <h1 className="display-xl mt-4">
-          Cette page a pris <span className="text-gradient">des vacances.</span>
+    <section className="page-hero flex min-h-[62svh] items-center">
+      <div className="wrap">
+        <p className="label">Erreur 404</p>
+        <h1 className="h-page">
+          Cette page a pris <em>des vacances.</em>
         </h1>
-        <p className="lead mx-auto mt-6 max-w-xl">
-          La page que vous cherchez n’existe pas ou a été déplacée. Retrouvez
-          nos services, nos tarifs et nos villes d’intervention depuis
-          l’accueil.
+        <p className="lead">
+          La page que vous cherchez n’existe pas ou a été déplacée. Nos
+          services, nos tarifs et nos villes d’intervention sont accessibles
+          depuis l’accueil.
         </p>
         <div className="hero-actions">
-          <Link href="/" className="btn btn-primary btn-lg">
+          <Link href="/" className="btn btn-primary">
             Retour à l’accueil
-            <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
+            <IconArrow size={18} />
           </Link>
-          <Link href="/contact" className="btn btn-secondary btn-lg">
+          <Link href="/contact" className="link-arrow">
             Nous contacter
+            <IconArrow size={18} />
           </Link>
         </div>
       </div>

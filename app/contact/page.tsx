@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Clock, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
-import Reveal from "@/components/Reveal";
-import { WhatsAppIcon } from "@/components/icons";
+import {
+  IconClock,
+  IconInstagram,
+  IconMail,
+  IconPhone,
+  IconPin,
+  IconWhatsApp,
+} from "@/components/icons";
+import Photo from "@/components/Photo";
+import { photos } from "@/lib/photos";
 import {
   EMAIL,
   INSTAGRAM_HANDLE,
@@ -27,128 +34,119 @@ export const metadata: Metadata = {
 
 const contacts = [
   {
-    icon: Phone,
+    icon: IconPhone,
     label: "Téléphone",
     value: PHONE_DISPLAY,
     href: `tel:${PHONE_TEL}`,
   },
-  { icon: Mail, label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
   {
-    icon: Instagram,
+    icon: IconWhatsApp,
+    label: "WhatsApp — la réponse la plus rapide, 7 j/7",
+    value: "Écrivez-nous",
+    href: WHATSAPP_URL,
+    external: true,
+  },
+  { icon: IconMail, label: "E-mail", value: EMAIL, href: `mailto:${EMAIL}` },
+  {
+    icon: IconInstagram,
     label: "Instagram",
     value: INSTAGRAM_HANDLE,
     href: INSTAGRAM_URL,
     external: true,
   },
   {
-    icon: MapPin,
+    icon: IconPin,
     label: "Zone d’intervention",
-    value: "Soisy-sous-Montmorency & vallée de Montmorency",
+    value: "Soisy-sous-Montmorency et vallée de Montmorency",
+  },
+  {
+    icon: IconClock,
+    label: "Délai de réponse",
+    value: "Sous 24 h, avec une première estimation",
   },
 ];
 
 export default function ContactPage() {
   return (
-    <>
-      <section className="page-hero !pb-[clamp(40px,5vw,64px)]">
-        <div className="aurora" aria-hidden="true" />
-        <Reveal className="shell-narrow">
-          <span className="eyebrow">Contact</span>
-          <h1 className="display-xl mt-4">
-            Démarrons <span className="text-gradient">ensemble.</span>
+    // data-page sert au CSS : sur cette page, la barre mobile masque son bouton « Audit »
+    <div data-page="contact">
+      <section className="page-hero !pb-[clamp(28px,4vw,48px)]">
+        <div className="wrap">
+          <p className="label">Contact</p>
+          <h1 className="h-page">
+            Parlons de <em>votre bien.</em>
           </h1>
-          <p className="lead mx-auto mt-6 max-w-xl">
-            Audit gratuit et estimation personnalisée de vos revenus. Nous vous
-            répondons sous 24 h avec une première analyse et les prochaines
-            étapes.
+          <p className="lead">
+            Audit gratuit et estimation personnalisée de vos revenus. Nous
+            vous répondons sous 24&nbsp;h avec une première analyse et les
+            prochaines étapes.
           </p>
-        </Reveal>
-      </section>
-
-      <section className="bg-sand-soft pb-[clamp(72px,9vw,120px)]">
-        <div className="shell grid items-start gap-5 lg:grid-cols-[1.45fr_1fr]">
-          <Reveal>
-            <div className="form-card">
-              <h2 className="headline">Demander un audit gratuit</h2>
-              <p className="body-2 mt-2">
-                Deux minutes suffisent. Les champs marqués d’un * sont
-                obligatoires.
-              </p>
-              <div className="mt-8">
-                <ContactForm />
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120} className="grid gap-5 lg:sticky lg:top-28">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="info-card flex items-center gap-4"
-            >
-              <span className="wa-dot !h-12 !w-12">
-                <WhatsAppIcon className="h-6 w-6" />
-              </span>
-              <span>
-                <strong className="block text-[17px] font-semibold">
-                  Écrivez-nous sur WhatsApp
-                </strong>
-                <span className="body-2">La réponse la plus rapide, 7j/7.</span>
-              </span>
-            </a>
-
-            <div className="info-card">
-              <h2 className="title mb-2">Nous joindre directement</h2>
-              <ul>
-                {contacts.map((item) => {
-                  const content = (
-                    <>
-                      <span className="info-icon">
-                        <item.icon className="h-5 w-5" aria-hidden="true" />
-                      </span>
-                      <span>
-                        <small>{item.label}</small>
-                        <strong>{item.value}</strong>
-                      </span>
-                    </>
-                  );
-                  return (
-                    <li key={item.label}>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="info-row"
-                          {...(item.external
-                            ? { target: "_blank", rel: "noopener noreferrer" }
-                            : {})}
-                        >
-                          {content}
-                        </a>
-                      ) : (
-                        <div className="info-row">{content}</div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            <div className="info-card flex gap-4">
-              <span className="info-icon">
-                <Clock className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <p className="body-2">
-                <strong className="block font-semibold text-label">
-                  Réponse sous 24 h
-                </strong>
-                Une première estimation et les prochaines étapes. L’audit est
-                gratuit et sans engagement.
-              </p>
-            </div>
-          </Reveal>
         </div>
       </section>
-    </>
+
+      <section className="pb-[clamp(72px,9vw,128px)]">
+        <div className="wrap grid items-start gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+          <div>
+            <h2 className="h-card">Demander un audit gratuit</h2>
+            <p className="small mt-2">
+              Deux minutes suffisent. Seuls les champs marqués d’un * sont
+              obligatoires.
+            </p>
+            <div className="mt-8">
+              <ContactForm />
+            </div>
+          </div>
+
+          <aside className="lg:sticky lg:top-[calc(var(--header-h)+32px)]">
+            <h2 className="h-card">Nous joindre directement</h2>
+            <ul className="contact-list mt-5">
+              {contacts.map((item) => {
+                const contenu = (
+                  <>
+                    <item.icon size={22} />
+                    <span>
+                      <small>{item.label}</small>
+                      <strong className={item.href?.startsWith("tel:") ? "num" : undefined}>
+                        {item.value}
+                      </strong>
+                    </span>
+                  </>
+                );
+                return (
+                  <li key={item.label}>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="contact-row"
+                        {...(item.external
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
+                      >
+                        {contenu}
+                      </a>
+                    ) : (
+                      <div className="contact-row">{contenu}</div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <figure className="mt-8 hidden lg:block">
+              <div className="photo aspect-[16/10]">
+                <Photo
+                  src={photos.lacPonton.src}
+                  alt={photos.lacPonton.alt}
+                  sizes="(max-width: 1023px) 0px, 460px"
+                />
+              </div>
+              <figcaption className="photo-caption">
+                Le lac d’Enghien, au cœur de notre zone d’intervention.
+              </figcaption>
+            </figure>
+          </aside>
+        </div>
+      </section>
+    </div>
   );
 }

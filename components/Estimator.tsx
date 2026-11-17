@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrow } from "@/components/icons";
 import { packs, type PackId } from "@/lib/content";
+import { typo } from "@/lib/typo";
 
 const euros = new Intl.NumberFormat("fr-FR", {
   style: "currency",
@@ -11,165 +12,141 @@ const euros = new Intl.NumberFormat("fr-FR", {
   maximumFractionDigits: 0,
 });
 
-const PRICE = { min: 40, max: 350, step: 5 };
-const OCCUPANCY = { min: 30, max: 95, step: 5 };
-const DAYS = 30;
+const PRIX = { min: 40, max: 350, pas: 5 };
+const OCCUPATION = { min: 30, max: 95, pas: 5 };
+const JOURS = 30;
 
-const round10 = (value: number) => Math.round(value / 10) * 10;
-const percent = (value: number, min: number, max: number) =>
-  `${((value - min) / (max - min)) * 100}%`;
+const arrondi10 = (valeur: number) => Math.round(valeur / 10) * 10;
+const position = (valeur: number, min: number, max: number) =>
+  `${((valeur - min) / (max - min)) * 100}%`;
 
 /**
- * Estimateur de revenus : prix par nuit × taux d'occupation, moins la
- * commission du pack choisi. Calcul simple et transparent, affiché tel quel.
+ * Estimateur de revenus : prix par nuit × nuits réservées, moins la commission
+ * du pack choisi. Le calcul est volontairement simple et affiché ligne à
+ * ligne, comme le relevé que reçoit le propriétaire chaque mois.
  */
 export default function Estimator() {
-  const [price, setPrice] = useState(90);
-  const [occupancy, setOccupancy] = useState(70);
+  const [prix, setPrix] = useState(90);
+  const [occupation, setOccupation] = useState(70);
   const [packId, setPackId] = useState<PackId>("sweet-home");
 
   const pack = packs.find((p) => p.id === packId) ?? packs[1];
-  const packIndex = packs.findIndex((p) => p.id === packId);
-
-  const result = useMemo(() => {
-    const nights = (DAYS * occupancy) / 100;
-    const gross = price * nights;
-    const commission = gross * pack.taux;
-    return {
-      nights: Math.round(nights),
-      gross: round10(gross),
-      commission: round10(commission),
-      net: round10(gross - commission),
-    };
-  }, [price, occupancy, pack.taux]);
+  const nuits = Math.round((JOURS * occupation) / 100);
+  const brut = arrondi10((prix * JOURS * occupation) / 100);
+  const commission = arrondi10(brut * pack.taux);
+  const net = brut - commission;
 
   return (
     <div className="estimator">
       <div className="est-controls">
-        <div className="est-row">
-          <label htmlFor="est-price">
-            Prix moyen par nuit
-            <output htmlFor="est-price" className="num">
-              {euros.format(price)}
-            </output>
-          </label>
+        <div>
+          <div className="est-head">
+            <label htmlFor="est-prix">Prix moyen par nuit</label>
+            <output htmlFor="est-prix">{euros.format(prix)}</output>
+          </div>
           <input
-            id="est-price"
+            id="est-prix"
             className="range"
             type="range"
-            min={PRICE.min}
-            max={PRICE.max}
-            step={PRICE.step}
-            value={price}
-            onChange={(event) => setPrice(Number(event.target.value))}
+            min={PRIX.min}
+            max={PRIX.max}
+            step={PRIX.pas}
+            value={prix}
+            onChange={(event) => setPrix(Number(event.target.value))}
+            style={
+              { "--p": position(prix, PRIX.min, PRIX.max) } as React.CSSProperties
+            }
+          />
+          <p className="est-hint">
+            Le tarif que vous visez, ou celui de biens comparables au vôtre.
+          </p>
+        </div>
+
+        <div>
+          <div className="est-head">
+            <label htmlFor="est-occupation">Taux d’occupation</label>
+            <output htmlFor="est-occupation">{occupation}&nbsp;%</output>
+          </div>
+          <input
+            id="est-occupation"
+            className="range"
+            type="range"
+            min={OCCUPATION.min}
+            max={OCCUPATION.max}
+            step={OCCUPATION.pas}
+            value={occupation}
+            onChange={(event) => setOccupation(Number(event.target.value))}
             style={
               {
-                "--p": percent(price, PRICE.min, PRICE.max),
+                "--p": position(occupation, OCCUPATION.min, OCCUPATION.max),
               } as React.CSSProperties
             }
           />
           <p className="est-hint">
-            Le tarif que vous visez, ou celui de biens similaires.
+            Soit environ {nuits} nuits réservées sur 30&nbsp;jours.
           </p>
         </div>
 
-        <div className="est-row">
-          <label htmlFor="est-occupancy">
-            Taux d’occupation
-            <output htmlFor="est-occupancy" className="num">
-              {occupancy} %
-            </output>
-          </label>
-          <input
-            id="est-occupancy"
-            className="range"
-            type="range"
-            min={OCCUPANCY.min}
-            max={OCCUPANCY.max}
-            step={OCCUPANCY.step}
-            value={occupancy}
-            onChange={(event) => setOccupancy(Number(event.target.value))}
-            style={
-              {
-                "--p": percent(occupancy, OCCUPANCY.min, OCCUPANCY.max),
-              } as React.CSSProperties
-            }
-          />
-          <p className="est-hint">
-            Soit environ {result.nights} nuits réservées sur 30 jours.
-          </p>
-        </div>
-
-        <div className="est-row">
-          <span className="est-label" id="est-pack-label">
-            Pack
-          </span>
-          <div
-            className="segmented"
-            role="group"
-            aria-labelledby="est-pack-label"
-          >
-            <span
-              className="segmented-thumb"
-              style={{ transform: `translateX(${packIndex * 100}%)` }}
-              aria-hidden="true"
-            />
+        <fieldset>
+          <legend className="est-legend">Pack</legend>
+          <div className="est-packs">
             {packs.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                aria-pressed={p.id === packId}
-                onClick={() => setPackId(p.id)}
-              >
-                {p.nom}
-                <small>
-                  {p.prefixe ? `${p.prefixe} ` : ""}
-                  {p.prix}
-                </small>
-              </button>
+              <label key={p.id} className="est-pack">
+                <input
+                  type="radio"
+                  name="est-pack"
+                  value={p.id}
+                  checked={p.id === packId}
+                  onChange={() => setPackId(p.id)}
+                />
+                <span>
+                  {p.nom}
+                  <small>
+                    {p.prefixe ? `${p.prefixe} ` : ""}
+                    {typo(p.prix)}
+                  </small>
+                </span>
+              </label>
             ))}
           </div>
-        </div>
+        </fieldset>
       </div>
 
-      <div className="est-result" aria-live="polite">
-        <span className="eyebrow eyebrow-dark">Revenus nets estimés</span>
-        <p className="est-net">
-          <span className="text-gradient-dark">{euros.format(result.net)}</span>
-        </p>
-        <p className="mt-2 text-[15px] text-[color:var(--on-dark-2)]">
-          par mois, après notre commission
-        </p>
-
-        <div className="est-lines">
+      <div className="receipt" aria-live="polite">
+        <p className="label label-plain">Relevé mensuel estimatif</p>
+        <dl className="receipt-lines">
           <div>
-            <span>Revenus bruts</span>
-            <strong>{euros.format(result.gross)}</strong>
+            <dt>
+              {nuits} nuits × {euros.format(prix)}
+            </dt>
+            <dd>{euros.format(brut)}</dd>
           </div>
           <div>
-            <span>
-              Commission {pack.prefixe ? `${pack.prefixe} ` : ""}
-              {pack.prix}
-            </span>
-            <strong>− {euros.format(result.commission)}</strong>
+            <dt>
+              Commission {pack.prefixe ?? "de"} {typo(pack.prix)}
+            </dt>
+            <dd>−&nbsp;{euros.format(commission)}</dd>
           </div>
-        </div>
-
-        <p className="est-note">
-          Estimation indicative sur 30 jours, hors frais de ménage, charges et
-          fiscalité. Vos revenus réels dépendent du bien, de la saison et de la
-          demande locale — l’audit gratuit les chiffre précisément.
+        </dl>
+        <p className="receipt-total">
+          <span>Vous recevez</span>
+          <strong>{euros.format(net)}</strong>
+          <small>par mois, après notre commission</small>
         </p>
-
-        <div className="mt-auto pt-7">
-          <Link
-            href={`/contact?pack=${pack.id}`}
-            className="btn btn-primary btn-block"
-          >
-            Obtenir mon estimation précise
-            <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
+        <p className="receipt-note">
+          Estimation indicative sur 30&nbsp;jours, hors frais de ménage,
+          charges et fiscalité. Vos revenus réels dépendent du bien, de la
+          saison et de la demande locale&nbsp;: l’audit gratuit les chiffre
+          précisément.
+        </p>
+        <Link
+          href={`/contact?pack=${pack.id}`}
+          prefetch={false}
+          className="btn btn-primary btn-block"
+        >
+          Faire estimer mon bien
+          <IconArrow size={18} />
+        </Link>
       </div>
     </div>
   );

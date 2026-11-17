@@ -1,124 +1,189 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import {
+  CARTE_HAUTEUR,
+  CARTE_KM,
+  CARTE_LARGEUR,
+  communesCarte,
+} from "@/lib/carte";
 import { villes } from "@/lib/villes";
 
-/** Coordonnées approximatives (centre-ville) — carte schématique */
-const coords: Record<string, [number, number]> = {
-  "conciergerie-airbnb-soisy-sous-montmorency": [48.9886, 2.2994],
-  "conciergerie-airbnb-enghien-les-bains": [48.9697, 2.3081],
-  "conciergerie-airbnb-montmorency": [48.9897, 2.3219],
-  "conciergerie-airbnb-eaubonne": [48.9922, 2.2778],
-  "conciergerie-airbnb-ermont": [48.99, 2.2581],
-  "conciergerie-airbnb-saint-gratien": [48.9719, 2.2847],
-  "conciergerie-airbnb-deuil-la-barre": [48.9675, 2.3253],
-  "conciergerie-airbnb-sannois": [48.9722, 2.2578],
+const BASE = "conciergerie-airbnb-soisy-sous-montmorency";
+
+/**
+ * Emplacement des noms sur la carte, ajusté à la main pour ne recouvrir ni le
+ * lac ni les voies ferrées (coordonnées dans le repère de la carte, 1000 de large).
+ */
+const etiquettes: Record<string, { x: number; y: number; lignes: string[] }> = {
+  "conciergerie-airbnb-soisy-sous-montmorency": {
+    x: 596,
+    y: 392,
+    lignes: ["Soisy-sous-", "Montmorency"],
+  },
+  "conciergerie-airbnb-enghien-les-bains": {
+    x: 692,
+    y: 640,
+    lignes: ["Enghien-", "les-Bains"],
+  },
+  "conciergerie-airbnb-montmorency": { x: 796, y: 362, lignes: ["Montmorency"] },
+  "conciergerie-airbnb-ermont": { x: 266, y: 356, lignes: ["Ermont"] },
+  "conciergerie-airbnb-eaubonne": { x: 440, y: 342, lignes: ["Eaubonne"] },
+  "conciergerie-airbnb-saint-gratien": {
+    x: 468,
+    y: 704,
+    lignes: ["Saint-Gratien"],
+  },
+  "conciergerie-airbnb-deuil-la-barre": {
+    x: 808,
+    y: 518,
+    lignes: ["Deuil-", "la-Barre"],
+  },
+  "conciergerie-airbnb-sannois": { x: 262, y: 582, lignes: ["Sannois"] },
 };
 
-const BASE = "conciergerie-airbnb-soisy-sous-montmorency";
-const LABELS_LEFT = new Set([
-  "conciergerie-airbnb-soisy-sous-montmorency",
-  "conciergerie-airbnb-montmorency",
-  "conciergerie-airbnb-deuil-la-barre",
-  "conciergerie-airbnb-enghien-les-bains",
-]);
-
-const lats = Object.values(coords).map(([lat]) => lat);
-const lons = Object.values(coords).map(([, lon]) => lon);
-const [latMin, latMax] = [Math.min(...lats), Math.max(...lats)];
-const [lonMin, lonMax] = [Math.min(...lons), Math.max(...lons)];
-
-function position(slug: string) {
-  const [lat, lon] = coords[slug];
-  const x = 10 + ((lon - lonMin) / (lonMax - lonMin)) * 78;
-  const y = 16 + ((latMax - lat) / (latMax - latMin)) * 68;
-  return { x, y };
-}
-
 type Props = {
+  /** Adresse (slug) de la ville à mettre en avant, sur les pages villes */
   current?: string;
-  showList?: boolean;
 };
 
 /**
- * Carte schématique des villes d'intervention autour de Soisy-sous-Montmorency
- * (notre base). Chaque point mène à la page de la ville.
+ * Carte de la zone d'intervention : les huit communes, le lac d'Enghien,
+ * la forêt de Montmorency et les lignes de train vers Paris.
+ *
+ * Deux couches superposées :
+ *  1. le fond (public/carte/zone.svg) : une simple image de 5 Ko, téléchargée
+ *     une seule fois pour tout le site et seulement à l'approche de la carte ;
+ *  2. par-dessus, un calque léger avec les noms, les numéros et, sur les pages
+ *     villes, la commune affichée surlignée.
+ * Les deux fichiers sont produits par scripts/generer-carte.py (données IGN).
+ *
+ * La carte est décorative pour les lecteurs d'écran : la liste numérotée des
+ * villes, juste à côté, donne les mêmes informations et les liens.
  */
-export default function ZoneMap({ current, showList = true }: Props) {
-  const base = position(BASE);
+export default function ZoneMap({ current }: Props) {
+  // Même ordre que la liste des villes : le numéro sur la carte y correspond
+  const communes = villes
+    .map((ville) => communesCarte.find((c) => c.slug === ville.slug))
+    .filter((commune) => commune !== undefined);
+  const surlignee = communes.find((c) => c.slug === current);
 
   return (
-    <>
-      <div
-        className="zone-map"
-        role="group"
-        aria-label="Carte de nos villes d’intervention"
-      >
+    <figure>
+      <div className="map">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/carte/zone.svg"
+          alt=""
+          width={CARTE_LARGEUR}
+          height={CARTE_HAUTEUR}
+          loading="lazy"
+          decoding="async"
+        />
         <svg
-          className="zone-rings"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
+          viewBox={`0 0 ${CARTE_LARGEUR} ${CARTE_HAUTEUR}`}
           aria-hidden="true"
+          focusable="false"
         >
-          {[14, 28, 44, 62].map((r, i) => (
-            <ellipse
-              key={r}
-              cx={base.x}
-              cy={base.y}
-              rx={r * 0.62}
-              ry={r}
-              fill="none"
-              stroke="rgba(232,115,74,0.22)"
-              strokeWidth={1}
-              strokeDasharray={i === 0 ? undefined : "2 5"}
-              vectorEffect="non-scaling-stroke"
-            />
-          ))}
-        </svg>
+          {surlignee ? <path className="map-current" d={surlignee.d} /> : null}
 
-        {villes.map((ville) => {
-          const { x, y } = position(ville.slug);
-          const isBase = ville.slug === BASE;
-          const isCurrent = ville.slug === current;
-          const label = isBase ? "Soisy · notre base" : ville.nom;
-          return (
-            <Link
-              key={ville.slug}
-              href={`/${ville.slug}`}
-              className="zone-pin"
-              style={{ left: `${x}%`, top: `${y}%` }}
-              data-base={isBase}
-              data-current={isCurrent}
-              data-side={LABELS_LEFT.has(ville.slug) ? "left" : "right"}
-              aria-label={`Conciergerie Airbnb à ${ville.nom}`}
-              aria-current={isCurrent ? "page" : undefined}
+          {/* Repères : forêt, lac, directions de Paris */}
+          <text className="map-note map-note-wood" x="792" y="118">
+            Forêt de Montmorency
+          </text>
+          <text
+            className="map-note map-note-water"
+            x="626"
+            y="654"
+            textAnchor="end"
+          >
+            Lac d’Enghien
+          </text>
+          <text className="map-way" x="836" y="767" textAnchor="end">
+            vers Paris-Nord · 15 min
+          </text>
+          <text className="map-way" x="300" y="748">
+            vers Paris Saint-Lazare
+          </text>
+
+          {/* Noms des communes (grand écran) et numéros (petit écran) */}
+          {communes.map((commune, i) => {
+            const etiquette = etiquettes[commune.slug];
+            const estBase = commune.slug === BASE;
+            return (
+              <g key={commune.slug}>
+                <text className="map-name" x={etiquette.x} y={etiquette.y}>
+                  {etiquette.lignes.map((ligne, n) => (
+                    <tspan key={ligne} x={etiquette.x} dy={n === 0 ? 0 : 24}>
+                      {ligne}
+                    </tspan>
+                  ))}
+                </text>
+                {estBase ? (
+                  <text
+                    className="map-way map-base"
+                    x={etiquette.x}
+                    y={etiquette.y + 24 * etiquette.lignes.length + 4}
+                    textAnchor="middle"
+                  >
+                    NOTRE BASE
+                  </text>
+                ) : null}
+                {/* Deux groupes : le premier place le numéro, le second (map-pin)
+                    est agrandi par le CSS sur petit écran */}
+                <g
+                  transform={`translate(${etiquette.x} ${estBase ? etiquette.y - 42 : etiquette.y - 6})`}
+                >
+                  <g className={`map-pin ${estBase ? "is-base" : ""}`}>
+                    <circle r="13" />
+                    <text y="5">{i + 1}</text>
+                  </g>
+                </g>
+              </g>
+            );
+          })}
+
+          {/* Échelle : un kilomètre */}
+          <g
+            className="map-extra"
+            transform={`translate(40 ${CARTE_HAUTEUR - 34})`}
+          >
+            <path className="map-scale" d={`M0 -5V0H${CARTE_KM}V-5`} />
+            <text
+              className="map-way"
+              x={CARTE_KM / 2}
+              y="-9"
+              textAnchor="middle"
             >
-              <span aria-hidden="true" />
-              <span className="zone-pin-label" aria-hidden="true">
-                {label}
-              </span>
-            </Link>
-          );
-        })}
-
-        <p className="zone-legend">Carte schématique · Val-d’Oise</p>
+              1 km
+            </text>
+          </g>
+        </svg>
       </div>
+      <figcaption className="photo-caption">
+        Fond de carte : IGN (Admin Express, BD TOPO®), Licence Ouverte.
+      </figcaption>
+    </figure>
+  );
+}
 
-      {showList ? (
-        <ul className="city-list">
-          {villes.map((ville) => (
-            <li key={ville.slug}>
-              <Link
-                href={`/${ville.slug}`}
-                className="city-link"
-                aria-current={ville.slug === current ? "page" : undefined}
-              >
-                {ville.nom}
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : null}
-    </>
+/**
+ * Liste numérotée des villes, à placer à côté de la carte.
+ * prefetch={false} : la page de chaque ville n'est téléchargée qu'au clic,
+ * et non dès que le lien apparaît à l'écran (économie de données sur mobile).
+ */
+export function CityList({ current }: Props) {
+  return (
+    <ol className="city-list">
+      {villes.map((ville) => (
+        <li key={ville.slug}>
+          <Link
+            href={`/${ville.slug}`}
+            prefetch={false}
+            aria-current={ville.slug === current ? "page" : undefined}
+          >
+            {ville.nom}
+          </Link>
+        </li>
+      ))}
+    </ol>
   );
 }

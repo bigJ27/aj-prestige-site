@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { IconArrow } from "@/components/icons";
+import { creditsPhotos } from "@/lib/photos";
 import { EMAIL, SIREN } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,15 +14,15 @@ export const metadata: Metadata = {
 
 export default function MentionsLegalesPage() {
   return (
-    <section className="pb-[clamp(72px,9vw,120px)] pt-[calc(var(--nav-h)+64px)]">
-      <div className="shell-text">
-        <Link href="/" className="link-more">
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+    <section className="pb-[clamp(72px,9vw,120px)] pt-[clamp(32px,5vw,64px)]">
+      <div className="wrap-text">
+        <Link href="/" className="link-arrow">
+          <IconArrow size={18} className="rotate-180" />
           Retour à l&apos;accueil
         </Link>
 
-        <h1 className="display mt-8">Mentions légales</h1>
-        <p className="caption mt-3">Dernière mise à jour : août 2026</p>
+        <h1 className="h-page mt-6">Mentions légales</h1>
+        <p className="caption mt-4">Dernière mise à jour : novembre 2026</p>
 
         <div className="prose-legal mt-6">
           <h2>1. Éditeur du site</h2>
@@ -89,7 +90,22 @@ export default function MentionsLegalesPage() {
             cas de litige, les tribunaux français seront seuls compétents.
           </p>
 
-          <h2>7. Contact</h2>
+          <h2>7. Crédits</h2>
+          <p>
+            Photographies : vues du lac d&apos;Enghien et images
+            d&apos;ambiance issues de la banque d&apos;images libre Unsplash
+            — {creditsPhotos.join(", ")}.
+          </p>
+          <p>
+            Carte de la zone d&apos;intervention : données IGN (Admin Express,
+            BD TOPO®), diffusées sous Licence Ouverte Etalab 2.0.
+          </p>
+          <p>
+            Typographies : Fraunces et Figtree, distribuées sous licence SIL
+            Open Font License.
+          </p>
+
+          <h2>8. Contact</h2>
           <p>
             Pour toute question concernant ces mentions légales :{" "}
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>

@@ -1,47 +1,90 @@
 # AJ Prestige — ajprestige-conciergerie.com
 
-Site vitrine de la conciergerie Airbnb **AJ Prestige** (Val-d'Oise &
-Île-de-France), construit avec **Next.js 15** (App Router, TypeScript,
-Tailwind CSS). Toutes les pages sont générées statiquement (SSG).
+Site vitrine de la conciergerie Airbnb **AJ Prestige** (Val-d'Oise et
+Île-de-France), construit avec **Next.js 15** (App Router, TypeScript).
+Toutes les pages sont générées à l'avance (statiques) : elles s'affichent
+immédiatement, sans calcul côté serveur.
 
 ## Commandes
 
 ```bash
-npm install     # installe les dépendances
-npm run dev     # serveur de développement (http://localhost:3000)
-npm run build   # build de production (SSG)
-npm start       # sert le build de production
+npm install     # installe les dépendances (une seule fois)
+npm run dev     # serveur de développement : http://localhost:3000
+npm run build   # fabrique la version de production
+npm start       # sert la version de production
 ```
 
-## Modifier les textes
+## Modifier le contenu
 
-| Contenu                                            | Fichier          |
-| -------------------------------------------------- | ---------------- |
-| Téléphone, email, WhatsApp, Instagram, Formspree   | `lib/site.ts`    |
-| Packs, comparatif, FAQ, étapes du parcours, photos | `lib/content.ts` |
-| Pages villes (textes SEO localisés)                | `lib/villes.ts`  |
+| Je veux changer…                                         | Fichier                     |
+| -------------------------------------------------------- | --------------------------- |
+| Téléphone, e-mail, WhatsApp, Instagram, formulaire       | `lib/site.ts`               |
+| Services, packs et tarifs, comparatif, FAQ, parcours     | `lib/content.ts`            |
+| Les avis clients affichés sur l'accueil                  | `lib/content.ts` (en bas)   |
+| Les textes des 8 pages villes                            | `lib/villes.ts`             |
+| Les photos (et leur description)                         | `public/images/` + `lib/photos.ts` |
+
+Pas besoin de vous soucier des espaces avant `: ? ! % €` : elles sont
+rendues insécables automatiquement (`lib/typo.ts`), pour qu'un signe ne se
+retrouve jamais seul en début de ligne.
+
+### Ajouter de vrais avis clients
+
+La section « Ils nous confient leur bien » reste masquée tant que la liste
+`temoignages` (dans `lib/content.ts`) est vide. Collez-y vos avis Google (avec
+l'accord de leurs auteurs) : la section apparaît toute seule.
+
+### Remplacer une photo
+
+Déposez votre photo dans `public/images/` **sous le même nom** (JPEG, environ
+2 000 px de large), puis adaptez sa description dans `lib/photos.ts` (le texte
+`alt`, lu par les malvoyants et par Google). Next.js fabrique lui-même les
+versions légères (AVIF/WebP) adaptées à chaque écran.
 
 ## Design
 
-Langage visuel inspiré d'Apple (îlot de navigation en verre flottant,
-grandes typographies Inter, sections claires / panneaux sombres arrondis,
-apparitions douces au défilement) avec la palette coucher de soleil de la
-marque (sable, orange, corail, terracotta, bleu nuit).
-Tout le design système est dans `app/globals.css` (variables en tête de
-fichier). Les animations respectent le réglage « réduire les animations ».
+Parti pris : le « livret d'accueil » d'une maison bien tenue. Papier chaud,
+une sérif douce pour les titres (Fraunces), une linéale lisible pour le texte
+(Figtree), une seule couleur d'accent (terre cuite), des filets fins.
 
-Composants principaux (`components/`) :
+Tout le design est dans `app/globals.css` (couleurs en tête de fichier).
 
-- `Header` — îlot de navigation + menu mobile en feuille de verre
-- `MobileActions` — barre mobile Appeler · WhatsApp · Audit, bouton WhatsApp sur ordinateur
-- `MetroJourney` — ligne de métro animée (le train s'arrête 2 s à chaque étape)
-- `PricingCards` — les 3 packs (carrousel automatique sur mobile)
-- `Estimator` — estimateur de revenus (prix/nuit × occupation − commission)
-- `ZoneMap` — carte schématique des 8 villes d'intervention
-- `Faq`, `CtaBand`, `ContactForm`, `Reveal`, `Footer`
+**Règles de performance** à respecter si vous modifiez le style — ce sont
+elles qui rendaient l'ancienne version lente sur téléphone :
+
+- pas de `backdrop-filter` (effet « verre ») ni de `filter: blur()` ;
+- pas d'animation en boucle infinie (le processeur ne se repose jamais) ;
+- on n'anime que `transform` et `opacity` ;
+- le contenu ne doit jamais attendre le JavaScript pour s'afficher.
+
+## Composants (`components/`)
+
+| Composant      | Rôle                                                                 |
+| -------------- | -------------------------------------------------------------------- |
+| `Header`       | En-tête et menu mobile plein écran                                   |
+| `ActionBar`    | Barre mobile Appeler · WhatsApp · Audit (sans JavaScript)            |
+| `Journey`      | Le parcours en 6 « arrêts », dessiné comme un plan de ligne          |
+| `Packs`        | La carte des tarifs (3 packs)                                        |
+| `Estimator`    | L'estimateur de revenus, présenté comme un relevé mensuel            |
+| `ZoneMap`      | La carte des 8 communes (+ `CityList`, la liste numérotée)           |
+| `Faq`          | Questions fréquentes (balise HTML `<details>`, sans JavaScript)      |
+| `Photo`        | Photo optimisée sans JavaScript (remplace `next/image`)              |
+| `CtaBand`, `ContactForm`, `Testimonials`, `Footer`, `icons`           | |
+
+Seuls `Header`, `Estimator` et `ContactForm` embarquent du JavaScript : tout le
+reste est du HTML et du CSS, ce qui rend le site léger.
 
 Le bouton « Choisir … » d'un pack ouvre le formulaire avec le pack déjà
 sélectionné (`/contact?pack=sweet-home`).
+
+## Outils (`scripts/`)
+
+- `generer-carte.py` — redessine la carte à partir des données officielles de
+  l'IGN (contours des communes, lac, forêts, voies ferrées). Produit
+  `public/carte/zone.svg` et `lib/carte.ts`.
+  `python3 scripts/generer-carte.py`
+- `alleger-polices.py` — fabrique les fichiers de polices allégés de
+  `app/fonts/` (voir l'en-tête du script).
 
 ## Variables d'environnement
 
@@ -51,15 +94,21 @@ sélectionné (`/contact?pack=sweet-home`).
 
 À configurer dans Vercel → Settings → Environment Variables.
 
-## Déploiement Vercel
+## Déploiement
 
-Le projet doit utiliser le preset **Next.js** (forcé par `vercel.json`).
+Hébergé sur Vercel, preset **Next.js** (forcé par `vercel.json`).
 
-## SEO
+## Référencement (SEO)
 
-- Canonical et Open Graph sur `https://ajprestige-conciergerie.com`
-- JSON-LD LocalBusiness sur la page d'accueil
-- `sitemap.xml` et `robots.txt` générés par Next
+- Adresse canonique et aperçu de partage (`app/opengraph-image.jpg`) sur chaque page
+- Données structurées : `LocalBusiness` (accueil), `FAQPage` (tarifs), fil d'Ariane (villes)
+- `sitemap.xml` et `robots.txt` générés par Next.js
 - 8 pages villes `/conciergerie-airbnb-<ville>` (via `app/[slug]`)
-- Redirections 301 des anciennes routes (`/packs` → `/tarifs`,
+- Redirections permanentes des anciennes adresses (`/packs` → `/tarifs`,
   `/pourquoi-nous` → `/services`, `/avis` → `/`)
+
+## Crédits
+
+Photos : Unsplash (auteurs cités dans les mentions légales). Carte : IGN,
+Licence Ouverte Etalab 2.0. Polices : Fraunces et Figtree, SIL Open Font
+License (licences dans `app/fonts/`).

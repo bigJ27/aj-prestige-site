@@ -2,54 +2,29 @@ import type { MetadataRoute } from "next";
 import { villes } from "@/lib/villes";
 import { SITE_URL } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+/**
+ * Date de dernière modification réelle des contenus.
+ * À mettre à jour quand vous changez les textes : annoncer une date fausse
+ * (par exemple « aujourd'hui » à chaque déploiement) fait perdre aux moteurs
+ * de recherche leur confiance dans ce champ.
+ */
+const DERNIERE_MISE_A_JOUR = new Date("2026-11-17");
 
-  const pages: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${SITE_URL}/services`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/tarifs`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/contact`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/mentions-legales`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
-    {
-      url: `${SITE_URL}/politique-confidentialite`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
+export default function sitemap(): MetadataRoute.Sitemap {
+  const pages = [
+    { chemin: "/", priority: 1 },
+    { chemin: "/services", priority: 0.9 },
+    { chemin: "/tarifs", priority: 0.9 },
+    { chemin: "/contact", priority: 0.8 },
+    ...villes.map((ville) => ({ chemin: `/${ville.slug}`, priority: 0.8 })),
+    { chemin: "/mentions-legales", priority: 0.2 },
+    { chemin: "/politique-confidentialite", priority: 0.2 },
   ];
 
-  const pagesVilles: MetadataRoute.Sitemap = villes.map((ville) => ({
-    url: `${SITE_URL}/${ville.slug}`,
-    lastModified,
+  return pages.map(({ chemin, priority }) => ({
+    url: `${SITE_URL}${chemin}`,
+    lastModified: DERNIERE_MISE_A_JOUR,
     changeFrequency: "monthly",
-    priority: 0.8,
+    priority,
   }));
-
-  return [...pages, ...pagesVilles];
 }
