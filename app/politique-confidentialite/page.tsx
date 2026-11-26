@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { EMAIL } from "@/lib/site";
 
@@ -15,10 +14,10 @@ export default function PolitiqueConfidentialitePage() {
   return (
     <section className="pb-[clamp(72px,9vw,120px)] pt-[calc(var(--nav-h)+64px)]">
       <div className="shell-text">
-        <Link href="/" className="link-more">
+        <a href="/" className="link-more">
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Retour à l&apos;accueil
-        </Link>
+        </a>
 
         <h1 className="display mt-8">Politique de confidentialité</h1>
         <p className="caption mt-3">Dernière mise à jour : août 2026</p>

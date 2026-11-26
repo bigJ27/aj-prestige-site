@@ -1,0 +1,13 @@
+AJ Prestige — Le mot sur le frigo
+
+Pour ouvrir le site sur votre ordinateur, décompressez entièrement le ZIP puis ouvrez index.html. Les visuels et les polices sont inclus.
+
+Le frigo s'ouvre en cliquant sur la poignée, sur la photo ou sur « Ouvrir le frigo ». Les six post-it mènent aux six rubriques du site. Pour le refermer, utilisez le bouton de la photo ou la touche Échap lorsque le clavier est dans le frigo.
+
+Les 32 images WebP se trouvent dans assets/frames (00 à 31). Les mots sont imprimés sur les post-it dans les images. Les liens superposés et leurs intitulés accessibles se trouvent dans index.html. Le comportement du frigo, les thèmes et le simulateur se trouvent dans site.js ; la mise en page se trouve dans style.css.
+
+Le simulateur utilise le prix et le nombre de nuits renseignés. Le montant affiché correspond aux nuitées après la seule commission de la formule, avant frais de plateforme, charges et impôts. Ville et type de logement servent au suivi de la demande. Les formules sont alignées sur les prestations du site AJ Prestige, avec Essentiel pour le premier pack et Prestige dès 25 %.
+
+Les boutons de contact préparent un message à vérifier puis à envoyer depuis WhatsApp ou le logiciel de messagerie du visiteur. La page ne collecte pas de demandes sur un serveur.
+
+Pour un hébergement statique, publiez index.html, style.css, site.js et le dossier assets à la racine. Les sources visuelles de la maquette initiale sont conservées dans maquette-claude et logos.

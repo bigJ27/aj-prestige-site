@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
@@ -22,10 +21,10 @@ export default function CtaBand({
           <h2 className="display mx-auto max-w-3xl">{title}</h2>
           {subtitle ? <p className="lead lead-dark">{subtitle}</p> : null}
           <div className="cta-actions">
-            <Link href="/contact" className="btn btn-primary btn-lg">
+            <a href="/#contact" className="btn btn-primary btn-lg">
               {label}
               <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
-            </Link>
+            </a>
             <a href={`tel:${PHONE_TEL}`} className="btn btn-ghost-dark btn-lg">
               <Phone className="h-4 w-4" aria-hidden="true" />
               {PHONE_DISPLAY}

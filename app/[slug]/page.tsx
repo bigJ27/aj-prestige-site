@@ -56,13 +56,13 @@ export default async function VillePage({ params }: Props) {
           </h1>
           <p className="lead mx-auto mt-6 max-w-2xl">{ville.accroche}</p>
           <div className="hero-actions">
-            <Link href="/contact" className="btn btn-primary btn-lg">
+            <a href="/#contact" className="btn btn-primary btn-lg">
               Audit gratuit de mon bien
               <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link href="/tarifs" className="btn btn-secondary btn-lg">
+            </a>
+            <a href="/#formules" className="btn btn-secondary btn-lg">
               Voir les tarifs
-            </Link>
+            </a>
           </div>
         </Reveal>
       </section>
@@ -97,14 +97,14 @@ export default async function VillePage({ params }: Props) {
                   tarification dynamique, maintenance et conformité.
                 </p>
                 <div className="mt-4 grid gap-2">
-                  <Link href="/services" className="link-more">
+                  <a href="/#conciergerie" className="link-more">
                     Découvrir nos services
                     <ChevronRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <Link href="/tarifs" className="link-more">
+                  </a>
+                  <a href="/#formules" className="link-more">
                     Voir nos tarifs (15–25 %)
                     <ChevronRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>

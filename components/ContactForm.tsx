@@ -72,10 +72,10 @@ export default function ContactForm() {
           Nous vous répondons sous 24 h avec une première estimation et les
           prochaines étapes. À très bientôt.
         </p>
-        <Link href="/" className="btn btn-secondary mt-8">
+        <a href="/" className="btn btn-secondary mt-8">
           Retour à l’accueil
           <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
-        </Link>
+        </a>
       </div>
     );
   }
