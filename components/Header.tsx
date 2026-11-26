@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronRight, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons";
@@ -10,9 +9,9 @@ import { PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
 
 const links = [
   { href: "/", label: "Accueil" },
-  { href: "/services", label: "Services" },
-  { href: "/tarifs", label: "Tarifs" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#conciergerie", label: "Services" },
+  { href: "/#formules", label: "Tarifs" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Header() {
@@ -65,29 +64,29 @@ export default function Header() {
       <div className="nav-edge" aria-hidden="true" />
 
       <nav className="nav-island glass" aria-label="Navigation principale">
-        <Link href="/" className="nav-logo" aria-label="AJ Prestige — accueil">
+        <a href="/" className="nav-logo" aria-label="AJ Prestige — accueil">
           <Image src="/logo192.png" alt="" width={30} height={30} priority />
           <span className="wordmark">AJ Prestige</span>
-        </Link>
+        </a>
 
         <ul className="nav-links">
           {links.map((link) => (
             <li key={link.href}>
-              <Link
+              <a
                 href={link.href}
                 className="nav-link"
                 aria-current={isActive(link.href) ? "page" : undefined}
               >
                 {link.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
 
         <div className="nav-actions">
-          <Link href="/contact" className="btn btn-primary btn-sm nav-cta">
+          <a href="/#contact" className="btn btn-primary btn-sm nav-cta">
             Audit gratuit
-          </Link>
+          </a>
           <button
             ref={burgerRef}
             type="button"
@@ -118,7 +117,7 @@ export default function Header() {
         <ul>
           {links.map((link, index) => (
             <li key={link.href}>
-              <Link
+              <a
                 ref={index === 0 ? firstLinkRef : undefined}
                 href={link.href}
                 className="menu-link"
@@ -127,7 +126,7 @@ export default function Header() {
               >
                 {link.label}
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
@@ -145,14 +144,14 @@ export default function Header() {
           </a>
         </div>
         <div className="px-1.5">
-          <Link
-            href="/contact"
+          <a
+            href="/#contact"
             className="btn btn-primary btn-block"
             onClick={() => setOpen(false)}
           >
             Demander un audit gratuit
             <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
-          </Link>
+          </a>
         </div>
       </div>
     </header>

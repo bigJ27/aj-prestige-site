@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function NotFound() {
@@ -16,13 +15,13 @@ export default function NotFound() {
           l’accueil.
         </p>
         <div className="hero-actions">
-          <Link href="/" className="btn btn-primary btn-lg">
+          <a href="/" className="btn btn-primary btn-lg">
             Retour à l’accueil
             <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
-          </Link>
-          <Link href="/contact" className="btn btn-secondary btn-lg">
+          </a>
+          <a href="/#contact" className="btn btn-secondary btn-lg">
             Nous contacter
-          </Link>
+          </a>
         </div>
       </div>
     </section>

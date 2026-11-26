@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { ArrowRight, Play, RotateCcw } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { parcours } from "@/lib/content";
@@ -289,10 +288,10 @@ export default function MetroJourney() {
           </div>
 
           <div className="metro-cta">
-            <Link href="/contact" className="btn btn-primary btn-lg">
+            <a href="/#contact" className="btn btn-primary btn-lg">
               Toucher mes premiers revenus
               <ArrowRight className="arrow h-4 w-4" aria-hidden="true" />
-            </Link>
+            </a>
             {!reduced && (finished || paused) && (
               <button type="button" className="metro-replay" onClick={resume}>
                 {finished || index >= last ? (

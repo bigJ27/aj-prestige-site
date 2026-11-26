@@ -18,14 +18,14 @@ export default function Footer() {
       <div className="shell">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link
+            <a
               href="/"
               className="inline-flex items-center gap-2.5"
               aria-label="AJ Prestige — accueil"
             >
               <Image src="/logo192.png" alt="" width={34} height={34} />
               <span className="wordmark !text-[20px]">AJ Prestige</span>
-            </Link>
+            </a>
             <p className="mt-4 max-w-xs">
               Conciergerie Airbnb premium. Gestion complète de votre location
               courte durée en Val-d’Oise et Île-de-France, depuis
@@ -49,16 +49,16 @@ export default function Footer() {
             <h2>Navigation</h2>
             <ul>
               <li>
-                <Link href="/">Accueil</Link>
+                <a href="/">Accueil</a>
               </li>
               <li>
-                <Link href="/services">Nos services</Link>
+                <a href="/#conciergerie">Nos services</a>
               </li>
               <li>
-                <Link href="/tarifs">Tarifs & packs</Link>
+                <a href="/#formules">Tarifs & packs</a>
               </li>
               <li>
-                <Link href="/contact">Audit gratuit</Link>
+                <a href="/#contact">Audit gratuit</a>
               </li>
             </ul>
           </div>

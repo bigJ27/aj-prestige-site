@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons";
@@ -62,9 +61,9 @@ export default function MobileActions() {
           <span className="dock-label">WhatsApp</span>
         </a>
         {!onContact && (
-          <Link href="/contact" className="btn btn-primary btn-sm">
+          <a href="/#contact" className="btn btn-primary btn-sm">
             Audit gratuit
-          </Link>
+          </a>
         )}
       </nav>
 

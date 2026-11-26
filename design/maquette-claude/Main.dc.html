@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>AJ Prestige — Accueil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;family=Patrick+Hand&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}body{margin:0;background:#F3F1EB;cursor:url(/_blob/c6a3ca49c4e8b6d03dc2b28690743a16) 4 4,auto}
+a,button,select,input,label{cursor:url(/_blob/c6a3ca49c4e8b6d03dc2b28690743a16) 4 4,pointer}a{color:#201F20}[id]{scroll-margin-top:72px}
+.hd{font-family:'Open Sans',sans-serif;font-weight:800;font-stretch:75%;text-transform:uppercase;line-height:.9;letter-spacing:-.005em;margin:0}.lab{font-size:13px;letter-spacing:.08em;text-transform:uppercase}.hand{font-family:'Patrick Hand',cursive}
+.flow{position:relative;overflow:hidden;isolation:isolate;transition:border-radius .5s cubic-bezier(.6,0,.2,1),color .4s ease}.flow::before{content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:50%;background:#201F20;transform:translate(-50%,-50%) scale(0);transition:transform .6s cubic-bezier(.6,0,.2,1);z-index:-1}
+.flow:hover{border-radius:12px !important;color:#F3F1EB !important}.flow:hover::before{transform:translate(-50%,-50%) scale(36)}.flow.lt::before{background:#F3F1EB}.flow.lt:hover{color:#201F20 !important}
+.ar{position:relative;display:inline-block;overflow:hidden;width:1.1em;height:1.3em}.ar i{position:absolute;left:0;top:0;font-style:normal;transition:transform .5s cubic-bezier(.6,0,.2,1)}.ar i+i{transform:translateX(-130%)}.flow:hover .ar i{transform:translateX(130%)}.flow:hover .ar i+i{transform:translateX(0)}
+.pi{transition:transform .55s cubic-bezier(.3,1.5,.5,1),box-shadow .4s ease}.pi:hover{transform:rotate(0deg) translateY(-10px) scale(1.02) !important;box-shadow:12px 14px 0 #201F20 !important}.pi .tp{transition:transform .45s cubic-bezier(.3,1.5,.5,1)}.pi:hover .tp{transform:translateX(-50%) rotate(-6deg) translateY(-4px) !important}
+.pi::after{content:"";position:absolute;right:0;bottom:0;width:0;height:0;background:linear-gradient(to top left,rgba(243,241,235,0) 50%,rgba(0,0,0,.16) 50%,rgba(255,255,255,.5));transition:width .4s ease,height .4s ease}.pi:hover::after{width:38px;height:38px}
+.ul{text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;transition:background-size .4s cubic-bezier(.6,0,.2,1)}.ul:hover{background-size:100% 1.5px}
+.city{background-image:linear-gradient(#201F20,#201F20);background-size:0% 100%;background-repeat:no-repeat;transition:background-size .5s cubic-bezier(.6,0,.2,1),color .3s,transform .4s}.city:hover{background-size:100% 100%;color:#F3F1EB !important;transform:rotate(0deg) !important}.city .go{transition:transform .4s}.city:hover .go{transform:translateX(6px) rotate(-45deg)}
+.stage{position:relative;perspective:2600px}.door{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:100% 50%;transition:transform 1.4s cubic-bezier(.22,.9,.24,1)}.stage:hover .door.shut{transform:rotateY(12deg)}.door.open{transform:rotateY(104deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}.back{transform:rotateY(180deg)}.shade{opacity:0;transition:opacity 1.4s ease}.stage:hover .shut .shade{opacity:.18}.open .shade{opacity:.6}
+.lamp{opacity:0;transition:opacity .5s}.stage:hover .lamp,.on .lamp{opacity:1}.on .lamp{animation:flick 1s steps(1) 1}@keyframes flick{0%{opacity:0}12%{opacity:1}20%{opacity:.25}30%{opacity:1}44%{opacity:.6}56%{opacity:1}}
+.item{animation:drop .8s cubic-bezier(.3,1.45,.5,1) both}@keyframes drop{from{opacity:0;transform:translateY(-26px)}}.item .in{transition:transform .45s cubic-bezier(.3,1.5,.5,1)}.item:hover .in{transform:rotate(0deg) translateY(-6px) scale(1.05) !important}
+.grip::after{content:"";position:absolute;inset:16% 18%;border-radius:40px;border:2px solid #F9EBA0;animation:pulse 2.4s ease-out infinite}@keyframes pulse{0%{opacity:.95;transform:scale(.92)}100%{opacity:0;transform:scale(1.3)}}
+.mag{transition:transform .45s cubic-bezier(.3,1.8,.5,1)}.mag:hover{transform:scale(1.15) rotate(-8deg)}
+@keyframes mq{to{transform:translateX(-50%)}}.mq{animation:mq 42s linear infinite}
+@supports (animation-timeline:view()){.rv{animation:rv both cubic-bezier(.2,.8,.2,1);animation-timeline:view();animation-range:entry 0% cover 26%}}@keyframes rv{from{opacity:0;translate:0 56px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mq,.rv,.grip::after,.item,.on .lamp{animation:none}.door,.pi,.flow,.city{transition:none}}
+:focus-visible{outline:3px solid #201F20;outline-offset:3px}select,input{font:inherit}
+@media (max-width:900px){.hero,.g3,.g2,.g72{grid-template-columns:minmax(0,1fr) !important}.g4{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.navl{display:none !important}.stage{aspect-ratio:auto !important;height:540px}}
+</style>
+</helmet>
+<div style="font-family: 'Open Sans', sans-serif; color: #201F20; background: #F3F1EB; overflow-x: clip">
+
+<nav aria-label="Navigation principale" style="position: sticky; top: 0; z-index: 30; background: rgba(243,241,235,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px)">
+<div style="max-width: 1320px; margin: 0 auto; padding: 12px clamp(16px, 4vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 2px solid #201F20">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<dc-import name="Ruban" fill="{{tape}}" ink="{{tapeInk}}" variant="flat" w="52" hint-size="52px,27px"></dc-import>
+<span class="lab">Conciergerie de location courte durée</span>
+</a>
+<div class="navl" style="display: flex; gap: 24px; font-size: 14px">
+<a href="#formules" class="ul">Formules</a>
+<a href="#etapes" class="ul">Comment ça marche</a>
+<a href="#villes" class="ul">Villes</a>
+<a href="#reglementation" class="ul">Réglementation</a>
+<a href="#apropos" class="ul">À propos</a>
+</div>
+<a href="#simulateur" class="flow" style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; min-height: 44px; box-sizing: border-box; border: 1.5px solid #201F20; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 14px">Estimer <span class="ar" aria-hidden="true"><i>→</i><i>→</i></span></a>
+</div>
+</nav>
+
+<header id="top" style="max-width: 1320px; margin: 0 auto; padding: 22px clamp(16px, 4vw, 40px) 0">
+<dc-import name="Wordmark" fill="#201F20" hint-size="100%,150px"></dc-import>
+</header>
+
+<section class="hero" style="max-width: 1320px; margin: 0 auto; padding: 22px clamp(16px, 4vw, 40px) 0; display: grid; grid-template-columns: minmax(0, 4.6fr) minmax(0, 8fr); gap: 12px">
+<div style="background: {{paper}}; padding: clamp(26px, 3.4vw, 44px); display: flex; flex-direction: column; justify-content: space-between; gap: 36px; transition: background-color .6s ease">
+<div>
+<h1 class="lab" style="margin: 0 0 22px; font-weight: 400">Conciergerie Airbnb · Val-d'Oise</h1>
+<p class="hd" style="font-size: clamp(60px, 7vw, 108px)">On a pensé à vous.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: clamp(22px, 2.1vw, 30px); line-height: 1.3">Votre bien,<br>notre prestige.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; max-width: 400px">Annonce, voyageurs, ménage : AJ s'occupe de votre location courte durée. Airbnb vous verse vos revenus directement.</p>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+<a href="#simulateur" class="flow" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; min-height: 52px; box-sizing: border-box; border: 1.5px solid #201F20; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 17px">Estimer mes revenus <span class="ar" aria-hidden="true"><i>→</i><i>→</i></span></a>
+<dc-import name="Ruban" fill="{{tape}}" ink="{{tapeInk}}" variant="flat" w="96" hint-size="96px,51px"></dc-import>
+</div>
+</div>
+</div>
+
+<div class="stage" style="aspect-ratio: 786 / 572; min-height: 440px">
+<div class="{{insideClass}}" style="position: absolute; inset: 0; overflow: hidden; background: linear-gradient(180deg, #F5F7F7 0%, #E2E6E7 55%, #CDD2D4 100%); box-shadow: inset 0 0 0 10px #D9DAD6, inset 0 0 0 12px #201F20, inset 0 40px 70px rgba(0,0,0,0.2); display: flex; flex-direction: column; padding: 4.5% 6% 0; box-sizing: border-box">
+<div class="lamp" aria-hidden="true" style="position: absolute; left: 10%; right: 10%; top: -34%; height: 82%; background: radial-gradient(ellipse at 50% 45%, rgba(255,246,212,0.98), rgba(255,246,212,0) 70%); pointer-events: none"></div>
+<div style="height: 44px; display: flex; justify-content: space-between; align-items: center; position: relative">
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<p class="hand" style="margin: 0; font-size: 30px">Servez-vous.</p>
+<button type="button" onClick="{{closeDoor}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid #201F20; border-radius: 100px; background: rgba(255,255,255,0.7); font-weight: 600; font-size: 14px">Refermer le frigo</button>
+</sc-if>
+</div>
+<sc-for list="{{shelves}}" as="row" hint-placeholder-count="3">
+<div style="flex: 1; display: flex; align-items: flex-end; gap: 5%; padding: 0 3% 10px; border-bottom: 7px solid rgba(255,255,255,0.8); box-shadow: 0 9px 10px -7px rgba(0,0,0,0.3); position: relative">
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{row.items}}" as="it" hint-placeholder-count="2">
+<a href="{{it.href}}" onClick="{{it.go}}" class="item" style="flex: 1; min-width: 0; text-decoration: none; color: #201F20; animation-delay: {{it.d}}">
+<span class="in" style="display: block; background: {{it.bg}}; padding: 12px 14px 12px; transform: rotate({{it.rot}}deg); box-shadow: 0 12px 20px rgba(0,0,0,0.2); position: relative">
+<span class="lab" style="display: block; font-size: 11px">{{it.kicker}}</span>
+<span class="hand" style="display: block; margin-top: 4px; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.05">{{it.text}}</span>
+</span>
+</a>
+</sc-for>
+</sc-if>
+</div>
+</sc-for>
+<div style="height: 16%; margin: 12px -6.4% 0; background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.25)); border-top: 2px solid rgba(32,31,32,0.25); display: flex; align-items: center; justify-content: center; padding: 0 8%">
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<p class="hand item" style="margin: 0; font-size: clamp(17px, 1.6vw, 22px); text-align: center; animation-delay: .9s">Pas de café ici. Il est dans le placard du haut. — AJ</p>
+</sc-if>
+</div>
+</div>
+
+<div class="{{doorClass}}">
+<div class="face" style="overflow: hidden; background: #8A8A8A; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.45)">
+<img src="/_blob/b8fe43ff36711c98553bde545dc6fa15" alt="Porte de frigo avec un post-it jaune : « Le café est dans le placard du haut. — AJ »" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; display: block">
+<div class="shade" aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.7), rgba(0,0,0,0.15)); pointer-events: none"></div>
+<div style="position: absolute; left: 4%; top: 4%; display: flex; align-items: center; gap: 12px">
+<sc-for list="{{magnets}}" as="m" hint-placeholder-count="3">
+<button type="button" class="mag" onClick="{{m.pick}}" aria-label="{{m.label}}" aria-pressed="{{m.on}}" title="{{m.label}}" style="width: 44px; height: 44px; border-radius: 50%; border: 0; padding: 0; background: radial-gradient(circle at 34% 28%, #FFFFFF 0 9%, {{m.color}} 10% 62%, {{m.deep}} 100%); box-shadow: {{m.ring}}"></button>
+</sc-for>
+<span class="hand" style="font-size: 18px; color: #201F20; background: #F3F1EB; padding: 2px 10px; transform: rotate(-3deg)">Les éditions</span>
+</div>
+<button type="button" class="grip" onClick="{{openDoor}}" aria-label="Ouvrir le frigo" style="position: absolute; left: 1.5%; top: 17%; width: 21%; height: 68%; border: 0; padding: 0; background: transparent; border-radius: 40px"></button>
+<span class="hand" aria-hidden="true" style="position: absolute; left: 3%; bottom: 3%; font-size: 20px; background: {{paper}}; padding: 4px 12px; transform: rotate(-4deg); box-shadow: 3px 4px 0 #201F20; pointer-events: none">↑ Tirez la poignée</span>
+</div>
+<div class="face back" aria-hidden="true" style="background: linear-gradient(90deg, #D7D8D4, #EEEFEC); box-shadow: inset 0 0 0 12px #CACBC6; display: flex; flex-direction: column; justify-content: space-around; padding: 12% 10%; box-sizing: border-box">
+<div style="height: 14%; border: 3px solid rgba(255,255,255,0.8); border-top: 0; background: rgba(255,255,255,0.35)"></div>
+<div style="height: 14%; border: 3px solid rgba(255,255,255,0.8); border-top: 0; background: rgba(255,255,255,0.35)"></div>
+<div style="height: 14%; border: 3px solid rgba(255,255,255,0.8); border-top: 0; background: rgba(255,255,255,0.35)"></div>
+</div>
+</div>
+</div>
+</section>
+
+<div style="max-width: 1320px; margin: 0 auto; padding: 18px clamp(16px, 4vw, 40px) 40px; display: flex; justify-content: space-between; gap: 16px" class="lab">
+<span>Le mot sur le frigo</span><span>AJ Prestige / 01</span>
+</div>
+
+<div style="background: #201F20; color: {{paper}}; overflow: hidden; padding: 18px 0; transition: color .6s ease">
+<div class="mq hd" style="display: flex; width: max-content; font-size: 38px; white-space: nowrap; line-height: 1">
+<span style="padding-right: 28px">{{marquee}}</span><span aria-hidden="true" style="padding-right: 28px">{{marquee}}</span>
+</div>
+</div>
+
+<section id="simulateur" style="max-width: 1320px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
+<div class="lab" style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid #201F20"><span>AJ Prestige / Simulateur</span><span>02</span></div>
+<h2 class="hd rv" style="margin-top: 18px; font-size: clamp(52px, 8vw, 124px)">Combien rapporte<br>votre bien ?</h2>
+<div class="g2" style="margin-top: 48px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start">
+<div class="rv" style="background: #FFFFFF; border: 2px solid #201F20; box-shadow: 10px 10px 0 #201F20; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 26px">
+<label style="display: flex; flex-direction: column; gap: 10px"><span class="lab">1 · Où est votre logement ?</span>
+<select onChange="{{onVille}}" style="min-height: 52px; padding: 0 14px; border: 1.5px solid #201F20; border-radius: 12px; background: #F3F1EB; font-size: 17px">
+<sc-for list="{{cities}}" as="c" hint-placeholder-count="12"><option value="{{c.name}}">{{c.name}}</option></sc-for>
+</select></label>
+<fieldset style="border: 0; margin: 0; padding: 0">
+<legend class="lab" style="margin-bottom: 10px">2 · Quel logement ?</legend>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<sc-for list="{{types}}" as="t" hint-placeholder-count="5">
+<button type="button" onClick="{{t.pick}}" aria-pressed="{{t.on}}" style="min-height: 44px; padding: 0 18px; border: 1.5px solid #201F20; border-radius: 100px; background: {{t.bg}}; color: {{t.fg}}; font-weight: 600; font-size: 15px; transition: background-color .3s, color .3s">{{t.name}}</button>
+</sc-for>
+</div>
+</fieldset>
+<fieldset style="border: 0; margin: 0; padding: 0">
+<legend class="lab" style="margin-bottom: 10px">3 · Quelle formule ?</legend>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<sc-for list="{{packs}}" as="p" hint-placeholder-count="3">
+<button type="button" onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="min-height: 44px; padding: 0 18px; border: 1.5px solid #201F20; border-radius: 100px; background: {{p.bg}}; color: {{p.fg}}; font-weight: 600; font-size: 15px; transition: background-color .3s, color .3s">{{p.name}} · {{p.rate}}</button>
+</sc-for>
+</div>
+</fieldset>
+<button type="button" onClick="{{showResult}}" class="flow" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; min-height: 52px; border: 1.5px solid #201F20; border-radius: 100px; background: {{paper}}; font-weight: 600; font-size: 17px">Voir mon estimation <span class="ar" aria-hidden="true"><i>→</i><i>→</i></span></button>
+</div>
+
+<div class="rv" style="background: {{paper}}; padding: clamp(32px, 3.4vw, 48px) clamp(24px, 3vw, 40px); transform: rotate(1.2deg); box-shadow: 8px 10px 0 #201F20; position: relative; transition: background-color .6s ease">
+<img src="/_blob/de9ca0d4bbb4d12d6f5267bb03e637c7" alt="" aria-hidden="true" style="position: absolute; top: -16px; left: 50%; width: 130px; height: 34px; transform: translateX(-50%) rotate(-2deg)">
+<sc-if value="{{waiting}}" hint-placeholder-val="{{ true }}">
+<p class="hand" style="margin: 0; font-size: clamp(30px, 3vw, 42px); line-height: 1.15">Trois questions, et votre estimation s'écrit ici.</p>
+<p class="hand" style="margin: 22px 0 0; font-size: 26px; text-align: right">— AJ</p>
+</sc-if>
+<sc-if value="{{shown}}" hint-placeholder-val="{{ false }}">
+<p class="lab" style="margin: 0">{{type}} · {{ville}}</p>
+<dl style="margin: 20px 0 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 20px; font-size: 17px; align-items: baseline">
+<dt>Revenu brut estimé / mois</dt><dd class="hand" style="margin: 0; font-size: 26px">— €</dd>
+<dt>Commission AJ · {{packName}}</dt><dd class="hand" style="margin: 0; font-size: 26px">{{packRate}}</dd>
+<dt class="hd" style="font-size: 30px; padding-top: 12px; border-top: 2px solid #201F20">Ce qu'il vous reste</dt><dd class="hd" style="margin: 0; font-size: 30px; padding-top: 12px; border-top: 2px solid #201F20">— €</dd>
+</dl>
+<p style="margin: 14px 0 0; font-size: 13px; line-height: 1.5">Maquette : les montants par ville arrivent avec la version finale du simulateur.</p>
+<form style="margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<p style="margin: 0; font-weight: 600; grid-column: 1 / -1">Recevez l'estimation détaillée par email</p>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">Prénom<input type="text" autocomplete="given-name" style="min-height: 46px; padding: 0 12px; border: 1.5px solid #201F20; border-radius: 10px; background: #FFFFFF"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">Téléphone<input type="tel" autocomplete="tel" style="min-height: 46px; padding: 0 12px; border: 1.5px solid #201F20; border-radius: 10px; background: #FFFFFF"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; grid-column: 1 / -1">Email<input type="email" autocomplete="email" style="min-height: 46px; padding: 0 12px; border: 1.5px solid #201F20; border-radius: 10px; background: #FFFFFF"></label>
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.45; grid-column: 1 / -1"><input type="checkbox" style="width: 20px; height: 20px; margin: 0; flex: none">J'accepte qu'AJ Prestige utilise ces informations pour me recontacter au sujet de mon logement (politique de confidentialité).</label>
+<button type="button" class="flow" style="grid-column: 1 / -1; justify-self: start; display: inline-flex; align-items: center; gap: 12px; padding: 14px 26px; min-height: 48px; border: 1.5px solid #201F20; border-radius: 100px; background: transparent; font-weight: 600; font-size: 16px">Recevoir mon estimation <span class="ar" aria-hidden="true"><i>→</i><i>→</i></span></button>
+</form>
+</sc-if>
+</div>
+</div>
+</section>
+
+<section id="formules" style="background: {{band}}; color: {{bandInk}}; transition: background-color .6s ease, color .6s ease">
+<div style="max-width: 1320px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
+<div class="lab" style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid {{bandInk}}"><span>AJ Prestige / Les formules</span><span>03</span></div>
+<h2 class="hd rv" style="margin-top: 18px; font-size: clamp(56px, 9.4vw, 140px)">Quel mot vous parle ?</h2>
+<div class="g3" style="margin-top: 72px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; color: #201F20">
+<sc-for list="{{packCards}}" as="k" hint-placeholder-count="3">
+<article class="pi rv" style="background: {{k.bg}}; padding: 52px 30px 30px; transform: rotate({{k.rot}}deg); box-shadow: 6px 7px 0 #201F20; position: relative; display: flex; flex-direction: column; gap: 14px">
+<sc-if value="{{k.cream}}" hint-placeholder-val="{{ true }}"><img class="tp" src="/_blob/de9ca0d4bbb4d12d6f5267bb03e637c7" alt="" aria-hidden="true" style="position: absolute; top: -17px; left: 50%; width: 140px; height: 36px; transform: translateX(-50%) rotate(-2deg)"></sc-if>
+<sc-if value="{{k.yellow}}" hint-placeholder-val="{{ false }}"><img class="tp" src="/_blob/3391910fced0e7c4c54b4353cae0480f" alt="" aria-hidden="true" style="position: absolute; top: -15px; left: 50%; width: 140px; height: 32px; transform: translateX(-50%) rotate(1deg)"></sc-if>
+<span class="lab">Pack / {{k.num}}</span>
+<h3 class="hd" style="font-size: clamp(46px, 4.4vw, 66px); padding-bottom: 14px; border-bottom: 2px solid #201F20">{{k.name}}</h3>
+<p style="margin: 0; font-size: 24px; line-height: 1.3; white-space: pre-line">{{k.motto}}</p>
+<p class="hd" style="margin-top: 10px; font-size: 64px">{{k.rate}}</p>
+<ul style="margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.75">
+<sc-for list="{{k.items}}" as="it" hint-placeholder-count="3"><li>{{it}}</li></sc-for>
+</ul>
+<div style="align-self: flex-end; margin-top: auto"><dc-import name="Ruban" fill="{{tape}}" ink="{{tapeInk}}" variant="flat" w="64" hint-size="64px,34px"></dc-import></div>
+</article>
+</sc-for>
+</div>
+<p style="margin: 56px 0 0; font-size: 15px">Commission calculée sur [BASE DE CALCUL À CONFIRMER].</p>
+</div>
+</section>
+
+<section id="etapes" style="max-width: 1320px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
+<div class="lab" style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid #201F20"><span>AJ Prestige / Comment ça marche</span><span>04</span></div>
+<h2 class="hd rv" style="margin-top: 18px; font-size: clamp(52px, 8vw, 124px)">Quatre petits mots.</h2>
+<ol class="g4" style="list-style: none; margin: 64px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+<li class="pi rv" style="background: {{s.bg}}; padding: 40px 22px 26px; transform: rotate({{s.rot}}deg); box-shadow: 5px 6px 0 #201F20; position: relative">
+<img class="tp" src="/_blob/de9ca0d4bbb4d12d6f5267bb03e637c7" alt="" aria-hidden="true" style="position: absolute; top: -14px; left: 50%; width: 110px; height: 30px; transform: translateX(-50%) rotate(-3deg)">
+<span class="hd" style="display: block; font-size: 72px">{{s.num}}</span>
+<h3 style="margin: 12px 0 0; font-size: 21px">{{s.title}}</h3>
+<p style="margin: 10px 0 0; font-size: 15px; line-height: 1.6">{{s.text}}</p>
+</li>
+</sc-for>
+</ol>
+</section>
+
+<section aria-labelledby="offre-titre" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+<div class="rv" style="background: #201F20; color: #F3F1EB; padding: clamp(32px, 5vw, 72px); display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 520px">
+<span class="lab" style="color: {{paper}}">Pour nos premiers propriétaires</span>
+<h2 id="offre-titre" class="hd" style="margin-top: 16px; font-size: clamp(52px, 7vw, 104px)">Mise en ligne<br>offerte.</h2>
+<p style="margin: 22px 0 28px; font-size: 18px; line-height: 1.6; max-width: 600px">L'annonce rédigée, les photos et la tarification sont offertes. Ensuite, seule la commission de votre formule s'applique.</p>
+<a href="#simulateur" class="flow lt" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; min-height: 52px; box-sizing: border-box; border: 1.5px solid #F3F1EB; border-radius: 100px; text-decoration: none; color: #F3F1EB; font-weight: 600; font-size: 17px">J'en profite <span class="ar" aria-hidden="true"><i>→</i><i>→</i></span></a>
+</div>
+<div style="flex: 0 1 320px; display: flex; justify-content: center"><dc-import name="Ruban" fill="{{tape}}" ink="{{tapeInk}}" variant="tilt" w="300" hint-size="300px,183px"></dc-import></div>
+</div>
+</section>
+
+<section id="apropos" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+<div class="lab" style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid #201F20"><span>AJ Prestige / Signatures</span><span>05</span></div>
+<h2 class="hd rv" style="margin-top: 18px; font-size: clamp(56px, 9.4vw, 140px)">Signé AJ.</h2>
+<div class="g72 rv" style="margin-top: 40px; display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr); gap: 12px">
+<div style="background: {{paper}}; min-height: 340px; display: flex; align-items: center; justify-content: center; padding: 48px 6%; transition: background-color .6s ease">
+<div style="width: min(560px, 100%)"><dc-import name="Ruban" fill="{{tape}}" ink="{{tapeInk}}" word="#201F20" variant="lockup" w="100%" hint-size="100%,90px"></dc-import></div>
+</div>
+<div style="background: #201F20; min-height: 340px; display: flex; align-items: center; justify-content: center; padding: 40px">
+<dc-import name="Ruban" fill="{{tape}}" ink="{{tapeInk}}" variant="tilt" w="240" hint-size="240px,147px"></dc-import>
+</div>
+</div>
+<div class="g2" style="margin-top: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px">
+<div><p class="lab" style="margin: 0">Qui est AJ</p><p style="margin: 12px 0 0; font-size: 19px; line-height: 1.6">Derrière AJ, il y a Jalil. Comptable de formation, j'ai passé près de quatre ans en cabinet d'expertise comptable. J'habite Soisy-sous-Montmorency.</p></div>
+<div><p class="lab" style="margin: 0">Ma promesse</p><p style="margin: 12px 0 0; font-size: 19px; line-height: 1.6">Vos revenus et vos factures suivis avec la rigueur d'un comptable. Votre logement, avec le soin d'un voisin.</p></div>
+</div>
+<p style="margin: 40px 0 0; padding-top: 20px; border-top: 2px solid #201F20; font-size: clamp(24px, 2.4vw, 32px)">Votre bien, notre prestige.</p>
+</section>
+
+<section id="villes" style="background: #FFFFFF; border-top: 2px solid #201F20; border-bottom: 2px solid #201F20">
+<div style="max-width: 1320px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
+<div class="lab" style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid #201F20"><span>AJ Prestige / Où on intervient</span><span>06</span></div>
+<h2 class="hd rv" style="margin-top: 18px; font-size: clamp(52px, 8vw, 124px)">Votre ville est<br>sur le frigo ?</h2>
+<ul class="g4" style="list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{cities}}" as="c" hint-placeholder-count="12">
+<li class="rv"><a href="#" class="city" style="display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 76px; padding: 16px 18px; box-sizing: border-box; background-color: {{c.bg}}; text-decoration: none; transform: rotate({{c.rot}}deg); box-shadow: 4px 5px 0 #201F20; border: 1.5px solid #201F20">
+<span><span class="lab" style="display: block; font-size: 11px">95 · Val-d'Oise</span><span style="display: block; margin-top: 4px; font-weight: 600; font-size: 17px">{{c.name}}</span></span>
+<span class="go" aria-hidden="true" style="font-size: 22px">→</span>
+</a></li>
+</sc-for>
+</ul>
+</div>
+</section>
+
+<section id="reglementation" style="max-width: 1320px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
+<div class="lab" style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid #201F20"><span>AJ Prestige / Réglementation</span><span>07</span></div>
+<div class="g2" style="margin-top: 18px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: end">
+<h2 class="hd rv" style="font-size: clamp(48px, 6.4vw, 96px)">La réglementation, on la lit pour vous.</h2>
+<div class="rv">
+<p style="margin: 0; font-size: 18px; line-height: 1.7">Résidence principale ou secondaire, nombre de nuits autorisées, numéro d'enregistrement, déclaration en mairie : on vérifie que votre logement est en règle avant la première réservation.</p>
+<a href="#" class="flow" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 12px; padding: 14px 26px; min-height: 52px; box-sizing: border-box; border: 1.5px solid #201F20; border-radius: 100px; text-decoration: none; font-weight: 600">Lire le guide <span class="ar" aria-hidden="true"><i>→</i><i>→</i></span></a>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="editions-titre" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+<div class="lab" style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid #201F20"><span>Le mot sur le frigo / Éditions</span><span>08</span></div>
+<h2 id="editions-titre" class="hd rv" style="margin-top: 18px; font-size: clamp(52px, 8vw, 124px)">Trois éditions.</h2>
+<div class="g3" style="margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px">
+<sc-for list="{{posters}}" as="po" hint-placeholder-count="3">
+<div class="rv">
+<button type="button" class="pi" onClick="{{po.pick}}" aria-pressed="{{po.on}}" style="width: 100%; aspect-ratio: 402 / 444; border: 0; background: {{po.color}}; padding: 18px 18px 22px; text-align: left; display: flex; flex-direction: column; gap: 14px; position: relative; box-shadow: {{po.ring}}; color: {{po.ink}}">
+<dc-import name="Wordmark" fill="{{po.ink}}" hint-size="100%,50px"></dc-import>
+<span style="display: block; border-top: 2px solid {{po.ink}}"></span>
+<span class="hd" style="display: block; font-size: clamp(44px, 5vw, 76px)">Petit mot<br>pour vous.</span>
+<span style="position: absolute; right: 18px; bottom: 22px"><dc-import name="Ruban" fill="{{po.accent}}" ink="{{po.accentInk}}" variant="flat" w="86" hint-size="86px,45px"></dc-import></span>
+</button>
+<p style="margin: 18px 0 0; font-size: 22px">{{po.name}}</p>
+<p class="lab" style="margin: 6px 0 0">{{po.hex}} · {{po.state}}</p>
+</div>
+</sc-for>
+</div>
+</section>
+
+<footer style="background: #201F20; color: #F3F1EB">
+<div style="max-width: 1320px; margin: 0 auto; padding: 64px clamp(16px, 4vw, 40px) 32px">
+<dc-import name="Wordmark" fill="#F3F1EB" hint-size="100%,150px"></dc-import>
+<div style="margin-top: 32px; padding-top: 18px; border-top: 2px solid #F3F1EB; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; font-size: 14px">
+<span>Votre bien, notre prestige.</span>
+<nav aria-label="Informations légales" style="display: flex; gap: 22px; flex-wrap: wrap">
+<a href="#" class="ul" style="color: #F3F1EB">Mentions légales</a>
+<a href="#" class="ul" style="color: #F3F1EB">Confidentialité</a>
+<a href="#" class="ul" style="color: #F3F1EB">Cookies</a>
+</nav>
+<span>Micro-entreprise · SIREN 989 871 991</span>
+</div>
+</div>
+</footer>
+
+<a href="#" aria-label="Écrire à AJ Prestige sur WhatsApp" class="mag" style="position: fixed; right: 22px; bottom: 22px; width: 62px; height: 62px; border-radius: 50%; background: {{paper}}; border: 2px solid #201F20; box-shadow: 4px 5px 0 #201F20; display: flex; align-items: center; justify-content: center; z-index: 40; transition: background-color .6s ease">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#201F20" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.3z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-0.9 0.8c-1-0.4-1.8-1.2-2.2-2.2l0.8-0.9-1-2z"></path></svg>
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { edition: 'beurre', open: false, ville: 'Soisy-sous-Montmorency', type: 'T2', pack: 'sweet', shown: false };
+  }
+  renderVals() {
+    const E = {
+      beurre: { paper: '#F9EBA0', tape: '#BBA0E4', tapeInk: '#201F20', band: '#BBA0E4', bandInk: '#201F20', deep: '#D9C76A', name: 'Lilas & beurre', hex: '#F9EBA0 / #BBA0E4' },
+      menthe: { paper: '#C9E9D3', tape: '#AC204C', tapeInk: '#FFFFFF', band: '#AC204C', bandInk: '#FFFFFF', deep: '#8FC2A0', name: 'Menthe & cerise', hex: '#C9E9D3 / #AC204C' },
+      rose: { paper: '#F6BDCD', tape: '#7C4036', tapeInk: '#FFFFFF', band: '#7C4036', bandInk: '#FFFFFF', deep: '#D98BA2', name: 'Rose & cacao', hex: '#F6BDCD / #7C4036' }
+    };
+    const ed = this.state.edition;
+    const t = E[ed];
+    const keys = ['beurre', 'menthe', 'rose'];
+    const magnets = keys.map((k) => ({
+      label: 'Édition ' + E[k].name, color: E[k].paper, deep: E[k].deep, on: k === ed ? 'true' : 'false',
+      ring: k === ed ? '0 0 0 3px #F3F1EB, 0 0 0 5px #201F20, 0 8px 12px rgba(0,0,0,0.35)' : '0 8px 12px rgba(0,0,0,0.35), inset 0 -4px 6px rgba(0,0,0,0.18)',
+      pick: () => this.setState({ edition: k })
+    }));
+    const posters = keys.map((k) => ({
+      name: E[k].name, hex: E[k].hex, color: E[k].paper, accent: E[k].tape, accentInk: E[k].tapeInk,
+      ink: k === 'beurre' ? '#201F20' : k === 'menthe' ? '#2A1A28' : '#2E1C1A',
+      on: k === ed ? 'true' : 'false', state: k === ed ? 'Édition active' : 'Cliquer pour appliquer',
+      ring: k === ed ? '0 0 0 3px #F3F1EB, 0 0 0 6px #201F20' : 'none',
+      pick: () => this.setState({ edition: k })
+    }));
+    const close = () => setTimeout(() => this.setState({ open: false }), 700);
+    const fridge = [
+      { kicker: 'Simulateur', text: 'Combien rapporte mon logement ?', href: '#simulateur' },
+      { kicker: 'Formules', text: '15, 20 ou 25 % ?', href: '#formules' },
+      { kicker: 'Étapes', text: 'Comment ça marche', href: '#etapes' },
+      { kicker: 'Villes', text: 'On passe chez vous ?', href: '#villes' },
+      { kicker: 'Réglementation', text: 'Suis-je en règle ?', href: '#reglementation' },
+      { kicker: 'À propos', text: 'Qui est AJ ?', href: '#apropos' }
+    ];
+    const rots = [-3, 2, 1.5, -2, -1, 3];
+    const items = fridge.map((f, i) => ({ ...f, rot: rots[i], bg: i % 2 ? '#FFFFFF' : t.paper, d: (0.35 + i * 0.09).toFixed(2) + 's', go: close }));
+    const shelves = [{ items: items.slice(0, 2) }, { items: items.slice(2, 4) }, { items: items.slice(4, 6) }];
+    const chip = (on) => ({ bg: on ? '#201F20' : '#FFFFFF', fg: on ? '#F3F1EB' : '#201F20' });
+    const types = ['Studio', 'T2', 'T3', 'T4 et plus', 'Maison'].map((name) => ({ name, on: name === this.state.type ? 'true' : 'false', ...chip(name === this.state.type), pick: () => this.setState({ type: name }) }));
+    const P = [
+      { id: 'essentiel', name: 'Essentiel', rate: '15 %' },
+      { id: 'sweet', name: 'Sweet Home', rate: '20 %' },
+      { id: 'prestige', name: 'Prestige', rate: '25 %' }
+    ];
+    const packs = P.map((p) => ({ ...p, on: p.id === this.state.pack ? 'true' : 'false', ...chip(p.id === this.state.pack), pick: () => this.setState({ pack: p.id }) }));
+    const cur = P.find((p) => p.id === this.state.pack);
+    const packCards = [
+      { num: '01', name: 'Essentiel', motto: 'Je garde\nla main.', rate: '15 %', rot: -1.6, bg: t.paper, cream: true, yellow: false, items: ['Annonce optimisée', 'Gestion du calendrier', 'Communication voyageurs'] },
+      { num: '02', name: 'Sweet Home', motto: 'On se partage\nle quotidien.', rate: '20 %', rot: 0.8, bg: '#F3F1EB', cream: false, yellow: true, items: ['Tout le pack Essentiel', 'Ménage et linge', 'Arrivées et départs', 'Photos professionnelles'] },
+      { num: '03', name: 'Prestige', motto: 'Je passe\nle relais.', rate: '25 %', rot: -0.8, bg: t.paper, cream: true, yellow: false, items: ['Tout le pack Sweet Home', 'Prix ajustés chaque jour', 'Petite maintenance', 'Rapport mensuel'] }
+    ];
+    const steps = [
+      { num: '01', title: 'Vous estimez', text: 'Le simulateur vous donne une première fourchette de revenus pour votre logement.' },
+      { num: '02', title: 'On se rencontre', text: 'Audit gratuit chez vous : logement, conformité, potentiel et formule adaptée.' },
+      { num: '03', title: 'On met en ligne', text: 'Annonce rédigée, photos, prix et règles de la maison. Votre logement est prêt.' },
+      { num: '04', title: 'Vous recevez', text: 'Airbnb ou Booking vous versent vos revenus directement. Nous facturons notre commission ensuite.' }
+    ].map((s, i) => ({ ...s, rot: [-1.5, 1.2, -0.8, 1.6][i], bg: i % 2 ? '#FFFFFF' : t.paper }));
+    const names = ['Soisy-sous-Montmorency', 'Enghien-les-Bains', 'Montmorency', 'Sannois', 'Argenteuil', 'Eaubonne', 'Ermont', 'Saint-Gratien', 'Deuil-la-Barre', 'Cergy', 'Pontoise', 'Taverny'];
+    const cr = [-1.2, 0.8, -0.4, 1.2, -0.8, 0.5];
+    const cities = names.map((name, i) => ({ name, rot: cr[i % cr.length], bg: i % 3 === 1 ? t.paper : '#F3F1EB' }));
+    return {
+      ...t, magnets, posters, shelves, types, packs, packCards, steps, cities,
+      open: this.state.open,
+      doorClass: this.state.open ? 'door open' : 'door shut',
+      insideClass: this.state.open ? 'inside on' : 'inside',
+      openDoor: () => this.setState({ open: true }),
+      closeDoor: () => this.setState({ open: false }),
+      marquee: names.join('  /  ') + '  /',
+      ville: this.state.ville, type: this.state.type,
+      packName: cur.name, packRate: cur.rate,
+      shown: this.state.shown, waiting: !this.state.shown,
+      onVille: (e) => this.setState({ ville: e.target.value }),
+      showResult: () => this.setState({ shown: true })
+    };
+  }
+}
+</script>
+</body>
+</html>
